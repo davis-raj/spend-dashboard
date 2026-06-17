@@ -20,7 +20,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
 @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
 .card { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-.card h3 { font-size: 16px; color: #1a1a2e; margin-bottom: 16px; }
+.card h3 { font-size: 16px; color: #1a1a2e; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .card.full { grid-column: 1 / -1; }
 canvas { max-height: 300px; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -34,6 +34,10 @@ tr:hover td { background: #f8f9ff; }
 .filter-bar input { width: 200px; }
 .txn-scroll { max-height: 400px; overflow-y: auto; border-radius: 8px; border: 1px solid #e9ecef; }
 #loading { text-align: center; padding: 60px; font-size: 18px; color: #888; }
+.month-btns { display: inline-flex; gap: 4px; flex-wrap: wrap; }
+.month-btn { padding: 4px 10px; border-radius: 6px; border: 1px solid #ddd; background: #f8f9fa; font-size: 12px; cursor: pointer; font-weight: 500; transition: all 0.15s; }
+.month-btn:hover { background: #e8f4fd; border-color: #2980b9; }
+.month-btn.active { background: #2980b9; color: white; border-color: #2980b9; }
 </style>
 </head>
 <body>
@@ -46,15 +50,15 @@ tr:hover td { background: #f8f9ff; }
 <div class="stats-row" id="stats-row"></div>
 <div class="grid">
 <div class="card"><h3>📊 Monthly Overview</h3><canvas id="monthlyChart"></canvas></div>
-<div class="card"><h3>🏷️ Spending by Category <select id="catMonthFilter" style="font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid #ddd;margin-left:10px;"><option value="">YTD</option></select></h3><canvas id="catChart"></canvas></div>
+<div class="card"><h3>🏷️ Spending by Category <span class="month-btns" id="catBtns"></span></h3><canvas id="catChart"></canvas></div>
 <div class="card full"><h3>📈 Category Trends</h3><canvas id="trendChart"></canvas></div>
-<div class="card"><h3>🏪 Top Merchants <select id="merchMonthFilter" style="font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid #ddd;margin-left:10px;"><option value="">YTD</option></select></h3><div id="merchantTable"></div></div>
-<div class="card"><h3>📋 Category Breakdown <select id="catTableMonthFilter" style="font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid #ddd;margin-left:10px;"><option value="">YTD</option></select></h3><div id="catTable"></div></div>
+<div class="card"><h3>🏪 Top Merchants <span class="month-btns" id="merchBtns"></span></h3><div id="merchantTable"></div></div>
+<div class="card"><h3>📋 Category Breakdown <span class="month-btns" id="catTableBtns"></span></h3><div id="catTable"></div></div>
 </div>
 <div class="card full" style="margin-bottom:30px;">
 <h3>🔍 All Transactions</h3>
 <div class="filter-bar">
-<select id="filterMonth"><option value="">All Months</option></select>
+<span class="month-btns" id="txnMonthBtns"></span>
 <select id="filterCat"><option value="">All Categories</option></select>
 <input type="text" id="filterSearch" placeholder="Search merchant...">
 </div>
@@ -68,8 +72,30 @@ fetch('data.json').then(r => r.json()).then(DATA => {
   document.getElementById('loading').style.display = 'none';
   document.getElementById('app').style.display = '';
 
-  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  function monthLabel(m) { const [,mm] = m.split('-'); return monthNames[parseInt(mm)-1]; }
+  const monthShort = ['J','F','M','A','M','J','J','A','S','O','N','D'];
+  function monthLabel(m) { return monthShort[parseInt(m.split('-')[1])-1]; }
+
+  // Create month button group, returns getter function for current value
+  function createMonthBtns(containerId, onChange) {
+    const container = document.getElementById(containerId);
+    const btns = [];
+    const ytd = document.createElement('span');
+    ytd.className = 'month-btn active'; ytd.textContent = 'YTD'; ytd.dataset.value = '';
+    container.appendChild(ytd); btns.push(ytd);
+    DATA.monthly.forEach(m => {
+      const b = document.createElement('span');
+      b.className = 'month-btn'; b.textContent = monthLabel(m.month); b.dataset.value = m.month;
+      container.appendChild(b); btns.push(b);
+    });
+    let current = '';
+    btns.forEach(b => b.onclick = () => {
+      btns.forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      current = b.dataset.value;
+      onChange(current);
+    });
+    return () => current;
+  }
 
   const totalExp = DATA.monthly.reduce((s,m) => s + m.expenses, 0);
   const totalInc = DATA.monthly.reduce((s,m) => s + m.income, 0);
@@ -87,7 +113,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
 
   const months = DATA.monthly.map(m => m.month);
   new Chart(document.getElementById('monthlyChart'), {
-    type: 'bar', data: { labels: months, datasets: [
+    type: 'bar', data: { labels: months.map(m => monthShort[parseInt(m.split('-')[1])-1]), datasets: [
       { label: 'Income', data: DATA.monthly.map(m=>m.income), backgroundColor: '#27ae6088', borderColor: '#27ae60', borderWidth: 1 },
       { label: 'Expenses', data: DATA.monthly.map(m=>m.expenses), backgroundColor: '#e74c3c88', borderColor: '#e74c3c', borderWidth: 1 },
     ]}, options: { responsive: true, plugins: { legend: { position: 'bottom' } }, scales: { y: { ticks: { callback: v => '$'+(v/1000).toFixed(0)+'k' } } } }
@@ -95,22 +121,12 @@ fetch('data.json').then(r => r.json()).then(DATA => {
 
   const catColors = ['#3498db','#e74c3c','#f39c12','#27ae60','#9b59b6','#1abc9c','#e67e22','#2980b9','#c0392b','#16a085','#8e44ad','#d35400','#2c3e50','#7f8c8d','#f1c40f'];
 
-  // Populate month filter dropdowns
-  const catMonthSel = document.getElementById('catMonthFilter');
-  const merchMonthSel = document.getElementById('merchMonthFilter');
-  const catTableMonthSel = document.getElementById('catTableMonthFilter');
-  DATA.monthly.forEach(m => {
-    [catMonthSel, merchMonthSel, catTableMonthSel].forEach(sel => { const o = document.createElement('option'); o.value=m.month; o.textContent=monthLabel(m.month); sel.appendChild(o); });
-  });
-
+  // Category donut with buttons
   let catChart = null;
-  function renderCatDonut() {
-    const selMonth = catMonthSel.value;
+  function renderCatDonut(selMonth) {
     let catData;
-    if (!selMonth) {
-      catData = DATA.categories;
-    } else {
-      // Build category totals for selected month from transactions
+    if (!selMonth) { catData = DATA.categories; }
+    else {
       const bycat = {};
       DATA.transactions.filter(t => t.Month === selMonth).forEach(t => { bycat[t.Category] = (bycat[t.Category]||0) + t.Spend; });
       catData = Object.entries(bycat).sort((a,b)=>b[1]-a[1]).slice(0,15).map(([name,total])=>({name,total:Math.round(total)}));
@@ -121,21 +137,22 @@ fetch('data.json').then(r => r.json()).then(DATA => {
       options: { responsive: true, plugins: { legend: { position: 'right', labels: { font: { size: 11 } } } } }
     });
   }
-  catMonthSel.onchange = renderCatDonut;
-  renderCatDonut();
+  createMonthBtns('catBtns', renderCatDonut);
+  renderCatDonut('');
 
+  // Trend chart
   const discretionary = ['Groceries','Shopping','Restaurants & Bars','Gas','Cash & ATM'];
   const trendDS = discretionary.filter(c => DATA.catByMonth[c]).map((c,i) => ({
     label: c, data: DATA.monthly.map(m => (DATA.catByMonth[c]||{})[m.month]||0),
     borderColor: catColors[i+3], backgroundColor: catColors[i+3]+'33', fill: true, tension: 0.3,
   }));
   new Chart(document.getElementById('trendChart'), {
-    type: 'line', data: { labels: months, datasets: trendDS },
+    type: 'line', data: { labels: months.map(m => monthShort[parseInt(m.split('-')[1])-1]), datasets: trendDS },
     options: { responsive: true, plugins: { legend: { position: 'bottom' } }, scales: { y: { ticks: { callback: v=>'$'+v } } } }
   });
 
-  function renderMerchantTable() {
-    const selMonth = merchMonthSel.value;
+  // Merchants with buttons
+  function renderMerchantTable(selMonth) {
     let txns = DATA.transactions;
     if (selMonth) txns = txns.filter(t => t.Month === selMonth);
     const byM = {};
@@ -144,11 +161,11 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     document.getElementById('merchantTable').innerHTML = '<table><thead><tr><th>Merchant</th><th class="amount">Total</th><th>Txns</th></tr></thead><tbody>' +
       sorted.map(([name,d]) => `<tr><td>${name}</td><td class="amount">$${d.total.toLocaleString(undefined,{maximumFractionDigits:0})}</td><td>${d.count}</td></tr>`).join('') + '</tbody></table>';
   }
-  merchMonthSel.onchange = renderMerchantTable;
-  renderMerchantTable();
+  createMonthBtns('merchBtns', renderMerchantTable);
+  renderMerchantTable('');
 
-  function renderCatTable() {
-    const selMonth = catTableMonthSel.value;
+  // Category breakdown with buttons
+  function renderCatTable(selMonth) {
     let txns = DATA.transactions;
     if (selMonth) txns = txns.filter(t => t.Month === selMonth);
     const byC = {};
@@ -158,19 +175,20 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     document.getElementById('catTable').innerHTML = '<table><thead><tr><th>Category</th><th class="amount">Total</th><th>%</th><th>Txns</th></tr></thead><tbody>' +
       sorted.map(([name,d]) => `<tr><td>${name}</td><td class="amount">$${d.total.toLocaleString(undefined,{maximumFractionDigits:0})}</td><td>${(d.total/total*100).toFixed(1)}%</td><td>${d.count}</td></tr>`).join('') + '</tbody></table>';
   }
-  catTableMonthSel.onchange = renderCatTable;
-  renderCatTable();
+  createMonthBtns('catTableBtns', renderCatTable);
+  renderCatTable('');
 
-  const allMonths = [...new Set(DATA.transactions.map(t=>t.Month))].sort();
+  // All Transactions with buttons
+  let txnMonth = '';
+  createMonthBtns('txnMonthBtns', m => { txnMonth = m; renderTxns(); });
   const allCats = [...new Set(DATA.transactions.map(t=>t.Category))].sort();
-  const mSel = document.getElementById('filterMonth'), cSel = document.getElementById('filterCat');
-  allMonths.forEach(m => { const o = document.createElement('option'); o.value=m; o.textContent=monthLabel(m); mSel.appendChild(o); });
+  const cSel = document.getElementById('filterCat');
   allCats.forEach(c => { const o = document.createElement('option'); o.value=c; o.textContent=c; cSel.appendChild(o); });
 
   function renderTxns() {
-    const month = mSel.value, cat = cSel.value, search = document.getElementById('filterSearch').value.toLowerCase();
+    const cat = cSel.value, search = document.getElementById('filterSearch').value.toLowerCase();
     let filtered = DATA.transactions;
-    if (month) filtered = filtered.filter(t => t.Month === month);
+    if (txnMonth) filtered = filtered.filter(t => t.Month === txnMonth);
     if (cat) filtered = filtered.filter(t => t.Category === cat);
     if (search) filtered = filtered.filter(t => t.Merchant.toLowerCase().includes(search));
     filtered.sort((a,b) => b.Date.localeCompare(a.Date));
@@ -180,7 +198,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     ).join('');
     document.getElementById('txnCount').textContent = `${filtered.length} transactions • $${total.toLocaleString(undefined,{maximumFractionDigits:0})} total`;
   }
-  mSel.onchange = cSel.onchange = document.getElementById('filterSearch').oninput = renderTxns;
+  cSel.onchange = document.getElementById('filterSearch').oninput = renderTxns;
   renderTxns();
 }).catch(e => { document.getElementById('loading').textContent = 'Error loading data: ' + e; });
 </script>
