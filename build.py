@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Merge all CSV files in data/ into docs/data.json for the dashboard."""
+"""Reads the single YTD transactions CSV in data/ and builds docs/data.json."""
 import pandas as pd
 import glob
 import json
@@ -8,13 +8,13 @@ import os
 DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 OUT_FILE = os.path.join(os.path.dirname(__file__), "docs", "data.json")
 
-files = glob.glob(os.path.join(DATA_DIR, "Transactions*.csv"))
+# Find the latest Transactions CSV (just pick the newest one if multiple exist)
+files = sorted(glob.glob(os.path.join(DATA_DIR, "Transactions*.csv")))
 if not files:
-    print("No CSV files found in data/")
+    print("No CSV file found in data/")
     exit(1)
 
-dfs = [pd.read_csv(f) for f in files]
-df = pd.concat(dfs, ignore_index=True)
+df = pd.read_csv(files[-1])
 df['Date'] = pd.to_datetime(df['Date'], format='mixed', dayfirst=False)
 df['Amount'] = pd.to_numeric(df['Amount'], errors='coerce')
 df = df.drop_duplicates(subset=['Date','Merchant','Amount','Account'], keep='first')
