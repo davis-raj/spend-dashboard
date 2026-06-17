@@ -33,6 +33,7 @@ tr:hover td { background: #f8f9ff; }
 .filter-bar select, .filter-bar input { padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 13px; background: white; }
 .filter-bar input { width: 200px; }
 .txn-scroll { max-height: 400px; overflow-y: auto; border-radius: 8px; border: 1px solid #e9ecef; }
+.sortable { cursor: pointer; user-select: none; } .sortable:hover { color: #2980b9; }
 #loading { text-align: center; padding: 60px; font-size: 18px; color: #888; }
 .month-btns { display: inline-flex; gap: 4px; flex-wrap: wrap; }
 .month-btn { padding: 4px 10px; border-radius: 6px; border: 1px solid #ddd; background: #f8f9fa; font-size: 12px; cursor: pointer; font-weight: 500; transition: all 0.15s; }
@@ -62,7 +63,7 @@ tr:hover td { background: #f8f9ff; }
 <select id="filterCat"><option value="">All Categories</option></select>
 <input type="text" id="filterSearch" placeholder="Search merchant...">
 </div>
-<div class="txn-scroll"><table><thead><tr><th>Date</th><th>Merchant</th><th>Category</th><th>Account</th><th class="amount">Amount</th></tr></thead><tbody id="txnBody"></tbody></table></div>
+<div class="txn-scroll"><table><thead><tr><th class="sortable" data-col="Date">Date ↕</th><th class="sortable" data-col="Merchant">Merchant ↕</th><th class="sortable" data-col="Category">Category ↕</th><th class="sortable" data-col="Account">Account ↕</th><th class="sortable amount" data-col="Spend">Amount ↕</th></tr></thead><tbody id="txnBody"></tbody></table></div>
 <p id="txnCount" style="margin-top:8px;font-size:12px;color:#888;"></p>
 </div>
 </div>
@@ -185,13 +186,26 @@ fetch('data.json').then(r => r.json()).then(DATA => {
   const cSel = document.getElementById('filterCat');
   allCats.forEach(c => { const o = document.createElement('option'); o.value=c; o.textContent=c; cSel.appendChild(o); });
 
+  let sortCol = 'Date', sortAsc = false;
+  document.querySelectorAll('.sortable').forEach(th => {
+    th.onclick = () => {
+      const col = th.dataset.col;
+      if (sortCol === col) sortAsc = !sortAsc; else { sortCol = col; sortAsc = col !== 'Date'; }
+      renderTxns();
+    };
+  });
+
   function renderTxns() {
     const cat = cSel.value, search = document.getElementById('filterSearch').value.toLowerCase();
     let filtered = DATA.transactions;
     if (txnMonth) filtered = filtered.filter(t => t.Month === txnMonth);
     if (cat) filtered = filtered.filter(t => t.Category === cat);
     if (search) filtered = filtered.filter(t => t.Merchant.toLowerCase().includes(search));
-    filtered.sort((a,b) => b.Date.localeCompare(a.Date));
+    filtered.sort((a,b) => {
+      let va = a[sortCol], vb = b[sortCol];
+      if (sortCol === 'Spend') return sortAsc ? va - vb : vb - va;
+      return sortAsc ? String(va).localeCompare(String(vb)) : String(vb).localeCompare(String(va));
+    });
     const total = filtered.reduce((s,t) => s+t.Spend, 0);
     document.getElementById('txnBody').innerHTML = filtered.slice(0,200).map(t =>
       `<tr><td>${t.Date}</td><td>${t.Merchant}</td><td><span class="pill">${t.Category}</span></td><td style="font-size:11px;color:#888">${t.Account}</td><td class="amount">$${t.Spend.toFixed(2)}</td></tr>`
