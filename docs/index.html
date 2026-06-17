@@ -72,11 +72,15 @@ fetch('data.json').then(r => r.json()).then(DATA => {
   const totalInc = DATA.monthly.reduce((s,m) => s + m.income, 0);
   const avgMonthly = totalExp / DATA.monthly.length;
   const net = totalInc - totalExp;
+  const avgInc = totalInc / (DATA.monthly.filter(m=>m.income>0).length || 1);
+  const avgNet = avgInc - avgMonthly;
   document.getElementById('stats-row').innerHTML = `
-  <div class="stat-card"><div class="label">Total Spent</div><div class="value neutral">$${totalExp.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">${DATA.monthly.length} months</div></div>
-  <div class="stat-card"><div class="label">Avg Monthly Spend</div><div class="value neutral">$${avgMonthly.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">expenses per month</div></div>
   <div class="stat-card"><div class="label">Total Income</div><div class="value positive">$${totalInc.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">${DATA.monthly.filter(m=>m.income>0).length} months recorded</div></div>
-  <div class="stat-card"><div class="label">Net Cashflow</div><div class="value ${net>=0?'positive':'negative'}">$${net.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">${net>=0?'surplus':'deficit'}</div></div>`;
+  <div class="stat-card"><div class="label">Total Spent</div><div class="value" style="color:#e67e22">$${totalExp.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">${DATA.monthly.length} months</div></div>
+  <div class="stat-card"><div class="label">Net Cashflow</div><div class="value ${net>=0?'positive':'negative'}">$${net.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">${net>=0?'surplus':'deficit'}</div></div>
+  <div class="stat-card"><div class="label">Avg Monthly Income</div><div class="value positive">$${avgInc.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">per month</div></div>
+  <div class="stat-card"><div class="label">Avg Monthly Spend</div><div class="value" style="color:#e67e22">$${avgMonthly.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">per month</div></div>
+  <div class="stat-card"><div class="label">Avg Monthly Net</div><div class="value ${avgNet>=0?'positive':'negative'}">$${avgNet.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">${avgNet>=0?'surplus':'deficit'} per month</div></div>`;
 
   const months = DATA.monthly.map(m => m.month);
   new Chart(document.getElementById('monthlyChart'), {
