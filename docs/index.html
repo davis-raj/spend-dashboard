@@ -48,8 +48,8 @@ tr:hover td { background: #f8f9ff; }
 <div class="card"><h3>📊 Monthly Overview</h3><canvas id="monthlyChart"></canvas></div>
 <div class="card"><h3>🏷️ Spending by Category <select id="catMonthFilter" style="font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid #ddd;margin-left:10px;"><option value="">YTD</option></select></h3><canvas id="catChart"></canvas></div>
 <div class="card full"><h3>📈 Category Trends</h3><canvas id="trendChart"></canvas></div>
-<div class="card"><h3>🏪 Top Merchants</h3><div id="merchantTable"></div></div>
-<div class="card"><h3>📋 Category Breakdown</h3><div id="catTable"></div></div>
+<div class="card"><h3>🏪 Top Merchants <select id="merchMonthFilter" style="font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid #ddd;margin-left:10px;"><option value="">YTD</option></select></h3><div id="merchantTable"></div></div>
+<div class="card"><h3>📋 Category Breakdown <select id="catTableMonthFilter" style="font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid #ddd;margin-left:10px;"><option value="">YTD</option></select></h3><div id="catTable"></div></div>
 </div>
 <div class="card full" style="margin-bottom:30px;">
 <h3>🔍 All Transactions</h3>
@@ -67,6 +67,9 @@ tr:hover td { background: #f8f9ff; }
 fetch('data.json').then(r => r.json()).then(DATA => {
   document.getElementById('loading').style.display = 'none';
   document.getElementById('app').style.display = '';
+
+  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  function monthLabel(m) { const [,mm] = m.split('-'); return monthNames[parseInt(mm)-1]; }
 
   const totalExp = DATA.monthly.reduce((s,m) => s + m.expenses, 0);
   const totalInc = DATA.monthly.reduce((s,m) => s + m.income, 0);
@@ -92,9 +95,13 @@ fetch('data.json').then(r => r.json()).then(DATA => {
 
   const catColors = ['#3498db','#e74c3c','#f39c12','#27ae60','#9b59b6','#1abc9c','#e67e22','#2980b9','#c0392b','#16a085','#8e44ad','#d35400','#2c3e50','#7f8c8d','#f1c40f'];
 
-  // Populate category month filter
+  // Populate month filter dropdowns
   const catMonthSel = document.getElementById('catMonthFilter');
-  DATA.monthly.forEach(m => { const o = document.createElement('option'); o.value=m.month; o.textContent=m.month; catMonthSel.appendChild(o); });
+  const merchMonthSel = document.getElementById('merchMonthFilter');
+  const catTableMonthSel = document.getElementById('catTableMonthFilter');
+  DATA.monthly.forEach(m => {
+    [catMonthSel, merchMonthSel, catTableMonthSel].forEach(sel => { const o = document.createElement('option'); o.value=m.month; o.textContent=monthLabel(m.month); sel.appendChild(o); });
+  });
 
   let catChart = null;
   function renderCatDonut() {
@@ -127,16 +134,37 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     options: { responsive: true, plugins: { legend: { position: 'bottom' } }, scales: { y: { ticks: { callback: v=>'$'+v } } } }
   });
 
-  document.getElementById('merchantTable').innerHTML = '<table><thead><tr><th>Merchant</th><th class="amount">Total</th><th>Txns</th></tr></thead><tbody>' +
-    DATA.merchants.map(m => `<tr><td>${m.name}</td><td class="amount">$${m.total.toLocaleString()}</td><td>${m.count}</td></tr>`).join('') + '</tbody></table>';
+  function renderMerchantTable() {
+    const selMonth = merchMonthSel.value;
+    let txns = DATA.transactions;
+    if (selMonth) txns = txns.filter(t => t.Month === selMonth);
+    const byM = {};
+    txns.forEach(t => { if (!byM[t.Merchant]) byM[t.Merchant] = {total:0,count:0}; byM[t.Merchant].total += t.Spend; byM[t.Merchant].count++; });
+    const sorted = Object.entries(byM).sort((a,b)=>b[1].total-a[1].total).slice(0,15);
+    document.getElementById('merchantTable').innerHTML = '<table><thead><tr><th>Merchant</th><th class="amount">Total</th><th>Txns</th></tr></thead><tbody>' +
+      sorted.map(([name,d]) => `<tr><td>${name}</td><td class="amount">$${d.total.toLocaleString(undefined,{maximumFractionDigits:0})}</td><td>${d.count}</td></tr>`).join('') + '</tbody></table>';
+  }
+  merchMonthSel.onchange = renderMerchantTable;
+  renderMerchantTable();
 
-  document.getElementById('catTable').innerHTML = '<table><thead><tr><th>Category</th><th class="amount">Total</th><th>%</th><th>Txns</th></tr></thead><tbody>' +
-    DATA.categories.map(c => `<tr><td>${c.name}</td><td class="amount">$${c.total.toLocaleString()}</td><td>${(c.total/totalExp*100).toFixed(1)}%</td><td>${c.count}</td></tr>`).join('') + '</tbody></table>';
+  function renderCatTable() {
+    const selMonth = catTableMonthSel.value;
+    let txns = DATA.transactions;
+    if (selMonth) txns = txns.filter(t => t.Month === selMonth);
+    const byC = {};
+    txns.forEach(t => { if (!byC[t.Category]) byC[t.Category] = {total:0,count:0}; byC[t.Category].total += t.Spend; byC[t.Category].count++; });
+    const total = Object.values(byC).reduce((s,d)=>s+d.total,0);
+    const sorted = Object.entries(byC).sort((a,b)=>b[1].total-a[1].total);
+    document.getElementById('catTable').innerHTML = '<table><thead><tr><th>Category</th><th class="amount">Total</th><th>%</th><th>Txns</th></tr></thead><tbody>' +
+      sorted.map(([name,d]) => `<tr><td>${name}</td><td class="amount">$${d.total.toLocaleString(undefined,{maximumFractionDigits:0})}</td><td>${(d.total/total*100).toFixed(1)}%</td><td>${d.count}</td></tr>`).join('') + '</tbody></table>';
+  }
+  catTableMonthSel.onchange = renderCatTable;
+  renderCatTable();
 
   const allMonths = [...new Set(DATA.transactions.map(t=>t.Month))].sort();
   const allCats = [...new Set(DATA.transactions.map(t=>t.Category))].sort();
   const mSel = document.getElementById('filterMonth'), cSel = document.getElementById('filterCat');
-  allMonths.forEach(m => { const o = document.createElement('option'); o.value=m; o.textContent=m; mSel.appendChild(o); });
+  allMonths.forEach(m => { const o = document.createElement('option'); o.value=m; o.textContent=monthLabel(m); mSel.appendChild(o); });
   allCats.forEach(c => { const o = document.createElement('option'); o.value=c; o.textContent=c; cSel.appendChild(o); });
 
   function renderTxns() {
