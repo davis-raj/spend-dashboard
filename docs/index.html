@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Family Spend Dashboard — 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #333; padding: 20px; }
+.header { text-align: center; margin-bottom: 30px; }
+.header h1 { font-size: 28px; color: #1a1a2e; margin-bottom: 5px; }
+.header p { color: #666; font-size: 14px; }
+.stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 30px; }
+.stat-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.stat-card .label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-card .value { font-size: 26px; font-weight: 700; margin-top: 4px; }
+.stat-card .sub { font-size: 12px; color: #999; margin-top: 4px; }
+.positive { color: #27ae60; } .negative { color: #e74c3c; } .neutral { color: #2c3e50; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+.card { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.card h3 { font-size: 16px; color: #1a1a2e; margin-bottom: 16px; }
+.card.full { grid-column: 1 / -1; }
+canvas { max-height: 300px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; padding: 8px 12px; background: #f8f9fa; color: #555; border-bottom: 2px solid #e9ecef; position: sticky; top: 0; }
+td { padding: 8px 12px; border-bottom: 1px solid #f0f0f0; }
+tr:hover td { background: #f8f9ff; }
+.amount { font-weight: 600; text-align: right; }
+.pill { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; background: #e8f4fd; color: #2980b9; }
+.filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; align-items: center; }
+.filter-bar select, .filter-bar input { padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 13px; background: white; }
+.filter-bar input { width: 200px; }
+.txn-scroll { max-height: 400px; overflow-y: auto; border-radius: 8px; border: 1px solid #e9ecef; }
+#loading { text-align: center; padding: 60px; font-size: 18px; color: #888; }
+</style>
+</head>
+<body>
+<div class="header">
+<h1>💰 Family Spend Dashboard</h1>
+<p>Auto-updated from monthly transaction exports</p>
+</div>
+<div id="loading">Loading data...</div>
+<div id="app" style="display:none;">
+<div class="stats-row" id="stats-row"></div>
+<div class="grid">
+<div class="card"><h3>📊 Monthly Overview</h3><canvas id="monthlyChart"></canvas></div>
+<div class="card"><h3>🏷️ Spending by Category</h3><canvas id="catChart"></canvas></div>
+<div class="card full"><h3>📈 Category Trends</h3><canvas id="trendChart"></canvas></div>
+<div class="card"><h3>🏪 Top Merchants</h3><div id="merchantTable"></div></div>
+<div class="card"><h3>📋 Category Breakdown</h3><div id="catTable"></div></div>
+</div>
+<div class="card full" style="margin-bottom:30px;">
+<h3>🔍 All Transactions</h3>
+<div class="filter-bar">
+<select id="filterMonth"><option value="">All Months</option></select>
+<select id="filterCat"><option value="">All Categories</option></select>
+<input type="text" id="filterSearch" placeholder="Search merchant...">
+</div>
+<div class="txn-scroll"><table><thead><tr><th>Date</th><th>Merchant</th><th>Category</th><th>Account</th><th class="amount">Amount</th></tr></thead><tbody id="txnBody"></tbody></table></div>
+<p id="txnCount" style="margin-top:8px;font-size:12px;color:#888;"></p>
+</div>
+</div>
+
+<script>
+fetch('data.json').then(r => r.json()).then(DATA => {
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('app').style.display = '';
+
+  const totalExp = DATA.monthly.reduce((s,m) => s + m.expenses, 0);
+  const totalInc = DATA.monthly.reduce((s,m) => s + m.income, 0);
+  const avgMonthly = totalExp / DATA.monthly.length;
+  const net = totalInc - totalExp;
+  document.getElementById('stats-row').innerHTML = `
+  <div class="stat-card"><div class="label">Total Spent</div><div class="value neutral">$${totalExp.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">${DATA.monthly.length} months</div></div>
+  <div class="stat-card"><div class="label">Monthly Average</div><div class="value neutral">$${avgMonthly.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">per month</div></div>
+  <div class="stat-card"><div class="label">Total Income</div><div class="value positive">$${totalInc.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">${DATA.monthly.filter(m=>m.income>0).length} months recorded</div></div>
+  <div class="stat-card"><div class="label">Net Cashflow</div><div class="value ${net>=0?'positive':'negative'}">$${net.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">${net>=0?'surplus':'deficit'}</div></div>`;
+
+  const months = DATA.monthly.map(m => m.month);
+  new Chart(document.getElementById('monthlyChart'), {
+    type: 'bar', data: { labels: months, datasets: [
+      { label: 'Expenses', data: DATA.monthly.map(m=>m.expenses), backgroundColor: '#e74c3c88', borderColor: '#e74c3c', borderWidth: 1 },
+      { label: 'Income', data: DATA.monthly.map(m=>m.income), backgroundColor: '#27ae6088', borderColor: '#27ae60', borderWidth: 1 },
+    ]}, options: { responsive: true, plugins: { legend: { position: 'bottom' } }, scales: { y: { ticks: { callback: v => '$'+(v/1000).toFixed(0)+'k' } } } }
+  });
+
+  const catColors = ['#3498db','#e74c3c','#f39c12','#27ae60','#9b59b6','#1abc9c','#e67e22','#2980b9','#c0392b','#16a085','#8e44ad','#d35400','#2c3e50','#7f8c8d','#f1c40f'];
+  new Chart(document.getElementById('catChart'), {
+    type: 'doughnut', data: { labels: DATA.categories.map(c=>c.name), datasets: [{ data: DATA.categories.map(c=>c.total), backgroundColor: catColors }] },
+    options: { responsive: true, plugins: { legend: { position: 'right', labels: { font: { size: 11 } } } } }
+  });
+
+  const discretionary = ['Groceries','Shopping','Restaurants & Bars','Gas','Cash & ATM'];
+  const trendDS = discretionary.filter(c => DATA.catByMonth[c]).map((c,i) => ({
+    label: c, data: DATA.monthly.map(m => (DATA.catByMonth[c]||{})[m.month]||0),
+    borderColor: catColors[i+3], backgroundColor: catColors[i+3]+'33', fill: true, tension: 0.3,
+  }));
+  new Chart(document.getElementById('trendChart'), {
+    type: 'line', data: { labels: months, datasets: trendDS },
+    options: { responsive: true, plugins: { legend: { position: 'bottom' } }, scales: { y: { ticks: { callback: v=>'$'+v } } } }
+  });
+
+  document.getElementById('merchantTable').innerHTML = '<table><thead><tr><th>Merchant</th><th class="amount">Total</th><th>Txns</th></tr></thead><tbody>' +
+    DATA.merchants.map(m => `<tr><td>${m.name}</td><td class="amount">$${m.total.toLocaleString()}</td><td>${m.count}</td></tr>`).join('') + '</tbody></table>';
+
+  document.getElementById('catTable').innerHTML = '<table><thead><tr><th>Category</th><th class="amount">Total</th><th>%</th><th>Txns</th></tr></thead><tbody>' +
+    DATA.categories.map(c => `<tr><td>${c.name}</td><td class="amount">$${c.total.toLocaleString()}</td><td>${(c.total/totalExp*100).toFixed(1)}%</td><td>${c.count}</td></tr>`).join('') + '</tbody></table>';
+
+  const allMonths = [...new Set(DATA.transactions.map(t=>t.Month))].sort();
+  const allCats = [...new Set(DATA.transactions.map(t=>t.Category))].sort();
+  const mSel = document.getElementById('filterMonth'), cSel = document.getElementById('filterCat');
+  allMonths.forEach(m => { const o = document.createElement('option'); o.value=m; o.textContent=m; mSel.appendChild(o); });
+  allCats.forEach(c => { const o = document.createElement('option'); o.value=c; o.textContent=c; cSel.appendChild(o); });
+
+  function renderTxns() {
+    const month = mSel.value, cat = cSel.value, search = document.getElementById('filterSearch').value.toLowerCase();
+    let filtered = DATA.transactions;
+    if (month) filtered = filtered.filter(t => t.Month === month);
+    if (cat) filtered = filtered.filter(t => t.Category === cat);
+    if (search) filtered = filtered.filter(t => t.Merchant.toLowerCase().includes(search));
+    filtered.sort((a,b) => b.Date.localeCompare(a.Date));
+    const total = filtered.reduce((s,t) => s+t.Spend, 0);
+    document.getElementById('txnBody').innerHTML = filtered.slice(0,200).map(t =>
+      `<tr><td>${t.Date}</td><td>${t.Merchant}</td><td><span class="pill">${t.Category}</span></td><td style="font-size:11px;color:#888">${t.Account}</td><td class="amount">$${t.Spend.toFixed(2)}</td></tr>`
+    ).join('');
+    document.getElementById('txnCount').textContent = `${filtered.length} transactions • $${total.toLocaleString(undefined,{maximumFractionDigits:0})} total`;
+  }
+  mSel.onchange = cSel.onchange = document.getElementById('filterSearch').oninput = renderTxns;
+  renderTxns();
+}).catch(e => { document.getElementById('loading').textContent = 'Error loading data: ' + e; });
+</script>
+</body>
+</html>
