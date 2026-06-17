@@ -24,14 +24,21 @@ expenses = df[df['Amount'] < 0].copy()
 expenses['Spend'] = expenses['Amount'].abs()
 income = df[df['Amount'] > 0].copy()
 
+# Separate true income from internal transfers
+TRANSFER_CATEGORIES = ['Transfer', 'Credit Card Payment', 'Balance Adjustments']
+true_income = income[~income['Category'].isin(TRANSFER_CATEGORIES)].copy()
+transfers_in = income[income['Category'].isin(TRANSFER_CATEGORIES)].copy()
+
 data = {}
 
 # Monthly
 monthly_exp = expenses.groupby('Month')['Spend'].sum().to_dict()
-monthly_inc = income.groupby('Month')['Amount'].sum().to_dict()
-all_months = sorted(set(list(monthly_exp.keys()) + list(monthly_inc.keys())))
+monthly_inc = true_income.groupby('Month')['Amount'].sum().to_dict()
+monthly_xfer = transfers_in.groupby('Month')['Amount'].sum().to_dict()
+all_months = sorted(set(list(monthly_exp.keys()) + list(monthly_inc.keys()) + list(monthly_xfer.keys())))
 data['monthly'] = [{'month': m, 'expenses': round(monthly_exp.get(m, 0), 2),
-                    'income': round(monthly_inc.get(m, 0), 2)} for m in all_months]
+                    'income': round(monthly_inc.get(m, 0), 2),
+                    'transfers': round(monthly_xfer.get(m, 0), 2)} for m in all_months]
 
 # Categories
 cat = expenses.groupby('Category')['Spend'].agg(['sum','count']).sort_values('sum', ascending=False).head(15)

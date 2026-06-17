@@ -100,9 +100,11 @@ fetch('data.json').then(r => r.json()).then(DATA => {
 
   const totalExp = DATA.monthly.reduce((s,m) => s + m.expenses, 0);
   const totalInc = DATA.monthly.reduce((s,m) => s + m.income, 0);
+  const totalXfer = DATA.monthly.reduce((s,m) => s + (m.transfers||0), 0);
   const avgMonthly = totalExp / DATA.monthly.length;
   const net = totalInc - totalExp;
-  const avgInc = totalInc / (DATA.monthly.filter(m=>m.income>0).length || 1);
+  const incMonths = DATA.monthly.filter(m=>m.income>0).length || 1;
+  const avgInc = totalInc / incMonths;
   const avgNet = avgInc - avgMonthly;
   document.getElementById('stats-row').innerHTML = `
   <div class="stat-card"><div class="label">Total Income</div><div class="value positive">$${totalInc.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">${DATA.monthly.filter(m=>m.income>0).length} months recorded</div></div>
