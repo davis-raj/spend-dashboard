@@ -159,7 +159,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     const byM = {};
     txns.forEach(t => { if (!byM[t.Merchant]) byM[t.Merchant] = {total:0,count:0}; byM[t.Merchant].total += t.Spend; byM[t.Merchant].count++; });
     const sorted = Object.entries(byM).sort((a,b)=>b[1].total-a[1].total).slice(0,15);
-    document.getElementById('merchantTable').innerHTML = '<table><thead><tr><th>Merchant</th><th class="amount">Total</th><th>Txns</th></tr></thead><tbody>' +
+    document.getElementById('merchantTable').innerHTML = '<table><thead><tr><th>Merchant</th><th class="amount">Total</th><th>Transactions</th></tr></thead><tbody>' +
       sorted.map(([name,d]) => `<tr><td>${name}</td><td class="amount">$${d.total.toLocaleString(undefined,{maximumFractionDigits:0})}</td><td>${d.count}</td></tr>`).join('') + '</tbody></table>';
   }
   createMonthBtns('merchBtns', renderMerchantTable);
@@ -173,7 +173,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     txns.forEach(t => { if (!byC[t.Category]) byC[t.Category] = {total:0,count:0}; byC[t.Category].total += t.Spend; byC[t.Category].count++; });
     const total = Object.values(byC).reduce((s,d)=>s+d.total,0);
     const sorted = Object.entries(byC).sort((a,b)=>b[1].total-a[1].total);
-    document.getElementById('catTable').innerHTML = '<table><thead><tr><th>Category</th><th class="amount">Total</th><th>%</th><th>Txns</th></tr></thead><tbody>' +
+    document.getElementById('catTable').innerHTML = '<table><thead><tr><th>Category</th><th class="amount">Total</th><th>%</th><th>Transactions</th></tr></thead><tbody>' +
       sorted.map(([name,d]) => `<tr><td>${name}</td><td class="amount">$${d.total.toLocaleString(undefined,{maximumFractionDigits:0})}</td><td>${(d.total/total*100).toFixed(1)}%</td><td>${d.count}</td></tr>`).join('') + '</tbody></table>';
   }
   createMonthBtns('catTableBtns', renderCatTable);
