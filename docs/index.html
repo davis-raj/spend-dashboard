@@ -52,7 +52,7 @@ tr:hover td { background: #f8f9ff; }
 <div class="grid">
 <div class="card full"><h3>📊 Monthly Overview</h3><canvas id="monthlyChart"></canvas></div>
 <div class="card"><h3>🏷️ Spending by Category <span class="month-btns" id="catBtns"></span></h3><canvas id="catChart"></canvas></div>
-<div class="card"><h3>💵 Income by Category</h3><canvas id="incChart"></canvas></div>
+<div class="card"><h3>💵 Income by Category <span class="month-btns" id="incBtns"></span></h3><canvas id="incChart"></canvas></div>
 <div class="card full"><h3>📈 Category Trends</h3><canvas id="trendChart"></canvas></div>
 <div class="card"><h3>🏪 Top Merchants <span class="month-btns" id="merchBtns"></span></h3><div id="merchantTable"></div></div>
 <div class="card"><h3>📋 Category Breakdown <span class="month-btns" id="catTableBtns"></span></h3><div id="catTable"></div></div>
@@ -144,14 +144,26 @@ fetch('data.json').then(r => r.json()).then(DATA => {
   createMonthBtns('catBtns', renderCatDonut);
   renderCatDonut('');
 
-  // Income by category donut
-  if (DATA.incomeCategories && DATA.incomeCategories.length) {
+  // Income by category donut with buttons
+  let incChart = null;
+  function renderIncDonut(selMonth) {
+    let incData;
+    if (!selMonth) {
+      incData = DATA.incomeCategories;
+    } else {
+      const bySource = {};
+      (DATA.incomeTransactions||[]).filter(t => t.Month === selMonth).forEach(t => { bySource[t.IncomeSource] = (bySource[t.IncomeSource]||0) + t.Amount; });
+      incData = Object.entries(bySource).sort((a,b)=>b[1]-a[1]).map(([name,total])=>({name,total:Math.round(total)}));
+    }
+    if (incChart) incChart.destroy();
     const incColors = ['#2ecc71','#3498db','#9b59b6','#f1c40f','#e67e22','#1abc9c','#e74c3c'];
-    new Chart(document.getElementById('incChart'), {
-      type: 'doughnut', data: { labels: DATA.incomeCategories.map(c=>c.name), datasets: [{ data: DATA.incomeCategories.map(c=>c.total), backgroundColor: incColors }] },
+    incChart = new Chart(document.getElementById('incChart'), {
+      type: 'doughnut', data: { labels: incData.map(c=>c.name), datasets: [{ data: incData.map(c=>c.total), backgroundColor: incColors }] },
       options: { responsive: true, plugins: { legend: { position: 'right', labels: { font: { size: 11 } } } } }
     });
   }
+  createMonthBtns('incBtns', renderIncDonut);
+  renderIncDonut('');
 
   // Trend chart
   const discretionary = ['Groceries','Shopping','Restaurants & Bars','Gas','Cash & ATM'];

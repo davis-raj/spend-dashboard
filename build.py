@@ -79,6 +79,13 @@ data['transactions'] = txns.to_dict('records')
 for t in data['transactions']:
     t['Spend'] = round(t['Spend'], 2)
 
+# Income transactions (for month filtering)
+inc_txns = true_income[['Date','IncomeSource','Amount','Month']].copy()
+inc_txns['Date'] = inc_txns['Date'].dt.strftime('%Y-%m-%d')
+data['incomeTransactions'] = inc_txns.to_dict('records')
+for t in data['incomeTransactions']:
+    t['Amount'] = round(t['Amount'], 2)
+
 os.makedirs(os.path.dirname(OUT_FILE), exist_ok=True)
 with open(OUT_FILE, 'w') as f:
     json.dump(data, f)
