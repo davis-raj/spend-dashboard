@@ -53,7 +53,7 @@ tr:hover td { background: #f8f9ff; }
 <div class="card full"><h3>📊 Monthly Overview</h3><canvas id="monthlyChart"></canvas></div>
 <div class="card"><h3>💵 Income by Category <span class="month-btns" id="incBtns"></span></h3><canvas id="incChart"></canvas></div>
 <div class="card"><h3>🏷️ Spending by Category <span class="month-btns" id="catBtns"></span></h3><canvas id="catChart"></canvas></div>
-<div class="card full"><h3>📈 Category Trends</h3><canvas id="trendChart"></canvas></div>
+<div class="card full"><h3>📈 Category Trends</h3><div class="month-btns" id="trendCatBtns" style="margin-bottom:12px;"></div><canvas id="trendChart"></canvas></div>
 </div>
 <div class="card full" style="margin-bottom:30px;">
 <h3>🔍 All Transactions</h3>
@@ -163,16 +163,38 @@ fetch('data.json').then(r => r.json()).then(DATA => {
   createMonthBtns('incBtns', renderIncDonut);
   renderIncDonut('');
 
-  // Trend chart
-  const discretionary = ['Groceries','Shopping','Restaurants & Bars','Gas','Cash & ATM'];
-  const trendDS = discretionary.filter(c => DATA.catByMonth[c]).map((c,i) => ({
-    label: c, data: DATA.monthly.map(m => (DATA.catByMonth[c]||{})[m.month]||0),
-    borderColor: catColors[i+3], backgroundColor: catColors[i+3]+'33', fill: true, tension: 0.3,
-  }));
-  new Chart(document.getElementById('trendChart'), {
-    type: 'line', data: { labels: months.map(m => monthShort[parseInt(m.split('-')[1])-1]), datasets: trendDS },
-    options: { responsive: true, plugins: { legend: { position: 'bottom' } }, scales: { y: { ticks: { callback: v=>'$'+v } } } }
+  // Trend chart with category toggles
+  const allTrendCats = Object.keys(DATA.catByMonth).sort((a,b) => {
+    const ta = Object.values(DATA.catByMonth[a]).reduce((s,v)=>s+v,0);
+    const tb = Object.values(DATA.catByMonth[b]).reduce((s,v)=>s+v,0);
+    return tb - ta;
   });
+  const defaultOn = new Set(['Groceries','Shopping','Restaurants & Bars','Gas','Cash & ATM']);
+  const activeCats = new Set(defaultOn);
+  const trendContainer = document.getElementById('trendCatBtns');
+  let trendChart = null;
+
+  allTrendCats.forEach(c => {
+    const b = document.createElement('span');
+    b.className = 'month-btn' + (activeCats.has(c) ? ' active' : '');
+    b.textContent = c;
+    b.onclick = () => { if (activeCats.has(c)) { activeCats.delete(c); b.classList.remove('active'); } else { activeCats.add(c); b.classList.add('active'); } renderTrend(); };
+    trendContainer.appendChild(b);
+  });
+
+  function renderTrend() {
+    const cats = [...activeCats];
+    const ds = cats.map((c,i) => ({
+      label: c, data: DATA.monthly.map(m => (DATA.catByMonth[c]||{})[m.month]||0),
+      borderColor: catColors[i % catColors.length], backgroundColor: catColors[i % catColors.length]+'33', fill: true, tension: 0.3,
+    }));
+    if (trendChart) trendChart.destroy();
+    trendChart = new Chart(document.getElementById('trendChart'), {
+      type: 'line', data: { labels: months.map(m => monthShort[parseInt(m.split('-')[1])-1]), datasets: ds },
+      options: { responsive: true, plugins: { legend: { position: 'bottom' } }, scales: { y: { ticks: { callback: v=>'$'+v } } } }
+    });
+  }
+  renderTrend();
 
   // Merchants with buttons
   // All Transactions with buttons
