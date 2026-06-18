@@ -24,14 +24,29 @@ expenses = df[df['Amount'] < 0].copy()
 expenses['Spend'] = expenses['Amount'].abs()
 income = df[df['Amount'] > 0].copy()
 
+# Label income sources
+def label_income(row):
+    stmt = str(row.get('Original Statement', ''))
+    if '6079' in stmt: return 'Davis Paycheck'
+    if '2481' in stmt: return 'Esther Paycheck'
+    if row['Merchant'] == 'Transfer From Checking': return 'Paycheck (Other)'
+    if 'Real Property' in str(row['Merchant']): return 'Rental Income'
+    if 'Internal Revenue' in str(row['Merchant']): return 'Tax Refund'
+    if row['Category'] in ['Transfer', 'Credit Card Payment', 'Balance Adjustments']:
+        return '_transfer'
+    return row.get('Category', 'Other')
+
+income['IncomeSource'] = income.apply(label_income, axis=1)
+
 # Separate true income from internal transfers
-TRANSFER_CATEGORIES = ['Transfer', 'Credit Card Payment', 'Balance Adjustments']
-# 'Transfer From Checking' is paycheck/salary — treat as income
-is_transfer = (income['Category'].isin(TRANSFER_CATEGORIES)) & (income['Merchant'] != 'Transfer From Checking')
-true_income = income[~is_transfer].copy()
-transfers_in = income[is_transfer].copy()
+true_income = income[income['IncomeSource'] != '_transfer'].copy()
+transfers_in = income[income['IncomeSource'] == '_transfer'].copy()
 
 data = {}
+
+# Income by category
+inc_by_source = true_income.groupby('IncomeSource')['Amount'].agg(['sum','count']).sort_values('sum', ascending=False)
+data['incomeCategories'] = [{'name': c, 'total': round(r['sum'], 2), 'count': int(r['count'])} for c, r in inc_by_source.iterrows()]
 
 # Monthly
 monthly_exp = expenses.groupby('Month')['Spend'].sum().to_dict()
