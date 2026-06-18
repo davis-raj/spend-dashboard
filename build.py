@@ -26,8 +26,10 @@ income = df[df['Amount'] > 0].copy()
 
 # Separate true income from internal transfers
 TRANSFER_CATEGORIES = ['Transfer', 'Credit Card Payment', 'Balance Adjustments']
-true_income = income[~income['Category'].isin(TRANSFER_CATEGORIES)].copy()
-transfers_in = income[income['Category'].isin(TRANSFER_CATEGORIES)].copy()
+# 'Transfer From Checking' is paycheck/salary — treat as income
+is_transfer = (income['Category'].isin(TRANSFER_CATEGORIES)) & (income['Merchant'] != 'Transfer From Checking')
+true_income = income[~is_transfer].copy()
+transfers_in = income[is_transfer].copy()
 
 data = {}
 
