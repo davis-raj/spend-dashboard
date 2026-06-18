@@ -198,7 +198,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     const total = Object.values(byC).reduce((s,d)=>s+d.total,0);
     const sorted = Object.entries(byC).sort((a,b)=>b[1].total-a[1].total);
     document.getElementById('catTable').innerHTML = '<table><thead><tr><th>Category</th><th class="amount">Total</th><th>%</th><th>Transactions</th></tr></thead><tbody>' +
-      sorted.map(([name,d]) => `<tr><td>${name}</td><td class="amount">$${d.total.toLocaleString(undefined,{maximumFractionDigits:0})}</td><td>${(d.total/total*100).toFixed(1)}%</td><td>${d.count}</td></tr>`).join('') + '</tbody></table>';
+      sorted.map(([name,d]) => `<tr style="cursor:pointer" onclick="filterByCat('${name.replace(/'/g,"\\'")}')"><td>${name}</td><td class="amount">$${d.total.toLocaleString(undefined,{maximumFractionDigits:0})}</td><td>${(d.total/total*100).toFixed(1)}%</td><td>${d.count}</td></tr>`).join('') + '</tbody></table>';
   }
   createMonthBtns('catTableBtns', renderCatTable);
   renderCatTable('');
@@ -218,6 +218,12 @@ fetch('data.json').then(r => r.json()).then(DATA => {
       renderTxns();
     };
   });
+
+  window.filterByCat = function(cat) {
+    cSel.value = cat;
+    renderTxns();
+    document.getElementById('filterCat').scrollIntoView({behavior:'smooth'});
+  }
 
   function renderTxns() {
     const cat = cSel.value, search = document.getElementById('filterSearch').value.toLowerCase();
