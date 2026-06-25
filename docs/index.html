@@ -139,7 +139,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
       options: { responsive: true, onClick: (e, els) => { if(els.length) filterByCat(catData[els[0].index].name); }, plugins: { legend: { position: 'right', labels: { font: { size: 11 } } } } }
     });
   }
-  createMonthBtns('catBtns', renderCatDonut);
+  createMonthBtns('catBtns', (m) => { renderCatDonut(m); txnMonth = m; renderTxns(); });
   renderCatDonut('');
 
   // Income by category donut with buttons
@@ -160,7 +160,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
       options: { responsive: true, onClick: (e, els) => { if(els.length) filterByIncCat(incData[els[0].index].name); }, plugins: { legend: { position: 'right', labels: { font: { size: 11 } } } } }
     });
   }
-  createMonthBtns('incBtns', renderIncDonut);
+  createMonthBtns('incBtns', (m) => { renderIncDonut(m); txnMonth = m; renderTxns(); });
   renderIncDonut('');
 
   // Trend chart with category toggles
