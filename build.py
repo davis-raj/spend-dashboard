@@ -21,6 +21,8 @@ df = df.drop_duplicates(subset=['Date','Merchant','Amount','Account'], keep='fir
 df['Month'] = df['Date'].dt.strftime('%Y-%m')
 
 expenses = df[df['Amount'] < 0].copy()
+# Exclude internal transfers between Discover accounts (e.g., checking → savings)
+expenses = expenses[~((expenses['Merchant'] == 'Discover') & (expenses['Category'] == 'Transfer'))]
 expenses['Spend'] = expenses['Amount'].abs()
 income = df[df['Amount'] > 0].copy()
 
