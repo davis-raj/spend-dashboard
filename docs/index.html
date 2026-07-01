@@ -80,21 +80,23 @@ fetch('data.json').then(r => r.json()).then(DATA => {
   function createMonthBtns(containerId, onChange) {
     const container = document.getElementById(containerId);
     const btns = [];
+    const currentMonth = DATA.monthly[DATA.monthly.length - 1]?.month || '';
     const ytd = document.createElement('span');
-    ytd.className = 'month-btn active'; ytd.textContent = 'YTD'; ytd.dataset.value = '';
+    ytd.className = 'month-btn'; ytd.textContent = 'YTD'; ytd.dataset.value = '';
     container.appendChild(ytd); btns.push(ytd);
     DATA.monthly.forEach(m => {
       const b = document.createElement('span');
-      b.className = 'month-btn'; b.textContent = monthLabel(m.month); b.dataset.value = m.month;
+      b.className = 'month-btn' + (m.month === currentMonth ? ' active' : ''); b.textContent = monthLabel(m.month); b.dataset.value = m.month;
       container.appendChild(b); btns.push(b);
     });
-    let current = '';
+    let current = currentMonth;
     btns.forEach(b => b.onclick = () => {
       btns.forEach(x => x.classList.remove('active'));
       b.classList.add('active');
       current = b.dataset.value;
       onChange(current);
     });
+    onChange(current);
     return () => current;
   }
 
@@ -143,7 +145,6 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     });
   }
   createMonthBtns('catBtns', (m) => { renderCatDonut(m); txnMonth = m; renderTxns(); });
-  renderCatDonut('');
 
   // Income by category donut with buttons
   let incChart = null;
@@ -164,7 +165,6 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     });
   }
   createMonthBtns('incBtns', (m) => { renderIncDonut(m); txnMonth = m; renderIncTxns(m); });
-  renderIncDonut('');
 
   // Trend chart with category toggles
   const allTrendCats = Object.keys(DATA.catByMonth).sort((a,b) => {
