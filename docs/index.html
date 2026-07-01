@@ -163,7 +163,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
       options: { responsive: true, onClick: (e, els) => { if(els.length) filterByIncCat(incData[els[0].index].name); }, plugins: { legend: { position: 'right', labels: { font: { size: 11 } } } } }
     });
   }
-  createMonthBtns('incBtns', (m) => { renderIncDonut(m); txnMonth = m; renderTxns(); });
+  createMonthBtns('incBtns', (m) => { renderIncDonut(m); txnMonth = m; renderIncTxns(m); });
   renderIncDonut('');
 
   // Trend chart with category toggles
@@ -283,6 +283,18 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     tbody.innerHTML = filtered.map(t => `<tr><td>${t.Date}</td><td>${t.IncomeSource}</td><td>Income</td><td>—</td><td class="positive">+$${t.Amount.toLocaleString(undefined,{minimumFractionDigits:2})}</td></tr>`).join('');
     document.getElementById('txnCount').textContent = `${filtered.length} income transactions`;
     document.getElementById('filterCat').scrollIntoView({behavior:'smooth'});
+  }
+
+  window.renderIncTxns = function(month) {
+    cSel.value = '';
+    document.getElementById('filterSearch').value = '';
+    let filtered = (DATA.incomeTransactions||[]);
+    if (month) filtered = filtered.filter(t => t.Month === month);
+    filtered.sort((a,b) => b.Date.localeCompare(a.Date));
+    const total = filtered.reduce((s,t) => s + t.Amount, 0);
+    const tbody = document.getElementById('txnBody');
+    tbody.innerHTML = filtered.map(t => `<tr><td>${t.Date}</td><td>${t.IncomeSource}</td><td>Income</td><td>—</td><td class="positive">+$${t.Amount.toLocaleString(undefined,{minimumFractionDigits:2})}</td></tr>`).join('');
+    document.getElementById('txnCount').textContent = `${filtered.length} income transactions • $${total.toLocaleString(undefined,{maximumFractionDigits:0})} total`;
   }
 
   function renderTxns() {
