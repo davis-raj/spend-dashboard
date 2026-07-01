@@ -34,7 +34,7 @@ def label_income(row):
     if 'Internal Revenue' in str(row['Merchant']): return 'Tax Refund'
     if row['Category'] in ['Transfer', 'Credit Card Payment', 'Balance Adjustments']:
         return '_transfer'
-    return row.get('Category', 'Other')
+    return 'Other Income'
 
 income['IncomeSource'] = income.apply(label_income, axis=1)
 
