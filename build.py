@@ -72,6 +72,13 @@ for c in cat.index:
 merch = expenses.groupby('Merchant')['Spend'].agg(['sum','count']).sort_values('sum', ascending=False).head(15)
 data['merchants'] = [{'name': m, 'total': round(r['sum'], 2), 'count': int(r['count'])} for m, r in merch.iterrows()]
 
+# Income by source x Month
+inc_pivot = true_income.pivot_table(index='IncomeSource', columns='Month', values='Amount', aggfunc='sum', fill_value=0)
+data['incByMonth'] = {}
+for src in inc_by_source.index:
+    if src in inc_pivot.index:
+        data['incByMonth'][src] = {m: round(inc_pivot.loc[src, m], 2) for m in all_months if m in inc_pivot.columns}
+
 # Transactions
 txns = expenses[['Date','Merchant','Category','Account','Spend','Month']].copy()
 txns['Date'] = txns['Date'].dt.strftime('%Y-%m-%d')

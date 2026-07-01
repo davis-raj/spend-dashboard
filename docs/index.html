@@ -53,7 +53,8 @@ tr:hover td { background: #f8f9ff; }
 <div class="card full"><h3>📊 Monthly Overview</h3><canvas id="monthlyChart"></canvas></div>
 <div class="card"><h3>💵 Income by Category <span class="month-btns" id="incBtns"></span></h3><canvas id="incChart"></canvas></div>
 <div class="card"><h3>🏷️ Spending by Category <span class="month-btns" id="catBtns"></span></h3><canvas id="catChart"></canvas></div>
-<div class="card full"><h3>📈 Category Trends</h3><div class="month-btns" id="trendCatBtns" style="margin-bottom:12px;"></div><canvas id="trendChart"></canvas></div>
+<div class="card full"><h3>📈 Income Trends</h3><div class="month-btns" id="incTrendBtns" style="margin-bottom:12px;"></div><canvas id="incTrendChart"></canvas></div>
+<div class="card full"><h3>📈 Spending Trends</h3><div class="month-btns" id="trendCatBtns" style="margin-bottom:12px;"></div><canvas id="trendChart"></canvas></div>
 </div>
 <div class="card full" style="margin-bottom:30px;">
 <h3>🔍 All Transactions</h3>
@@ -118,6 +119,8 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     type: 'bar', data: { labels: months.map(m => monthShort[parseInt(m.split('-')[1])-1]), datasets: [
       { label: 'Income', data: DATA.monthly.map(m=>m.income), backgroundColor: '#27ae6088', borderColor: '#27ae60', borderWidth: 1 },
       { label: 'Expenses', data: DATA.monthly.map(m=>m.expenses), backgroundColor: '#e74c3c88', borderColor: '#e74c3c', borderWidth: 1 },
+      { label: 'Avg Income', data: DATA.monthly.map(()=>avgInc), type: 'line', borderColor: '#27ae60', borderDash: [6,4], borderWidth: 2, pointRadius: 0, fill: false },
+      { label: 'Avg Expenses', data: DATA.monthly.map(()=>avgMonthly), type: 'line', borderColor: '#e74c3c', borderDash: [6,4], borderWidth: 2, pointRadius: 0, fill: false },
     ]}, options: { responsive: true, plugins: { legend: { position: 'bottom' } }, scales: { y: { ticks: { callback: v => '$'+(v/1000).toFixed(0)+'k' } } } }
   });
 
@@ -200,6 +203,45 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     });
   }
   renderTrend();
+
+  // Income Trend chart with source toggles
+  const incByMonth = DATA.incByMonth || {};
+  const allIncSources = Object.keys(incByMonth).sort((a,b) => {
+    const ta = Object.values(incByMonth[a]).reduce((s,v)=>s+v,0);
+    const tb = Object.values(incByMonth[b]).reduce((s,v)=>s+v,0);
+    return tb - ta;
+  });
+  const activeIncSources = new Set(allIncSources); // all on by default
+  const incTrendContainer = document.getElementById('incTrendBtns');
+  let incTrendChart = null;
+  const incColors = ['#2ecc71','#3498db','#9b59b6','#f1c40f','#e67e22','#1abc9c','#e74c3c','#16a085'];
+
+  const incClearBtn = document.createElement('span');
+  incClearBtn.className = 'month-btn'; incClearBtn.textContent = '✕ Clear';
+  incClearBtn.onclick = () => { activeIncSources.clear(); incTrendContainer.querySelectorAll('.month-btn').forEach(b => b.classList.remove('active')); incClearBtn.classList.remove('active'); renderIncTrend(); };
+  incTrendContainer.appendChild(incClearBtn);
+
+  allIncSources.forEach(src => {
+    const b = document.createElement('span');
+    b.className = 'month-btn active';
+    b.textContent = src;
+    b.onclick = () => { if (activeIncSources.has(src)) { activeIncSources.delete(src); b.classList.remove('active'); } else { activeIncSources.add(src); b.classList.add('active'); } renderIncTrend(); };
+    incTrendContainer.appendChild(b);
+  });
+
+  function renderIncTrend() {
+    const sources = [...activeIncSources];
+    const ds = sources.map((src,i) => ({
+      label: src, data: DATA.monthly.map(m => (incByMonth[src]||{})[m.month]||0),
+      borderColor: incColors[i % incColors.length], backgroundColor: incColors[i % incColors.length]+'33', fill: true, tension: 0.3,
+    }));
+    if (incTrendChart) incTrendChart.destroy();
+    incTrendChart = new Chart(document.getElementById('incTrendChart'), {
+      type: 'line', data: { labels: months.map(m => monthShort[parseInt(m.split('-')[1])-1]), datasets: ds },
+      options: { responsive: true, plugins: { legend: { position: 'bottom' } }, scales: { y: { ticks: { callback: v=>'$'+v.toLocaleString() } } } }
+    });
+  }
+  renderIncTrend();
 
   // Merchants with buttons
   // All Transactions with buttons
