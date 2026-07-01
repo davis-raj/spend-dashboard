@@ -33,7 +33,7 @@ def label_income(row):
     if '2481' in stmt: return 'Esther Paycheck'
     if row['Merchant'] == 'Transfer From Checking': return 'Paycheck (Other)'
     if 'Real Property' in str(row['Merchant']): return 'Rental Income'
-    if 'Internal Revenue' in str(row['Merchant']): return 'Tax Refund'
+    if 'Internal Revenue' in str(row['Merchant']): return '_transfer'
     if row['Category'] in ['Transfer', 'Credit Card Payment', 'Balance Adjustments']:
         return '_transfer'
     return 'Other Income'
