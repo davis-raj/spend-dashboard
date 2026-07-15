@@ -8,11 +8,14 @@ import os
 DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 OUT_FILE = os.path.join(os.path.dirname(__file__), "docs", "data.json")
 
-# Find the latest Transactions CSV (just pick the newest one if multiple exist)
-files = sorted(glob.glob(os.path.join(DATA_DIR, "Transactions*.csv")))
-if not files:
-    print("No CSV file found in data/")
+# Find the freshest transactions CSV (case-insensitive match, newest by mtime).
+# The auto-downloader saves 'transactions.csv'; manual exports may be 'Transactions_*.csv'.
+candidates = [f for f in glob.glob(os.path.join(DATA_DIR, "*.csv"))
+              if "transaction" in os.path.basename(f).lower()]
+if not candidates:
+    print("No transactions CSV found in data/")
     exit(1)
+files = sorted(candidates, key=os.path.getmtime)
 
 df = pd.read_csv(files[-1])
 df['Date'] = pd.to_datetime(df['Date'], format='mixed', dayfirst=False)
