@@ -23,13 +23,22 @@ df['Amount'] = pd.to_numeric(df['Amount'], errors='coerce')
 df = df.drop_duplicates(subset=['Date','Merchant','Amount','Account'], keep='first')
 df['Month'] = df['Date'].dt.strftime('%Y-%m')
 
-# NOTE: Credit cards (Apple Card, Chase, Citi, Best Buy) are NOT linked in Monarch,
-# so "Credit Card Payment" transactions are the ONLY record of that card spending —
-# they must be KEPT as expenses. We only strip genuinely internal money movement:
-# transfers to own savings / Apple Cash, and balance adjustments.
+# --- Filters: current year + only the two accounts we actively track ---
+INCLUDE_ACCOUNTS = ['Apple Card', 'CASHBACK DEBIT (...3359)']
+CURRENT_YEAR = pd.Timestamp.now().year
+df = df[df['Date'].dt.year == CURRENT_YEAR]
+df = df[df['Account'].isin(INCLUDE_ACCOUNTS)]
+print(f"Filtered to {CURRENT_YEAR} + {INCLUDE_ACCOUNTS}: {len(df)} rows")
+
+# Apple Card purchases are itemized (that account is included), so the "Apple"
+# Credit Card Payment from the debit account is just the payoff — dropping it
+# avoids double-counting. Payments to OTHER cards (Chase, Citi, Best Buy, etc.)
+# are kept, since those cards are NOT included and the payment is the only record.
 def is_internal_transfer(row):
     cat = str(row['Category'])
     if cat == 'Balance Adjustments':
+        return True
+    if cat == 'Credit Card Payment' and 'apple' in str(row['Merchant']).lower():
         return True
     if cat == 'Transfer':
         merch = str(row['Merchant'])
