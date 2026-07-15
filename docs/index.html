@@ -139,6 +139,16 @@ fetch('data.json').then(r => r.json()).then(DATA => {
 
   const catColors = ['#3498db','#e74c3c','#f39c12','#27ae60','#9b59b6','#1abc9c','#e67e22','#2980b9','#c0392b','#16a085','#8e44ad','#d35400','#2c3e50','#7f8c8d','#f1c40f'];
 
+  // Stable color per category NAME so a category keeps the same color across all
+  // months/charts (seeded from the YTD ranking; new names get the next color).
+  const catColorMap = {};
+  Object.keys(DATA.catByMonth).forEach((name, i) => { catColorMap[name] = catColors[i % catColors.length]; });
+  DATA.categories.forEach(c => { if (!(c.name in catColorMap)) catColorMap[c.name] = catColors[Object.keys(catColorMap).length % catColors.length]; });
+  function colorFor(name) {
+    if (!(name in catColorMap)) catColorMap[name] = catColors[Object.keys(catColorMap).length % catColors.length];
+    return catColorMap[name];
+  }
+
   // Category donut with buttons
   let catChart = null;
   function renderCatDonut(selMonth) {
@@ -151,7 +161,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     }
     if (catChart) catChart.destroy();
     catChart = new Chart(document.getElementById('catChart'), {
-      type: 'doughnut', data: { labels: catData.map(c=>c.name), datasets: [{ data: catData.map(c=>c.total), backgroundColor: catColors }] },
+      type: 'doughnut', data: { labels: catData.map(c=>c.name), datasets: [{ data: catData.map(c=>c.total), backgroundColor: catData.map(c=>colorFor(c.name)) }] },
       options: { responsive: true, onClick: (e, els) => { if(els.length) filterByCat(catData[els[0].index].name); }, plugins: { legend: { position: 'right', labels: { font: { size: 11 } } } } }
     });
   }
@@ -210,7 +220,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     const cats = [...activeCats];
     const ds = cats.map((c,i) => ({
       label: c, data: DATA.monthly.map(m => (DATA.catByMonth[c]||{})[m.month]||0),
-      borderColor: catColors[i % catColors.length], backgroundColor: catColors[i % catColors.length]+'33', fill: true, tension: 0.3,
+      borderColor: colorFor(c), backgroundColor: colorFor(c)+'33', fill: true, tension: 0.3,
     }));
     if (trendChart) trendChart.destroy();
     trendChart = new Chart(document.getElementById('trendChart'), {
