@@ -123,7 +123,18 @@ fetch('data.json').then(r => r.json()).then(DATA => {
       { label: 'Expenses', data: DATA.monthly.map(m=>m.expenses), backgroundColor: '#e74c3c88', borderColor: '#e74c3c', borderWidth: 1 },
       { label: 'Avg Income', data: DATA.monthly.map(()=>avgInc), type: 'line', borderColor: '#27ae60', borderDash: [6,4], borderWidth: 2, pointRadius: 0, fill: false },
       { label: 'Avg Expenses', data: DATA.monthly.map(()=>avgMonthly), type: 'line', borderColor: '#e74c3c', borderDash: [6,4], borderWidth: 2, pointRadius: 0, fill: false },
-    ]}, options: { responsive: true, plugins: { legend: { position: 'bottom' } }, scales: { y: { ticks: { callback: v => '$'+(v/1000).toFixed(0)+'k' } } } }
+    ]}, options: { responsive: true, plugins: { legend: { position: 'bottom' } },
+      onHover: (e, els) => { e.native.target.style.cursor = els.length && els[0].datasetIndex < 2 ? 'pointer' : 'default'; },
+      onClick: (e, els) => {
+        if (!els.length) return;
+        const el = els[0];
+        const month = months[el.index];
+        if (el.datasetIndex === 0) { renderIncTxns(month); }        // Income bar -> income txns
+        else if (el.datasetIndex === 1) { txnMonth = month; renderTxns(); }  // Expenses bar -> spend txns
+        else { return; }                                            // ignore the avg lines
+        document.getElementById('filterCat').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      },
+      scales: { y: { ticks: { callback: v => '$'+(v/1000).toFixed(0)+'k' } } } }
   });
 
   const catColors = ['#3498db','#e74c3c','#f39c12','#27ae60','#9b59b6','#1abc9c','#e67e22','#2980b9','#c0392b','#16a085','#8e44ad','#d35400','#2c3e50','#7f8c8d','#f1c40f'];
