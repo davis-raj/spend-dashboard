@@ -20,6 +20,15 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 DOWNLOAD_DIR = os.path.join(BASE, "data")
 AUTH_FILE = os.path.join(BASE, ".monarch-auth.json")
 
+# Load .env (local runs). CI passes real env vars, which take precedence.
+_env_path = os.path.join(BASE, ".env")
+if os.path.exists(_env_path):
+    for _line in open(_env_path):
+        _line = _line.strip()
+        if _line and not _line.startswith("#") and "=" in _line:
+            _k, _v = _line.split("=", 1)
+            os.environ.setdefault(_k.strip(), _v.strip())
+
 MONARCH_URL = "https://app.monarch.com/transactions"
 MONARCH_EMAIL = os.environ.get("MONARCH_EMAIL", "")
 MONARCH_PASS = os.environ.get("MONARCH_PASS", "")
@@ -114,13 +123,13 @@ def push_to_github():
     print("✓ Pushed to GitHub")
 
 
-def run(download_only=False):
+def run(download_only=False, headful=False):
     if not MONARCH_EMAIL or not MONARCH_PASS:
-        print("Set MONARCH_EMAIL and MONARCH_PASS environment variables")
+        print("Set MONARCH_EMAIL and MONARCH_PASS (in .env or environment)")
         sys.exit(1)
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+        browser = p.chromium.launch(headless=not headful)
         context_opts = {}
         if os.path.exists(AUTH_FILE):
             context_opts["storage_state"] = AUTH_FILE
@@ -146,5 +155,8 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--download-only", action="store_true",
                     help="Only download the CSV; skip build and git push (for CI)")
+    ap.add_argument("--headful", action="store_true",
+                    help="Show the browser — use for the FIRST login to complete any "
+                         "2FA / device verification; the session is saved for later runs")
     args = ap.parse_args()
-    run(download_only=args.download_only)
+    run(download_only=args.download_only, headful=args.headful)
