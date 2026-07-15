@@ -285,7 +285,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     document.getElementById('filterCat').scrollIntoView({behavior:'smooth'});
   }
 
-  window.renderIncTxns = function(month) {
+  function renderIncTxns(month) {
     cSel.value = '';
     document.getElementById('filterSearch').value = '';
     let filtered = (DATA.incomeTransactions||[]);
