@@ -20,9 +20,24 @@ df['Amount'] = pd.to_numeric(df['Amount'], errors='coerce')
 df = df.drop_duplicates(subset=['Date','Merchant','Amount','Account'], keep='first')
 df['Month'] = df['Date'].dt.strftime('%Y-%m')
 
+# NOTE: Credit cards (Apple Card, Chase, Citi, Best Buy) are NOT linked in Monarch,
+# so "Credit Card Payment" transactions are the ONLY record of that card spending —
+# they must be KEPT as expenses. We only strip genuinely internal money movement:
+# transfers to own savings / Apple Cash, and balance adjustments.
+def is_internal_transfer(row):
+    cat = str(row['Category'])
+    if cat == 'Balance Adjustments':
+        return True
+    if cat == 'Transfer':
+        merch = str(row['Merchant'])
+        stmt = str(row.get('Original Statement', '')).upper()
+        # Moves between the family's own accounts (savings / Apple Cash)
+        if merch == 'Discover' or 'SAVINGS' in stmt or 'APPLE CASH SENT' in stmt or 'APPLE CASH SE' in stmt:
+            return True
+    return False
+
 expenses = df[df['Amount'] < 0].copy()
-# Exclude internal transfers between Discover accounts (e.g., checking → savings)
-expenses = expenses[~((expenses['Merchant'] == 'Discover') & (expenses['Category'] == 'Transfer'))]
+expenses = expenses[~expenses.apply(is_internal_transfer, axis=1)]
 expenses['Spend'] = expenses['Amount'].abs()
 income = df[df['Amount'] > 0].copy()
 
