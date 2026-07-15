@@ -53,11 +53,11 @@ expenses = expenses[~expenses.apply(is_internal_transfer, axis=1)]
 expenses['Spend'] = expenses['Amount'].abs()
 income = df[df['Amount'] > 0].copy()
 
-# Categories that represent genuine income (positive amounts). Any OTHER positive
-# amount is a refund/return (carries the original purchase's spending category) and
-# should net against spending, not count as income.
-INCOME_CATEGORIES = {'Paychecks', 'Other Income', 'Interest', 'Dividends & Capital Gains',
-                     'Business Income', 'Rental Income', 'Income', 'Investment Income'}
+# A positive amount is a REFUND only if its category is ALSO used for spending
+# (e.g. a Shopping return). Categories that only ever appear as income (Paychecks,
+# Other Income, Check Deposit, Interest, ...) are genuine income. Self-maintaining:
+# new income categories in Monarch just work, no code change needed.
+expense_categories = set(df[df['Amount'] < 0]['Category'].dropna().astype(str))
 
 # Label income sources
 def label_income(row):
@@ -70,9 +70,10 @@ def label_income(row):
     if row['Category'] in ['Transfer', 'Credit Card Payment', 'Balance Adjustments']:
         return '_transfer'
     # Positive amount in a spending category = refund/return, not income
-    if row['Category'] not in INCOME_CATEGORIES:
+    if str(row['Category']) in expense_categories:
         return '_refund'
-    return 'Other Income'
+    # Genuine income — label by its category name (e.g. Check Deposit, Interest)
+    return str(row['Category'])
 
 income['IncomeSource'] = income.apply(label_income, axis=1)
 
