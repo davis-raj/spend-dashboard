@@ -73,7 +73,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
   document.getElementById('loading').style.display = 'none';
   document.getElementById('app').style.display = '';
 
-  const monthShort = ['J','F','M','A','M','J','J','A','S','O','N','D'];
+  const monthShort = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   function monthLabel(m) { return monthShort[parseInt(m.split('-')[1])-1]; }
 
   // Create month button group, returns getter function for current value
