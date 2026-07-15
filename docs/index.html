@@ -144,6 +144,10 @@ fetch('data.json').then(r => r.json()).then(DATA => {
       options: { responsive: true, onClick: (e, els) => { if(els.length) filterByCat(catData[els[0].index].name); }, plugins: { legend: { position: 'right', labels: { font: { size: 11 } } } } }
     });
   }
+  // Declared early: the month-button callbacks fire immediately and call
+  // renderTxns()/renderIncTxns() which read these. (let/const are not hoisted.)
+  const cSel = document.getElementById('filterCat');
+  let sortCol = 'Date', sortAsc = false;
   let txnMonth = '';
   createMonthBtns('catBtns', (m) => { renderCatDonut(m); txnMonth = m; renderTxns(); });
 
@@ -248,10 +252,8 @@ fetch('data.json').then(r => r.json()).then(DATA => {
   // All Transactions with buttons
   createMonthBtns('txnMonthBtns', m => { txnMonth = m; renderTxns(); });
   const allCats = [...new Set(DATA.transactions.map(t=>t.Category))].sort();
-  const cSel = document.getElementById('filterCat');
   allCats.forEach(c => { const o = document.createElement('option'); o.value=c; o.textContent=c; cSel.appendChild(o); });
 
-  let sortCol = 'Date', sortAsc = false;
   document.querySelectorAll('.sortable').forEach(th => {
     th.onclick = () => {
       const col = th.dataset.col;
