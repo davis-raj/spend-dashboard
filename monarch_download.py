@@ -54,52 +54,77 @@ def _maybe_handle_mfa(page):
         pass  # No MFA prompt — normal
 
 
-def login(page):
-    """Login to Monarch or reuse saved auth."""
-    page.goto("https://app.monarchmoney.com/login", wait_until="networkidle")
-    if "transactions" in page.url or "dashboard" in page.url:
-        print("✓ Already authenticated (reused session)")
+def login(page, interactive=False):
+    """Reuse a saved session, or (interactive) let the user log in by hand and capture it.
+
+    Monarch's login is SSO-first and triggers email device-verification on new
+    logins, which can't be automated. So for the first run we open a real browser,
+    let the human complete login, then save the session for all future headless runs.
+    """
+    page.goto("https://app.monarch.com/accounts", wait_until="domcontentloaded")
+    page.wait_for_timeout(2500)
+
+    if "login" not in page.url.lower():
+        print("✓ Already authenticated (reused saved session)")
         return
-    page.locator('input[type="email"], input[name="email"]').fill(MONARCH_EMAIL)
-    page.locator('input[type="password"], input[name="password"]').fill(MONARCH_PASS)
-    page.locator('button[type="submit"]').click()
-    _maybe_handle_mfa(page)
-    page.wait_for_url("**/dashboard**", timeout=30000)
-    print("✓ Logged in")
-    page.context.storage_state(path=AUTH_FILE)
+
+    if interactive:
+        print("\n" + "=" * 62)
+        print(">>> Log in MANUALLY in the browser window that just opened.")
+        print(">>> Enter email, password, and any emailed verification code.")
+        print(">>> Waiting up to 5 minutes for you to reach the app...")
+        print("=" * 62 + "\n")
+        # Wait until the URL no longer contains 'login' (successful auth + redirect)
+        page.wait_for_url(lambda url: "login" not in url.lower(), timeout=300000)
+        page.wait_for_timeout(4000)  # let cookies/tokens settle
+        page.context.storage_state(path=AUTH_FILE)
+        print("✓ Login captured — session saved to .monarch-auth.json")
+        return
+
+    # Headless with no valid session — can't pass device verification unattended.
+    raise RuntimeError(
+        "Not authenticated and no saved session. Seed it once interactively:\n"
+        "    python3 monarch_download.py --headful"
+    )
 
 
 def download_csv(page):
-    """Navigate to transactions, set date range, download CSV."""
-    page.goto(MONARCH_URL, wait_until="networkidle")
-    page.wait_for_timeout(3000)
+    """Navigate to transactions and click the summary-card 'Download CSV' button.
 
-    date_btn = page.locator('button:has-text("Date"), [data-testid*="date"]').first
-    date_btn.click()
-    page.wait_for_timeout(1000)
+    The transactions view defaults to the 'This year' filter, so the export is
+    already YTD — no date-range UI needed (opening it just covers the button).
+    On failure, save a screenshot + HTML to diagnose selector changes.
+    """
+    page.goto(MONARCH_URL, wait_until="domcontentloaded")
+    page.wait_for_timeout(5000)  # let the transactions list + summary card render
 
-    start_input = page.locator('input[placeholder*="Start"], input[name*="start"]').first
-    start_input.clear()
-    start_input.fill(START_DATE)
+    try:
+        # The summary card has a "Download CSV" button, but the transaction list
+        # overlaps it in the layout — a normal click gets intercepted. Dispatch the
+        # click event directly to the element to bypass the pointer hit-test.
+        btn = page.locator('button:has-text("Download CSV")').first
+        btn.wait_for(state="attached", timeout=15000)
+        with page.expect_download(timeout=60000) as download_info:
+            btn.dispatch_event("click")
+        download = download_info.value
 
-    end_input = page.locator('input[placeholder*="End"], input[name*="end"]').first
-    end_input.clear()
-    end_input.fill(END_DATE)
+        dest = os.path.join(DOWNLOAD_DIR, "transactions.csv")
+        download.save_as(dest)
+        print(f"✓ Downloaded CSV to {dest} ({os.path.getsize(dest)} bytes)")
+        return dest
 
-    apply_btn = page.locator('button:has-text("Apply"), button:has-text("Done"), button:has-text("Update")').first
-    if apply_btn.is_visible(timeout=2000):
-        apply_btn.click()
-    page.wait_for_timeout(2000)
-
-    with page.expect_download() as download_info:
-        page.locator('button:has-text("Download"), a:has-text("Download CSV"), [aria-label*="download"]').first.click()
-    download = download_info.value
-
-    # Canonical filename (lowercase) — build.py matches case-insensitively by mtime
-    dest = os.path.join(DOWNLOAD_DIR, "transactions.csv")
-    download.save_as(dest)
-    print(f"✓ Downloaded CSV to {dest} ({os.path.getsize(dest)} bytes)")
-    return dest
+    except Exception as e:
+        shot = os.path.join(BASE, "monarch-debug.png")
+        html = os.path.join(BASE, "monarch-debug.html")
+        try:
+            page.screenshot(path=shot, full_page=True)
+            with open(html, "w") as f:
+                f.write(page.content())
+            print(f"✗ Export failed: {e}")
+            print(f"  Saved diagnostics: {shot} and {html}")
+        except Exception:
+            print(f"✗ Export failed: {e} (and could not save diagnostics)")
+        raise
 
 
 def rebuild_dashboard():
@@ -136,7 +161,7 @@ def run(download_only=False, headful=False):
         context = browser.new_context(**context_opts)
         page = context.new_page()
         try:
-            login(page)
+            login(page, interactive=headful)
             download_csv(page)
             context.storage_state(path=AUTH_FILE)
         finally:

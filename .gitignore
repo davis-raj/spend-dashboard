@@ -4,3 +4,4 @@ __pycache__/
 .env
 .monarch-auth.json
 *.log
+monarch-debug.*
