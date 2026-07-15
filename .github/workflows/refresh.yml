@@ -1,0 +1,71 @@
+name: Refresh Monarch Data
+
+on:
+  schedule:
+    - cron: '0 12 * * 1'   # Every Monday 12:00 UTC (~6am CT)
+  workflow_dispatch:        # Allow manual "Run workflow" from the Actions tab
+
+# Only one refresh at a time; let a running deploy finish
+concurrency:
+  group: monarch-refresh
+  cancel-in-progress: false
+
+permissions:
+  contents: write   # commit refreshed CSV/data.json back to the repo
+  pages: write
+  id-token: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+
+      - name: Install dependencies
+        run: |
+          pip install pandas playwright pyotp
+          python -m playwright install --with-deps chromium
+
+      - name: Download transactions from Monarch
+        env:
+          MONARCH_EMAIL: ${{ secrets.MONARCH_EMAIL }}
+          MONARCH_PASS: ${{ secrets.MONARCH_PASS }}
+          MONARCH_MFA_SECRET: ${{ secrets.MONARCH_MFA_SECRET }}
+        run: python monarch_download.py --download-only
+
+      - name: Rebuild dashboard data
+        run: python build.py
+
+      - name: Commit refreshed data
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/ docs/data.json
+          if git diff --staged --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No transaction changes."
+          else
+            git commit -m "Auto-refresh: Monarch transactions [skip ci]"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with: { path: docs }
+
+  deploy:
+    needs: refresh
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
