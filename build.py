@@ -53,6 +53,12 @@ expenses = expenses[~expenses.apply(is_internal_transfer, axis=1)]
 expenses['Spend'] = expenses['Amount'].abs()
 income = df[df['Amount'] > 0].copy()
 
+# Categories that represent genuine income (positive amounts). Any OTHER positive
+# amount is a refund/return (carries the original purchase's spending category) and
+# should net against spending, not count as income.
+INCOME_CATEGORIES = {'Paychecks', 'Other Income', 'Interest', 'Dividends & Capital Gains',
+                     'Business Income', 'Rental Income', 'Income', 'Investment Income'}
+
 # Label income sources
 def label_income(row):
     stmt = str(row.get('Original Statement', ''))
@@ -63,13 +69,22 @@ def label_income(row):
     if 'Internal Revenue' in str(row['Merchant']): return '_transfer'
     if row['Category'] in ['Transfer', 'Credit Card Payment', 'Balance Adjustments']:
         return '_transfer'
+    # Positive amount in a spending category = refund/return, not income
+    if row['Category'] not in INCOME_CATEGORIES:
+        return '_refund'
     return 'Other Income'
 
 income['IncomeSource'] = income.apply(label_income, axis=1)
 
-# Separate true income from internal transfers
-true_income = income[income['IncomeSource'] != '_transfer'].copy()
+# Separate true income from internal transfers and refunds
+true_income = income[~income['IncomeSource'].isin(['_transfer', '_refund'])].copy()
 transfers_in = income[income['IncomeSource'] == '_transfer'].copy()
+
+# Refunds/returns: net against spending in their original category (negative spend)
+refunds = income[income['IncomeSource'] == '_refund'].copy()
+if not refunds.empty:
+    refunds['Spend'] = -refunds['Amount']  # positive refund -> negative spend
+    expenses = pd.concat([expenses, refunds[expenses.columns]], ignore_index=True)
 
 data = {}
 
