@@ -20,14 +20,28 @@ files = sorted(candidates, key=os.path.getmtime)
 df = pd.read_csv(files[-1])
 df['Date'] = pd.to_datetime(df['Date'], format='mixed', dayfirst=False)
 df['Amount'] = pd.to_numeric(df['Amount'], errors='coerce')
-df = df.drop_duplicates(subset=['Date','Merchant','Amount','Account'], keep='first')
+# Dedup true re-imports (all fields identical) without collapsing genuinely
+# distinct same-day/same-merchant/same-amount purchases (different statements).
+_dedup_keys = ['Date', 'Merchant', 'Amount', 'Account']
+if 'Original Statement' in df.columns:
+    _dedup_keys.append('Original Statement')
+df = df.drop_duplicates(subset=_dedup_keys, keep='first')
 df['Month'] = df['Date'].dt.strftime('%Y-%m')
 
 # --- Filters: current year + only the two accounts we actively track ---
 INCLUDE_ACCOUNTS = ['Apple Card', 'CASHBACK DEBIT (...3359)']
 CURRENT_YEAR = pd.Timestamp.now().year
+# Guard: warn loudly if a tracked account matched nothing (likely renamed in Monarch)
+_available = set(df['Account'].dropna().astype(str))
+for _acct in INCLUDE_ACCOUNTS:
+    if _acct not in _available:
+        print(f"WARNING: tracked account '{_acct}' not found in data — "
+              f"was it renamed in Monarch? Available: {sorted(_available)}")
 df = df[df['Date'].dt.year == CURRENT_YEAR]
 df = df[df['Account'].isin(INCLUDE_ACCOUNTS)]
+if df.empty:
+    print(f"WARNING: no rows after filtering to {CURRENT_YEAR} + {INCLUDE_ACCOUNTS}. "
+          "Dashboard will be empty — check account names / year.")
 print(f"Filtered to {CURRENT_YEAR} + {INCLUDE_ACCOUNTS}: {len(df)} rows")
 
 # Apple Card purchases are itemized (that account is included), so the "Apple"
@@ -112,10 +126,6 @@ data['catByMonth'] = {}
 for c in cat.index:
     if c in pivot.index:
         data['catByMonth'][c] = {m: round(pivot.loc[c, m], 2) for m in all_months if m in pivot.columns}
-
-# Merchants
-merch = expenses.groupby('Merchant')['Spend'].agg(['sum','count']).sort_values('sum', ascending=False).head(15)
-data['merchants'] = [{'name': m, 'total': round(r['sum'], 2), 'count': int(r['count'])} for m, r in merch.iterrows()]
 
 # Income by source x Month
 inc_pivot = true_income.pivot_table(index='IncomeSource', columns='Month', values='Amount', aggfunc='sum', fill_value=0)
