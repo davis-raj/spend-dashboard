@@ -248,7 +248,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     const tb = Object.values(DATA.catByMonth[b]).reduce((s,v)=>s+v,0);
     return tb - ta;
   });
-  const defaultOn = new Set(['Groceries','Shopping','Restaurants & Bars','Gas','Cash & ATM']);
+  const defaultOn = new Set(allTrendCats.slice(0, 5));  // Top 5 by $ amount
   const activeCats = new Set(defaultOn);
   const trendContainer = document.getElementById('trendCatBtns');
   let trendChart = null;
@@ -287,7 +287,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     const tb = Object.values(incByMonth[b]).reduce((s,v)=>s+v,0);
     return tb - ta;
   });
-  const activeIncSources = new Set(allIncSources); // all on by default
+  const activeIncSources = new Set(allIncSources.slice(0, 3)); // Top 3 by $ amount
   const incTrendContainer = document.getElementById('incTrendBtns');
   let incTrendChart = null;
   const incColors = ['#2ecc71','#3498db','#9b59b6','#f1c40f','#e67e22','#1abc9c','#e74c3c','#16a085'];
@@ -299,7 +299,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
 
   allIncSources.forEach(src => {
     const b = document.createElement('span');
-    b.className = 'month-btn active';
+    b.className = 'month-btn' + (activeIncSources.has(src) ? ' active' : '');
     b.textContent = src;
     b.onclick = () => { if (activeIncSources.has(src)) { activeIncSources.delete(src); b.classList.remove('active'); } else { activeIncSources.add(src); b.classList.add('active'); } renderIncTrend(); };
     incTrendContainer.appendChild(b);
