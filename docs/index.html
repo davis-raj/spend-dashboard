@@ -317,6 +317,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
 
   window.filterByCat = function(cat) {
     cSel.value = cat;
+    txnMonth = '';  // Clear month filter so ALL transactions for this category show
     renderTxns();
     document.getElementById('filterCat').scrollIntoView({behavior:'smooth'});
   }
