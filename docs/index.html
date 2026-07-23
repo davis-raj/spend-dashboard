@@ -144,9 +144,15 @@ fetch('data.json').then(r => r.json()).then(DATA => {
 
   // Stable color per category NAME so a category keeps the same color across all
   // months/charts (seeded from the YTD ranking; new names get the next color).
+  // Stable color per category NAME — seeded from ALL categories in the data
+  // so every category always gets the same color regardless of which month is selected.
   const catColorMap = {};
-  Object.keys(DATA.catByMonth).forEach((name, i) => { catColorMap[name] = catColors[i % catColors.length]; });
-  DATA.categories.forEach(c => { if (!(c.name in catColorMap)) catColorMap[c.name] = catColors[Object.keys(catColorMap).length % catColors.length]; });
+  const allCatNames = [...new Set(DATA.transactions.map(t => t.Category))].sort((a,b) => {
+    const ta = DATA.transactions.filter(t=>t.Category===a).reduce((s,t)=>s+t.Spend,0);
+    const tb = DATA.transactions.filter(t=>t.Category===b).reduce((s,t)=>s+t.Spend,0);
+    return tb - ta;
+  });
+  allCatNames.forEach((name, i) => { catColorMap[name] = catColors[i % catColors.length]; });
   function colorFor(name) {
     if (!(name in catColorMap)) catColorMap[name] = catColors[Object.keys(catColorMap).length % catColors.length];
     return catColorMap[name];
