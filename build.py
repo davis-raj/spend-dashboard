@@ -80,7 +80,6 @@ def label_income(row):
     if '2481' in stmt: return 'Esther Paycheck'
     if row['Merchant'] == 'Transfer From Checking': return 'Paycheck (Other)'
     if 'Real Property' in str(row['Merchant']): return 'Rental Income'
-    if 'Internal Revenue' in str(row['Merchant']): return '_transfer'
     if row['Category'] in ['Transfer', 'Credit Card Payment', 'Balance Adjustments']:
         return '_transfer'
     # Positive amount in a spending category = refund/return, not income
