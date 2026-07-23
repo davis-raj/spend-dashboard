@@ -53,6 +53,7 @@ tr:hover td { background: #f8f9ff; }
 <div class="card full"><h3>📊 Monthly Overview</h3><canvas id="monthlyChart"></canvas></div>
 <div class="card"><h3>💵 Income by Category <span class="month-btns" id="incBtns"></span></h3><canvas id="incChart"></canvas></div>
 <div class="card"><h3>🏷️ Spending by Category <span class="month-btns" id="catBtns"></span></h3><canvas id="catChart"></canvas></div>
+<div class="card full"><h3>🏪 Top Merchants <span class="month-btns" id="merchBtns"></span></h3><div id="merchList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px;"></div></div>
 <div class="card full"><h3>📈 Income Trends</h3><div class="month-btns" id="incTrendBtns" style="margin-bottom:12px;"></div><canvas id="incTrendChart"></canvas></div>
 <div class="card full"><h3>📈 Spending Trends</h3><div class="month-btns" id="trendCatBtns" style="margin-bottom:12px;"></div><canvas id="trendChart"></canvas></div>
 </div>
@@ -108,19 +109,21 @@ fetch('data.json').then(r => r.json()).then(DATA => {
   const incMonths = DATA.monthly.filter(m=>m.income>0).length || 1;
   const avgInc = totalInc / incMonths;
   const avgNet = avgInc - avgMonthly;
+  const savingsRate = totalInc > 0 ? (net / totalInc * 100) : 0;
   document.getElementById('stats-row').innerHTML = `
   <div class="stat-card"><div class="label">Total Income</div><div class="value positive">$${totalInc.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">${DATA.monthly.filter(m=>m.income>0).length} months recorded</div></div>
   <div class="stat-card"><div class="label">Total Spent</div><div class="value" style="color:#e67e22">$${totalExp.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">${DATA.monthly.length} months</div></div>
   <div class="stat-card"><div class="label">Net Cashflow</div><div class="value ${net>=0?'positive':'negative'}">$${net.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">${net>=0?'surplus':'deficit'}</div></div>
+  <div class="stat-card"><div class="label">Savings Rate</div><div class="value ${savingsRate>=0?'positive':'negative'}">${savingsRate.toFixed(1)}%</div><div class="sub">${savingsRate>=0?'saving':'overspending'}</div></div>
   <div class="stat-card"><div class="label">Avg Monthly Income</div><div class="value positive">$${avgInc.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">per month</div></div>
-  <div class="stat-card"><div class="label">Avg Monthly Spend</div><div class="value" style="color:#e67e22">$${avgMonthly.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">per month</div></div>
-  <div class="stat-card"><div class="label">Avg Monthly Net</div><div class="value ${avgNet>=0?'positive':'negative'}">$${avgNet.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">${avgNet>=0?'surplus':'deficit'} per month</div></div>`;
+  <div class="stat-card"><div class="label">Avg Monthly Spend</div><div class="value" style="color:#e67e22">$${avgMonthly.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">per month</div></div>`;
 
   const months = DATA.monthly.map(m => m.month);
   new Chart(document.getElementById('monthlyChart'), {
     type: 'bar', data: { labels: months.map(m => monthShort[parseInt(m.split('-')[1])-1]), datasets: [
       { label: 'Income', data: DATA.monthly.map(m=>m.income), backgroundColor: '#27ae6088', borderColor: '#27ae60', borderWidth: 1 },
       { label: 'Expenses', data: DATA.monthly.map(m=>m.expenses), backgroundColor: '#e74c3c88', borderColor: '#e74c3c', borderWidth: 1 },
+      { label: 'Net Cashflow', data: DATA.monthly.map(m=>m.income-m.expenses), type: 'line', borderColor: '#2c3e50', backgroundColor: '#2c3e5022', borderWidth: 2.5, pointRadius: 4, fill: true, tension: 0.3 },
       { label: 'Avg Income', data: DATA.monthly.map(()=>avgInc), type: 'line', borderColor: '#27ae60', borderDash: [6,4], borderWidth: 2, pointRadius: 0, fill: false },
       { label: 'Avg Expenses', data: DATA.monthly.map(()=>avgMonthly), type: 'line', borderColor: '#e74c3c', borderDash: [6,4], borderWidth: 2, pointRadius: 0, fill: false },
     ]}, options: { responsive: true, plugins: { legend: { position: 'bottom' } },
@@ -191,6 +194,29 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     });
   }
   createMonthBtns('incBtns', (m) => { renderIncDonut(m); txnMonth = m; renderIncTxns(m); });
+
+  // Top Merchants with month buttons
+  function renderMerchants(selMonth) {
+    let txns = DATA.transactions;
+    if (selMonth) txns = txns.filter(t => t.Month === selMonth);
+    const byMerch = {};
+    txns.forEach(t => { byMerch[t.Merchant] = (byMerch[t.Merchant]||0) + t.Spend; });
+    const sorted = Object.entries(byMerch).sort((a,b)=>b[1]-a[1]).slice(0,12);
+    const maxVal = sorted[0]?.[1] || 1;
+    document.getElementById('merchList').innerHTML = sorted.map(([name, total]) => {
+      const pct = (total/maxVal*100).toFixed(0);
+      return `<div style="display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:8px;background:#f8f9fa;">
+        <div style="flex:1;min-width:0;">
+          <div style="font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;" onclick="filterByMerch('${name.replace(/'/g,"\\'")}');">${name}</div>
+          <div style="height:4px;background:#e9ecef;border-radius:2px;margin-top:3px;">
+            <div style="height:100%;width:${pct}%;background:#3498db;border-radius:2px;"></div>
+          </div>
+        </div>
+        <div style="font-size:13px;font-weight:600;color:#2c3e50;">$${Math.round(total).toLocaleString()}</div>
+      </div>`;
+    }).join('');
+  }
+  createMonthBtns('merchBtns', (m) => { renderMerchants(m); });
 
   // Trend chart with category toggles
   const allTrendCats = Object.keys(DATA.catByMonth).sort((a,b) => {
