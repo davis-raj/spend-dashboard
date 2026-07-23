@@ -262,7 +262,13 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     const b = document.createElement('span');
     b.className = 'month-btn' + (activeCats.has(c) ? ' active' : '');
     b.textContent = c;
-    b.onclick = () => { if (activeCats.has(c)) { activeCats.delete(c); b.classList.remove('active'); } else { activeCats.add(c); b.classList.add('active'); } renderTrend(); };
+    b.onclick = () => {
+      if (activeCats.has(c)) { activeCats.delete(c); b.classList.remove('active'); }
+      else { activeCats.add(c); b.classList.add('active'); }
+      renderTrend();
+      // Also filter transactions to show this category
+      filterByCat(c);
+    };
     trendContainer.appendChild(b);
   });
 
@@ -301,7 +307,13 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     const b = document.createElement('span');
     b.className = 'month-btn' + (activeIncSources.has(src) ? ' active' : '');
     b.textContent = src;
-    b.onclick = () => { if (activeIncSources.has(src)) { activeIncSources.delete(src); b.classList.remove('active'); } else { activeIncSources.add(src); b.classList.add('active'); } renderIncTrend(); };
+    b.onclick = () => {
+      if (activeIncSources.has(src)) { activeIncSources.delete(src); b.classList.remove('active'); }
+      else { activeIncSources.add(src); b.classList.add('active'); }
+      renderIncTrend();
+      // Also filter transactions to show this income source
+      filterByIncCat(src);
+    };
     incTrendContainer.appendChild(b);
   });
 
