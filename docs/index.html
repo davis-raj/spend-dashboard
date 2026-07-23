@@ -128,7 +128,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     type: 'bar', data: { labels: months.map(m => monthShort[parseInt(m.split('-')[1])-1]), datasets: [
       { label: 'Income', data: DATA.monthly.map(m=>m.income), backgroundColor: '#27ae6088', borderColor: '#27ae60', borderWidth: 1 },
       { label: 'Expenses', data: DATA.monthly.map(m=>m.expenses), backgroundColor: '#e74c3c88', borderColor: '#e74c3c', borderWidth: 1 },
-      { label: 'Net Cashflow', data: DATA.monthly.map(m=>m.income-m.expenses), type: 'line', borderColor: '#2c3e50', backgroundColor: '#2c3e5022', borderWidth: 2.5, pointRadius: 4, fill: true, tension: 0.3 },
+      { label: 'Net Cashflow', data: DATA.monthly.map(m=>m.income-m.expenses), type: 'line', borderColor: '#2c3e50', backgroundColor: '#2c3e5022', borderWidth: 2.5, pointRadius: 5, pointBackgroundColor: DATA.monthly.map(m => (m.income-m.expenses)>=0 ? '#27ae60' : '#e74c3c'), fill: true, tension: 0.3, datalabels: { display: true } },
       { label: 'Avg Income', data: DATA.monthly.map(()=>avgInc), type: 'line', borderColor: '#27ae60', borderDash: [6,4], borderWidth: 2, pointRadius: 0, fill: false },
       { label: 'Avg Expenses', data: DATA.monthly.map(()=>avgMonthly), type: 'line', borderColor: '#e74c3c', borderDash: [6,4], borderWidth: 2, pointRadius: 0, fill: false },
     ]}, options: { responsive: true, plugins: { legend: { position: 'bottom' } },
@@ -142,7 +142,20 @@ fetch('data.json').then(r => r.json()).then(DATA => {
         else { return; }                                            // ignore the avg lines
         document.getElementById('filterCat').scrollIntoView({ behavior: 'smooth', block: 'center' });
       },
-      scales: { y: { ticks: { callback: v => '$'+(v/1000).toFixed(0)+'k' } } } }
+      scales: { y: { ticks: { callback: v => '$'+(v/1000).toFixed(0)+'k' } } } },
+    plugins: [{ afterDatasetsDraw(chart) {
+      const meta = chart.getDatasetMeta(2); // Net Cashflow is dataset index 2
+      if (!meta || meta.hidden) return;
+      const ctx = chart.ctx;
+      ctx.save(); ctx.font = 'bold 11px -apple-system, sans-serif'; ctx.textAlign = 'center';
+      meta.data.forEach((pt, i) => {
+        const val = chart.data.datasets[2].data[i];
+        const label = (val >= 0 ? '+' : '') + '$' + (val/1000).toFixed(1) + 'k';
+        ctx.fillStyle = val >= 0 ? '#27ae60' : '#e74c3c';
+        ctx.fillText(label, pt.x, pt.y + (val >= 0 ? -12 : 16));
+      });
+      ctx.restore();
+    }}]
   });
 
   const catColors = ['#3498db','#e74c3c','#f39c12','#27ae60','#9b59b6','#1abc9c','#e67e22','#2980b9','#c0392b','#16a085','#8e44ad','#d35400','#2c3e50','#7f8c8d','#f1c40f'];
