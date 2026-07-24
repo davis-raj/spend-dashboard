@@ -1,4 +1,5 @@
 Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Reviewed
+2026-07-23,Gyros And Kabobs,Restaurants & Bars,CREDIT CARD (...0216),SQ *GYROS AND KABOBS,,-18.18,,Shared,
 2026-07-22,Target,Shopping,CASHBACK DEBIT (...3359),ACH WITHDRAWAL TARGET DEBIT CRD ACH TRAN 5S0102 TARGET 2219 PARKER CO,,-31.69,,Shared,
 2026-07-22,Uber Eats,Restaurants & Bars,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0721 8352&@#UBER *EATS 866-576-1039 CA US,,-5.00,,Shared,
 2026-07-22,Uber Eats,Restaurants & Bars,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0721 8352&@#UBER *EATS 866-576-1039 CA US,,-35.43,,Shared,
@@ -6,8 +7,8 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-07-22,Konark Grocers,Groceries,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0721 7606&@#KONARK GROCERS HIGHLANDS RAN CO US,,-57.22,,Shared,
 2026-07-22,Taco Bell,Restaurants & Bars,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0720 8352&@#TACO BELL 03877 DENVER CO US,,-1.08,,Shared,
 2026-07-22,Walmart,Shopping,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0721 7606&@#WALMART.COM 800 BENTONVILLE AR US,,-67.85,,Shared,
+2026-07-21,Payment From CHK 3074 Conf#vyt9iw8n3,Credit Card Payment,Unlimited Cash Rewards Visa Signature (...7473),PAYMENT FROM CHK 3074 CONF#vyt9iw8n3,,18.35,,Shared,
 2026-07-21,S&s Fuels,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0721 7606&@#S&S FUELS #305 PARKER CO US,,-67.86,,Shared,
-2026-07-21,Bank of America,Credit Card Payment,Unlimited Cash Rewards Visa Signature (...7473),PENDING PAYMENT,,18.35,,Shared,
 2026-07-21,Toyota,Auto Payment,CASHBACK DEBIT (...3359),ACH WITHDRAWAL TOYOTA ACH RTL WEB,,-1019.19,,Shared,
 2026-07-21,Nathrop Co,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0719 8352&@#MT PRINCETON HO NATHROP CO US,,-194.06,,Shared,
 2026-07-21,Bawarchi,Restaurants & Bars,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0719 7606&@#TST* BAWARCHI I ENGLEWOOD CO US,,-136.87,,Shared,
