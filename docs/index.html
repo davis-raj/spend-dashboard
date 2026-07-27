@@ -293,7 +293,9 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     const tb = Object.values(incByMonth[b]).reduce((s,v)=>s+v,0);
     return tb - ta;
   });
-  const activeIncSources = new Set(allIncSources.slice(0, 3)); // Top 3 by $ amount
+  const _incDefault = allIncSources.filter(s => s !== 'Other Income').slice(0, 3);
+  if (!_incDefault.includes('Rental Income') && allIncSources.includes('Rental Income')) _incDefault.push('Rental Income');
+  const activeIncSources = new Set(_incDefault); // Top 3 by $ (excl Other Income) + Rental Income
   const incTrendContainer = document.getElementById('incTrendBtns');
   let incTrendChart = null;
   const incColors = ['#2ecc71','#3498db','#9b59b6','#f1c40f','#e67e22','#1abc9c','#e74c3c','#16a085'];
