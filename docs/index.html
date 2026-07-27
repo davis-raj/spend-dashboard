@@ -22,7 +22,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 .card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); min-width: 0; overflow: hidden; }
 .card h3 { font-size: 16px; color: #1a1a2e; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .card.full { grid-column: 1 / -1; }
-canvas { max-height: 300px; width: 100% !important; }
+canvas { max-height: 300px; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 th { text-align: left; padding: 8px 12px; background: #f8f9fa; color: #555; border-bottom: 2px solid #e9ecef; position: sticky; top: 0; }
 td { padding: 8px 12px; border-bottom: 1px solid #f0f0f0; }
@@ -73,6 +73,11 @@ tr:hover td { background: #f8f9ff; }
 fetch('data.json').then(r => r.json()).then(DATA => {
   document.getElementById('loading').style.display = 'none';
   document.getElementById('app').style.display = '';
+
+  // Crisp text rendering on HiDPI/Retina displays
+  Chart.defaults.devicePixelRatio = window.devicePixelRatio || 2;
+  Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  Chart.defaults.font.size = 12;
 
   const monthShort = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   function monthLabel(m) { return monthShort[parseInt(m.split('-')[1])-1]; }
@@ -189,7 +194,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     if (catChart) catChart.destroy();
     catChart = new Chart(document.getElementById('catChart'), {
       type: 'doughnut', data: { labels: catData.map(c=>c.name), datasets: [{ data: catData.map(c=>c.total), backgroundColor: catData.map(c=>colorFor(c.name)) }] },
-      options: { responsive: true, onClick: (e, els) => { if(els.length) filterByCat(catData[els[0].index].name); }, plugins: { legend: { position: 'right', labels: { font: { size: 11 } } } } }
+      options: { responsive: true, onClick: (e, els) => { if(els.length) filterByCat(catData[els[0].index].name); }, plugins: { legend: { position: 'right', labels: { font: { size: 12 } } } } }
     });
   }
   // Declared early: the month-button callbacks fire immediately and call
@@ -214,7 +219,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     const incColors = ['#2ecc71','#3498db','#9b59b6','#f1c40f','#e67e22','#1abc9c','#e74c3c'];
     incChart = new Chart(document.getElementById('incChart'), {
       type: 'doughnut', data: { labels: incData.map(c=>c.name), datasets: [{ data: incData.map(c=>c.total), backgroundColor: incColors }] },
-      options: { responsive: true, onClick: (e, els) => { if(els.length) filterByIncCat(incData[els[0].index].name); }, plugins: { legend: { position: 'right', labels: { font: { size: 11 } } } } }
+      options: { responsive: true, onClick: (e, els) => { if(els.length) filterByIncCat(incData[els[0].index].name); }, plugins: { legend: { position: 'right', labels: { font: { size: 12 } } } } }
     });
   }
   createMonthBtns('incBtns', (m) => { renderIncDonut(m); txnMonth = m; renderIncTxns(m); });
