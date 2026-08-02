@@ -141,7 +141,7 @@ for t in data['transactions']:
     t['Spend'] = round(t['Spend'], 2)
 
 # Income transactions (for month filtering)
-inc_txns = true_income[['Date','IncomeSource','Amount','Month']].copy()
+inc_txns = true_income[['Date','IncomeSource','Amount','Account','Month']].copy()
 inc_txns['Date'] = inc_txns['Date'].dt.strftime('%Y-%m-%d')
 data['incomeTransactions'] = inc_txns.to_dict('records')
 for t in data['incomeTransactions']:
