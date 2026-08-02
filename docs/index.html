@@ -326,10 +326,26 @@ fetch('data.json').then(r => r.json()).then(DATA => {
 
   function renderIncTrend() {
     const sources = [...activeIncSources];
-    const ds = sources.map((src,i) => ({
-      label: src, data: DATA.monthly.map(m => (incByMonth[src]||{})[m.month]||0),
-      borderColor: incColors[i % incColors.length], backgroundColor: incColors[i % incColors.length]+'33', fill: true, tension: 0.3,
-    }));
+    const ds = [];
+    sources.forEach((src, i) => {
+      const data = DATA.monthly.map(m => (incByMonth[src]||{})[m.month]||0);
+      const color = incColors[i % incColors.length];
+      ds.push({
+        label: src, data,
+        borderColor: color, backgroundColor: color+'33', fill: true, tension: 0.3,
+      });
+      // Add average line for this source (exclude zero months)
+      const nonZero = data.filter(v => v > 0);
+      if (nonZero.length > 0) {
+        const avg = nonZero.reduce((s,v)=>s+v,0) / nonZero.length;
+        ds.push({
+          label: src + ' avg ($' + Math.round(avg).toLocaleString() + ')',
+          data: data.map(() => avg),
+          borderColor: color, borderDash: [6, 4], borderWidth: 1.5,
+          pointRadius: 0, fill: false, tension: 0,
+        });
+      }
+    });
     if (incTrendChart) incTrendChart.destroy();
     incTrendChart = new Chart(document.getElementById('incTrendChart'), {
       type: 'line', data: { labels: months.map(m => monthShort[parseInt(m.split('-')[1])-1]), datasets: ds },
