@@ -62,6 +62,11 @@ def is_internal_transfer(row):
             return True
     return False
 
+# Fix Monarch miscategorizations: mortgage servicers sometimes tagged as "Loan Repayment"
+MORTGAGE_MERCHANTS = {'ServiceMac', 'Flagstar Bank', 'Mr. Cooper', 'Rocket Mortgage',
+                      'Mortgage Company Mtge Pay', 'Upper Palmetto'}
+df.loc[df['Merchant'].isin(MORTGAGE_MERCHANTS) & (df['Category'] == 'Loan Repayment'), 'Category'] = 'Mortgage'
+
 expenses = df[df['Amount'] < 0].copy()
 expenses = expenses[~expenses.apply(is_internal_transfer, axis=1)]
 expenses['Spend'] = expenses['Amount'].abs()
