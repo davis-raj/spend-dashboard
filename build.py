@@ -78,6 +78,7 @@ def label_income(row):
     stmt = str(row.get('Original Statement', ''))
     if '6079' in stmt or '4287' in stmt: return 'Davis Paycheck'
     if '2481' in stmt: return 'Esther Paycheck'
+    if 'Bank of America' in str(row['Merchant']): return 'Esther Paycheck'
     if row['Merchant'] == 'Transfer From Checking': return 'Paycheck (Other)'
     if 'Real Property' in str(row['Merchant']): return 'Rental Income'
     if row['Category'] in ['Transfer', 'Credit Card Payment', 'Balance Adjustments']:
