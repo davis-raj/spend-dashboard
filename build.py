@@ -30,19 +30,19 @@ df['Month'] = df['Date'].dt.strftime('%Y-%m')
 
 # --- Filters: current year + only the two accounts we actively track ---
 INCLUDE_ACCOUNTS = ['Apple Card', 'CASHBACK DEBIT (...3359)']
-CURRENT_YEAR = pd.Timestamp.now().year
+INCLUDE_YEARS = [2025, 2026]
 # Guard: warn loudly if a tracked account matched nothing (likely renamed in Monarch)
 _available = set(df['Account'].dropna().astype(str))
 for _acct in INCLUDE_ACCOUNTS:
     if _acct not in _available:
         print(f"WARNING: tracked account '{_acct}' not found in data — "
               f"was it renamed in Monarch? Available: {sorted(_available)}")
-df = df[df['Date'].dt.year == CURRENT_YEAR]
+df = df[df['Date'].dt.year.isin(INCLUDE_YEARS)]
 df = df[df['Account'].isin(INCLUDE_ACCOUNTS)]
 if df.empty:
-    print(f"WARNING: no rows after filtering to {CURRENT_YEAR} + {INCLUDE_ACCOUNTS}. "
+    print(f"WARNING: no rows after filtering to {INCLUDE_YEARS} + {INCLUDE_ACCOUNTS}. "
           "Dashboard will be empty — check account names / year.")
-print(f"Filtered to {CURRENT_YEAR} + {INCLUDE_ACCOUNTS}: {len(df)} rows")
+print(f"Filtered to {INCLUDE_YEARS} + {INCLUDE_ACCOUNTS}: {len(df)} rows")
 
 # Apple Card purchases are itemized (that account is included), so the "Apple"
 # Credit Card Payment from the debit account is just the payoff — dropping it
