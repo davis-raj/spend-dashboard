@@ -1,161 +1,104 @@
 #!/usr/bin/env python3
-"""Reads the single YTD transactions CSV in data/ and builds docs/data.json."""
-import pandas as pd
-import glob
+"""
+Build the spend dashboard data.json from transactions CSV.
+
+Thin orchestrator — all logic lives in pipeline/ modules.
+All business rules live in config.py.
+
+Usage:
+    python build.py              # Build docs/data.json from latest CSV
+    python build.py --check      # Validate without overwriting
+"""
 import json
 import os
+import sys
 
-DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
-OUT_FILE = os.path.join(os.path.dirname(__file__), "docs", "data.json")
+from pipeline.loader import find_latest_csv, load_transactions, deduplicate
+from pipeline.transforms import (
+    filter_accounts_and_years,
+    apply_category_overrides,
+    split_expenses_and_income,
+    label_income_sources,
+    apply_refunds,
+)
+from pipeline.aggregations import (
+    monthly_summary,
+    category_totals,
+    category_by_month,
+    income_by_category,
+    income_by_month,
+    transaction_list,
+    income_transaction_list,
+)
 
-# Find the freshest transactions CSV (case-insensitive match, newest by mtime).
-# The auto-downloader saves 'transactions.csv'; manual exports may be 'Transactions_*.csv'.
-candidates = [f for f in glob.glob(os.path.join(DATA_DIR, "*.csv"))
-              if "transaction" in os.path.basename(f).lower()]
-if not candidates:
-    print("No transactions CSV found in data/")
-    exit(1)
-files = sorted(candidates, key=os.path.getmtime)
+# --- Paths ---
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, "data")
+OUT_FILE = os.path.join(BASE_DIR, "docs", "data.json")
 
-df = pd.read_csv(files[-1])
-df['Date'] = pd.to_datetime(df['Date'], format='mixed', dayfirst=False)
-df['Amount'] = pd.to_numeric(df['Amount'], errors='coerce')
-# Dedup true re-imports (all fields identical) without collapsing genuinely
-# distinct same-day/same-merchant/same-amount purchases (different statements).
-_dedup_keys = ['Date', 'Merchant', 'Amount', 'Account']
-if 'Original Statement' in df.columns:
-    _dedup_keys.append('Original Statement')
-df = df.drop_duplicates(subset=_dedup_keys, keep='first')
-df['Month'] = df['Date'].dt.strftime('%Y-%m')
 
-# --- Filters: current year + only the two accounts we actively track ---
-INCLUDE_ACCOUNTS = ['Apple Card', 'CASHBACK DEBIT (...3359)']
-INCLUDE_YEARS = [2025, 2026]
-# Guard: warn loudly if a tracked account matched nothing (likely renamed in Monarch)
-_available = set(df['Account'].dropna().astype(str))
-for _acct in INCLUDE_ACCOUNTS:
-    if _acct not in _available:
-        print(f"WARNING: tracked account '{_acct}' not found in data — "
-              f"was it renamed in Monarch? Available: {sorted(_available)}")
-df = df[df['Date'].dt.year.isin(INCLUDE_YEARS)]
-df = df[df['Account'].isin(INCLUDE_ACCOUNTS)]
-if df.empty:
-    print(f"WARNING: no rows after filtering to {INCLUDE_YEARS} + {INCLUDE_ACCOUNTS}. "
-          "Dashboard will be empty — check account names / year.")
-print(f"Filtered to {INCLUDE_YEARS} + {INCLUDE_ACCOUNTS}: {len(df)} rows")
+def build() -> dict:
+    """Run the full pipeline and return the dashboard data dict."""
+    # 1. Load
+    csv_path = find_latest_csv(DATA_DIR)
+    print(f"Loading: {os.path.basename(csv_path)}")
+    df = load_transactions(csv_path)
+    df = deduplicate(df)
+    print(f"  {len(df)} rows after dedup")
 
-# Apple Card purchases are itemized (that account is included), so the "Apple"
-# Credit Card Payment from the debit account is just the payoff — dropping it
-# avoids double-counting. Payments to OTHER cards (Chase, Citi, Best Buy, etc.)
-# are kept, since those cards are NOT included and the payment is the only record.
-def is_internal_transfer(row):
-    cat = str(row['Category'])
-    if cat == 'Balance Adjustments':
-        return True
-    if cat == 'Credit Card Payment' and 'apple' in str(row['Merchant']).lower():
-        return True
-    if cat == 'Transfer':
-        merch = str(row['Merchant'])
-        stmt = str(row.get('Original Statement', '')).upper()
-        # Moves between the family's own accounts (savings / Apple Cash)
-        if merch == 'Discover' or 'SAVINGS' in stmt or 'APPLE CASH SENT' in stmt or 'APPLE CASH SE' in stmt:
-            return True
-    return False
+    # 2. Filter & transform
+    df = filter_accounts_and_years(df)
+    df = apply_category_overrides(df)
 
-# Fix Monarch miscategorizations: mortgage servicers sometimes tagged as "Loan Repayment"
-MORTGAGE_MERCHANTS = {'ServiceMac', 'Flagstar Bank', 'Mr. Cooper', 'Rocket Mortgage',
-                      'Mortgage Company Mtge Pay', 'Upper Palmetto'}
-df.loc[df['Merchant'].isin(MORTGAGE_MERCHANTS) & (df['Category'] == 'Loan Repayment'), 'Category'] = 'Mortgage'
+    # 3. Split expenses / income
+    expenses, income = split_expenses_and_income(df)
 
-expenses = df[df['Amount'] < 0].copy()
-expenses = expenses[~expenses.apply(is_internal_transfer, axis=1)]
-expenses['Spend'] = expenses['Amount'].abs()
-income = df[df['Amount'] > 0].copy()
+    # 4. Label income and apply refunds
+    expense_categories = set(df[df['Amount'] < 0]['Category'].dropna().astype(str))
+    income = label_income_sources(income, expense_categories)
+    expenses, true_income, transfers_in = apply_refunds(expenses, income)
 
-# A positive amount is a REFUND only if its category is ALSO used for spending
-# (e.g. a Shopping return). Categories that only ever appear as income (Paychecks,
-# Other Income, Check Deposit, Interest, ...) are genuine income. Self-maintaining:
-# new income categories in Monarch just work, no code change needed.
-expense_categories = set(df[df['Amount'] < 0]['Category'].dropna().astype(str))
+    # 5. Aggregate
+    monthly = monthly_summary(expenses, true_income, transfers_in)
+    all_months = [m['month'] for m in monthly]
 
-# Label income sources
-def label_income(row):
-    stmt = str(row.get('Original Statement', ''))
-    if '6079' in stmt or '4287' in stmt: return 'Davis Paycheck'
-    if '2481' in stmt: return 'Esther Paycheck'
-    if '2649' in stmt: return 'Esther Paycheck'
-    if 'Bank of America' in str(row['Merchant']): return 'Esther Paycheck'
-    if row['Merchant'] == 'Transfer From Checking': return 'Paycheck (Other)'
-    if 'Real Property' in str(row['Merchant']): return 'Rental Income'
-    if row['Category'] in ['Transfer', 'Credit Card Payment', 'Balance Adjustments']:
-        return '_transfer'
-    # Positive amount in a spending category = refund/return, not income
-    if str(row['Category']) in expense_categories:
-        return '_refund'
-    # Genuine income — label by its category name (e.g. Check Deposit, Interest)
-    return str(row['Category'])
+    categories = category_totals(expenses)
+    cat_by_month = category_by_month(expenses, categories, all_months)
 
-income['IncomeSource'] = income.apply(label_income, axis=1)
+    inc_categories = income_by_category(true_income)
+    inc_by_month = income_by_month(true_income, inc_categories, all_months)
 
-# Separate true income from internal transfers and refunds
-true_income = income[~income['IncomeSource'].isin(['_transfer', '_refund'])].copy()
-transfers_in = income[income['IncomeSource'] == '_transfer'].copy()
+    transactions = transaction_list(expenses)
+    inc_transactions = income_transaction_list(true_income)
 
-# Refunds/returns: net against spending in their original category (negative spend)
-refunds = income[income['IncomeSource'] == '_refund'].copy()
-if not refunds.empty:
-    refunds['Spend'] = -refunds['Amount']  # positive refund -> negative spend
-    expenses = pd.concat([expenses, refunds[expenses.columns]], ignore_index=True)
+    # 6. Assemble output
+    data = {
+        'monthly': monthly,
+        'categories': categories,
+        'catByMonth': cat_by_month,
+        'incomeCategories': inc_categories,
+        'incByMonth': inc_by_month,
+        'transactions': transactions,
+        'incomeTransactions': inc_transactions,
+    }
 
-data = {}
+    print(f"Built: {len(transactions)} transactions, {len(all_months)} months, "
+          f"{len(categories)} categories, {len(inc_categories)} income sources")
+    return data
 
-# Income by category
-inc_by_source = true_income.groupby('IncomeSource')['Amount'].agg(['sum','count']).sort_values('sum', ascending=False)
-data['incomeCategories'] = [{'name': c, 'total': round(r['sum'], 2), 'count': int(r['count'])} for c, r in inc_by_source.iterrows()]
 
-# Monthly
-monthly_exp = expenses.groupby('Month')['Spend'].sum().to_dict()
-monthly_inc = true_income.groupby('Month')['Amount'].sum().to_dict()
-monthly_xfer = transfers_in.groupby('Month')['Amount'].sum().to_dict()
-all_months = sorted(set(list(monthly_exp.keys()) + list(monthly_inc.keys()) + list(monthly_xfer.keys())))
-data['monthly'] = [{'month': m, 'expenses': round(monthly_exp.get(m, 0), 2),
-                    'income': round(monthly_inc.get(m, 0), 2),
-                    'transfers': round(monthly_xfer.get(m, 0), 2)} for m in all_months]
+def main():
+    data = build()
 
-# Categories
-cat = expenses.groupby('Category')['Spend'].agg(['sum','count']).sort_values('sum', ascending=False).head(15)
-data['categories'] = [{'name': c, 'total': round(r['sum'], 2), 'count': int(r['count'])} for c, r in cat.iterrows()]
+    if "--check" in sys.argv:
+        print("✓ Build check passed (no output written)")
+        return
 
-# Category x Month
-pivot = expenses.pivot_table(index='Category', columns='Month', values='Spend', aggfunc='sum', fill_value=0)
-data['catByMonth'] = {}
-for c in cat.index:
-    if c in pivot.index:
-        data['catByMonth'][c] = {m: round(pivot.loc[c, m], 2) for m in all_months if m in pivot.columns}
+    os.makedirs(os.path.dirname(OUT_FILE), exist_ok=True)
+    with open(OUT_FILE, 'w') as f:
+        json.dump(data, f)
+    print(f"→ {OUT_FILE}")
 
-# Income by source x Month
-inc_pivot = true_income.pivot_table(index='IncomeSource', columns='Month', values='Amount', aggfunc='sum', fill_value=0)
-data['incByMonth'] = {}
-for src in inc_by_source.index:
-    if src in inc_pivot.index:
-        data['incByMonth'][src] = {m: round(inc_pivot.loc[src, m], 2) for m in all_months if m in inc_pivot.columns}
 
-# Transactions
-txns = expenses[['Date','Merchant','Category','Account','Spend','Month']].copy()
-txns['Date'] = txns['Date'].dt.strftime('%Y-%m-%d')
-data['transactions'] = txns.to_dict('records')
-for t in data['transactions']:
-    t['Spend'] = round(t['Spend'], 2)
-
-# Income transactions (for month filtering)
-inc_txns = true_income[['Date','IncomeSource','Amount','Account','Month']].copy()
-inc_txns['Date'] = inc_txns['Date'].dt.strftime('%Y-%m-%d')
-data['incomeTransactions'] = inc_txns.to_dict('records')
-for t in data['incomeTransactions']:
-    t['Amount'] = round(t['Amount'], 2)
-
-os.makedirs(os.path.dirname(OUT_FILE), exist_ok=True)
-with open(OUT_FILE, 'w') as f:
-    json.dump(data, f)
-
-print(f"Built {OUT_FILE}: {len(data['transactions'])} transactions, {len(all_months)} months")
+if __name__ == "__main__":
+    main()
