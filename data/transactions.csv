@@ -1,4 +1,12 @@
 Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Reviewed,Id
+2026-08-20,Chase,Credit Card Payment,CREDIT CARD (...6963),PAYMENT-THANK YOU,,0.31,,Shared,,252622135695485564
+2026-08-19,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-25.90,,Shared,,252597537294756495
+2026-08-19,Circle K,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0819 8352&@#CIRCLEK #270647 DENVER CO US,,-96.41,,Shared,,252574026549406449
+2026-08-18,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-714.30,,Shared,,252514489203140877
+2026-08-18,Apple,Shopping,Apple Card,Apple,,-2.04,,Shared,,252489070718462411
+2026-08-18,Sport Clips,Personal,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0816 7606&@#SPORT CLIPS - C PARKER CO US,,-39.00,,Shared,,252466000999983339
+2026-08-18,Goodmans Apparel,Shopping,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0817 7606&@#SQ *GOODMANS AP PARKER CO US,,-59.00,,Shared,,252466000999983338
+2026-08-18,Apple,Shopping,Apple Card,Apple,,-12.89,,Shared,,252462139808655611
 2026-08-17,Uber Eats,Restaurants & Bars,Apple Card,Uber Eats,,-68.81,,Shared,,252397607248701982
 2026-08-17,Apple,Shopping,Apple Card,Apple,,-9.99,,Shared,,252348414841825439
 2026-08-16,Chase,Credit Card Payment,CREDIT CARD (...0216),Payment Thank You-Mobile,,287.67,,Shared,,252346426772138355
@@ -54,7 +62,6 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-08-06,Citi,Credit Card Payment,CASHBACK DEBIT (...3359),ACH WITHDRAWAL CITI CARD ONLINE PAYMENT,,-44.99,,Shared,,251384996986071132
 2026-08-06,Parker Parker & Co.,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0804 7606&@#TOWN OF PARKER PARKER CO US,,-38.09,,Shared,,251384996986071131
 2026-08-06,"Apple Card, Cash, and Savings",Check Deposit,Apple Cash,Deposit,,0.53,,Shared,,251352075586742876
-2026-08-05,Costco Credit Card,Credit Card Payment,Costco Anywhere Visa® Card by Citi-2742 (...2742),Payment,,44.99,,Shared,,251427672061094585
 2026-08-05,Costco Credit Card,Credit Card Payment,Costco Anywhere Visa® Card by Citi-2742 (...2742),Payment,,44.99,,Shared,,251349576873126376
 2026-08-05,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-28.55,,Shared,,251329476174523338
 2026-08-05,Discover,Transfer,CASHBACK DEBIT (...3359),TRANSFER FROM ONLINE SAVINGS 1405,,1001.00,,Shared,,251289203241363822
