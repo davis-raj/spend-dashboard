@@ -1,6 +1,12 @@
 Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Reviewed,Id
+2026-08-22,Walmart,Groceries,Apple Card,Walmart Supercenter,,-11.85,,Shared,,252788552326687694
+2026-08-21,Point of Sale,Miscellaneous,Apple Cash,Point Of Sale,,-3.08,,Shared,,252780726106695884
+2026-08-21,"Apple Card, Cash, and Savings",Credit Card Payment,Apple Card,Bill Payment,,198.45,,Shared,,252780725321312348
+2026-08-21,"Apple Card, Cash, and Savings",Credit Card Payment,Apple Card,Bill Payment,,3.08,,Shared,,252780725321312347
 2026-08-21,Toyota,Auto Payment,CASHBACK DEBIT (...3359),ACH WITHDRAWAL TOYOTA ACH RTL WEB,,-1019.19,,Shared,,252729051744545750
 2026-08-21,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-157.20,,Shared,,252705134109763830
+2026-08-20,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-714.30,,Shared,,252786880537930742
+2026-08-20,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-157.20,,Shared,,252786880537930741
 2026-08-20,Walmart,Shopping,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0820 8352&@#WM SUPERCENTER PARKER CO US,,-24.50,,Shared,,252729051744545751
 2026-08-20,Walmart,Shopping,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0820 8352&@#WM SUPERCENTER PARKER CO US,,-111.06,,Shared,,252729051744545749
 2026-08-20,AMC Theatres,Entertainment & Recreation,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0818 7606&@#AMC 9640 ONLINE 888-440-4262 KS US,,-38.70,,Shared,,252675692019820575
