@@ -1,4 +1,22 @@
 Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Reviewed,Id
+2026-09-06,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,1.86,,Shared,,254144728398277441
+2026-09-06,Casey's,Gas,Apple Card,Casey's,,-51.15,,Shared,,254133426147797768
+2026-09-06,"Apple Card, Cash, and Savings",Credit Card Payment,Apple Card,Bill Payment,,5000.00,,Shared,,254133426147797764
+2026-09-05,US Bank,Cash & ATM,CASHBACK DEBIT (...3359),ATM W/D 0905 135557 7606&@#USBFCTICHAR FRISCO TX US,,-200.00,,Shared,,254155849110891460
+2026-09-05,Discover,Transfer,CASHBACK DEBIT (...3359),TRANSFER FROM CHECKING 2481,,5000.00,,Shared,,254155849110891459
+2026-09-05,7-Eleven,Shopping,Apple Card,7-Eleven,,-57.64,,Shared,,254133426147797769
+2026-09-05,Saravana Bhavan,Restaurants & Bars,Apple Card,Saravana Bhavan,,-24.88,,Shared,,254133426147797767
+2026-09-05,Booking.com,Travel & Vacation,Apple Card,Booking.com,,-128.40,,Shared,,254133426147797766
+2026-09-05,Madurai Thattu Kadai,Restaurants & Bars,Apple Card,Madurai Thattu Kadai,,-78.96,,Shared,,254133426147797765
+2026-09-05,Vivek Flowers,Shopping,Apple Card,Vivek Flowers,,-124.49,,Shared,,254133426147797763
+2026-09-05,Simply South,Restaurants & Bars,Apple Card,Simply South - Indian Vegetarian Restaurant,,-93.09,,Shared,,254099364747126841
+2026-09-05,"Apple Card, Cash, and Savings",Credit Card Payment,Apple Card,Bill Payment,,22.71,,Shared,,254099364747126840
+2026-09-05,Maha Shresta,Shopping,Apple Card,MAHA SHRESTA,,-116.89,,Shared,,254099364747126839
+2026-09-05,Hotel Indigo,Travel & Vacation,Apple Card,Hotel Indigo,,-100.00,,Shared,,254099364747126838
+2026-09-05,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.52,,Shared,,254099363915606023
+2026-09-05,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.28,,Shared,,254099363915606022
+2026-09-05,"Apple Card, Cash, and Savings",Miscellaneous,Apple Cash,Point Of Sale,,-22.71,,Shared,,254099363915606021
+2026-09-05,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.05,,Shared,,254099363915606020
 2026-09-05,Tanishq,Shopping,Apple Card,Tanishq,,-5629.56,,Shared,,254038380820015933
 2026-09-05,Tanishq,Shopping,Apple Card,Tanishq,,-300.00,,Shared,,254038380820015931
 2026-09-04,Boat Ed,Coffee Shops,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0903 7606&@#BOAT-ED.COM 8008302268 TX US,,-9.45,,Shared,,254054619255646634
@@ -19,7 +37,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-09-03,Transfer From Checking 6079,Transfer,CASHBACK DEBIT (...3359),TRANSFER FROM CHECKING 6079,,3750.00,,Shared,,253952942446979757
 2026-09-03,Phillips 66,Gas,Apple Card,Phillips 66,,-71.85,,Shared,,253941038306535720
 2026-09-03,"Apple Card, Cash, and Savings",Check Deposit,Apple Cash,Deposit,,0.36,,Shared,,253918359879920546
-2026-09-03,Uber,Taxi & Ride Shares,Apple Card,Uber   *one Membership,,-9.99,,Shared,,253872915153923064
+2026-09-03,Uber,Taxi & Ride Shares,Apple Card,Uber,,-9.99,,Shared,,253872915153923064
 2026-09-02,"Apple Card, Cash, and Savings",Check Deposit,Apple Cash,Deposit,,0.30,,Shared,,253872915042773995
 2026-09-02,365 Retail Markets,Groceries,Apple Card,365 Market L 888 432-3,,-3.23,,Shared,,253850313614141659
 2026-09-02,Apple,Shopping,Apple Card,Apple,,-11.97,,Shared,,253850313614141658
