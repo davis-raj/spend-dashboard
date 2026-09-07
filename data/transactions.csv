@@ -1,4 +1,10 @@
 Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Reviewed,Id
+2026-09-06,Paradise Marina and Water,Rent,CREDIT CARD (...0216),Paradise Marina and Wates,,-124.24,,Shared,,254259904538716180
+2026-09-06,Cenex,Gas,Apple Card,Cenex,,-51.38,,Shared,,254213216350480889
+2026-09-06,Hy-Vee,Groceries,Apple Card,Hy-Vee,,-49.95,,Shared,,254213216350480888
+2026-09-06,Lake Ozark Helicopters,Entertainment & Recreation,Apple Card,Lake Ozark Helicopters,,-263.92,,Shared,,254213216350480887
+2026-09-06,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.50,,Shared,,254213215256816028
+2026-09-06,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.58,,Shared,,254191844082559661
 2026-09-06,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,1.86,,Shared,,254144728398277441
 2026-09-06,Casey's,Gas,Apple Card,Casey's,,-51.15,,Shared,,254133426147797768
 2026-09-06,"Apple Card, Cash, and Savings",Credit Card Payment,Apple Card,Bill Payment,,5000.00,,Shared,,254133426147797764
@@ -19,6 +25,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-09-05,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.05,,Shared,,254099363915606020
 2026-09-05,Tanishq,Shopping,Apple Card,Tanishq,,-5629.56,,Shared,,254038380820015933
 2026-09-05,Tanishq,Shopping,Apple Card,Tanishq,,-300.00,,Shared,,254038380820015931
+2026-09-04,Amazon,Shopping,CREDIT CARD (...6963),AMAZON MKTPL*537EA3ZF2,,-0.31,,Shared,,254259905323051074
 2026-09-04,Boat Ed,Coffee Shops,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0903 7606&@#BOAT-ED.COM 8008302268 TX US,,-9.45,,Shared,,254054619255646634
 2026-09-04,Boat Ed,Coffee Shops,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0903 7606&@#BOAT-ED.COM 8008302268 TX US,,-9.45,,Shared,,254054619255646633
 2026-09-04,Circle K,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0902 8352&@#CIRCLEK #270647 DENVER CO US,,-86.58,,Shared,,254054619255646632
