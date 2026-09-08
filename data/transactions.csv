@@ -1,7 +1,26 @@
 Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Reviewed,Id
-2026-09-06,Paradise Marina and Water,Rent,CREDIT CARD (...0216),Paradise Marina and Wates,,-124.24,,Shared,,254259904538716180
+2026-09-08,Apple,Credit Card Payment,CASHBACK DEBIT (...3359),ACH WITHDRAWAL APPLECARD GSBANK PAYMENT,,-5000.00,,Shared,,254348604742281746
+2026-09-08,Pilot Flying J,Gas,Apple Card,Pilot Travel Center,,-1.53,,Shared,,254325855797881513
+2026-09-08,Phillips 66,Gas,Apple Card,Phillips 66,,-21.73,,Shared,,254325855797881512
+2026-09-08,JJ Travel Stop,Gas,Apple Card,JJ Travel Stop,,-56.56,,Shared,,254325855797881511
+2026-09-07,Amazon,Shopping,CREDIT CARD (...6963),AMAZON MARKETPLACE,,0.31,,Shared,,254350826396952671
+2026-09-07,Paradise Marina and Water,Rent,CREDIT CARD (...0216),Paradise Marina and Wates,,-36.12,,Shared,,254350825359910922
+2026-09-07,Paradise Marina and Water,Rent,CREDIT CARD (...0216),PARADISE MARINA AND WATE,,-300.00,,Shared,,254350825359910921
+2026-09-07,Phillips 66,Gas,Apple Card,Phillips 66,,-60.45,,Shared,,254325855797881514
+2026-09-07,McDonald's,Restaurants & Bars,Apple Card,McDonald's,,-12.12,,Shared,,254303271270198061
+2026-09-07,Taco Bell,Restaurants & Bars,Apple Card,Taco Bell,,-7.90,,Shared,,254303271270198060
+2026-09-07,Taco Bell,Restaurants & Bars,Apple Card,Taco Bell,,-19.44,,Shared,,254303271270198059
+2026-09-07,Starbucks,Coffee Shops,Apple Card,Starbucks Coffee Company,,-14.68,,Shared,,254303271270198058
+2026-09-07,Paradise Parasol,Shopping,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0906 8352&@#PARADISE PARASA 5732860807 FL US,,-86.00,,Shared,,254303130658253311
+2026-09-07,Paradise Parasol,Shopping,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0906 8352&@#PARADISE PARASA 5732860807 FL US,,-476.24,,Shared,,254303130658253310
+2026-09-07,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,5.28,,Shared,,254273947502618847
+2026-09-07,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,1.58,,Shared,,254273947502618846
+2026-09-07,Apple,Shopping,Apple Card,Apple,,-56.35,,Shared,,254273947421878493
+2026-09-07,Walmart,Shopping,Apple Card,Walmart Supercenter,,-50.17,,Shared,,254273947421878492
+2026-09-06,Casey's,Gas,Apple Card,Casey's,,-51.15,,Shared,,254273947421878491
+2026-09-06,Paradise Marina and Water,Rent,CREDIT CARD (...0216),PARADISE MARINA AND WATES,,-124.24,,Shared,,254259904538716180
 2026-09-06,Cenex,Gas,Apple Card,Cenex,,-51.38,,Shared,,254213216350480889
-2026-09-06,Hy-Vee,Groceries,Apple Card,Hy-Vee,,-49.95,,Shared,,254213216350480888
+2026-09-06,Hy-Vee,Groceries,Apple Card,Hy-Vee Grocery Store,,-49.95,,Shared,,254213216350480888
 2026-09-06,Lake Ozark Helicopters,Entertainment & Recreation,Apple Card,Lake Ozark Helicopters,,-263.92,,Shared,,254213216350480887
 2026-09-06,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.50,,Shared,,254213215256816028
 2026-09-06,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.58,,Shared,,254191844082559661
