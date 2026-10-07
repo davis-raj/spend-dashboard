@@ -1,4 +1,9 @@
 Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Reviewed,Id
+2026-10-07,Circle K,Gas,Apple Card,Circle K - Convenience Store,,-64.50,,Shared,,256950440454237159
+2026-10-07,Circle K,Gas,Apple Card,Circle K - Convenience Store,,-22.05,,Shared,,256950440454237158
+2026-10-06,Phillips 66,Gas,CASHBACK DEBIT (...3359),ACH WITHDRAWAL PHILLIPS 66 COMP PREAUTHPMT 736351 12181 SLICEROO DR PARKER CO,,-60.56,,Shared,,256921436703664410
+2026-10-06,Apple,Shopping,Apple Card,Apple,,-35.86,,Shared,,256915157406952155
+2026-10-06,Walmart,Groceries,Apple Card,Walmart Supercenter,,-4.27,,Shared,,256915157406952154
 2026-10-06,Tanishq,Shopping,CASHBACK DEBIT (...3359),ACH WITHDRAWAL TANISHQ USA JEWELRY,,-300.00,,Shared,,256876179832154306
 2026-10-05,McDonald's,Restaurants & Bars,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1005 7606&@#MCDONALD'S F397 PARKER CO US,,-14.57,,Shared,,256876179832154307
 2026-10-05,365 Retail Markets,Restaurants & Bars,Apple Card,365 Market L 888 432-3,,-9.44,,Shared,,256864583135242302
@@ -6,8 +11,8 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-10-04,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.49,,Shared,,256764016061819902
 2026-10-04,Sport Clips,Personal,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1002 7606&@#SPORT CLIPS - C PARKER CO US,,-27.00,,Shared,,256740570936355434
 2026-10-03,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-49.35,,Shared,,256665347504449608
-2026-10-03,Uber,Taxi & Ride Shares,Apple Card,Uber   *one Membership,,-9.99,,Shared,,256665347504449607
-2026-10-03,Frontier Airlines,Internet & Cable,CREDIT CARD (...0216),FRONTIER WEB,,-59.99,,Shared,,256661839931747207
+2026-10-03,Uber,Taxi & Ride Shares,Apple Card,Uber,,-9.99,,Shared,,256665347504449607
+2026-10-03,Frontier Airlines,Internet & Cable,CREDIT CARD (...0216),FRONTIER AIRLINES,,-59.99,,Shared,,256661839931747207
 2026-10-02,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.76,,Shared,,256665346607918073
 2026-10-02,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.06,,Shared,,256665346607918072
 2026-10-02,Raising Cane's,Restaurants & Bars,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0930 7606&@#RAISING CANES 0 HIGHLANDS RAN CO US,,-11.54,,Shared,,256554919514319043
