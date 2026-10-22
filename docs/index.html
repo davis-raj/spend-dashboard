@@ -331,14 +331,15 @@ fetch('data.json').then(r => r.json()).then(DATA => {
       const data = DATA.monthly.map(m => (incByMonth[src]||{})[m.month]||0);
       const color = incColors[i % incColors.length];
       ds.push({
-        label: src, data,
-        borderColor: color, backgroundColor: color+'33', fill: true, tension: 0.3,
+        type: 'bar', label: src, data,
+        backgroundColor: color, borderColor: color, borderWidth: 1,
       });
       // Add average line for this source (exclude zero months)
       const nonZero = data.filter(v => v > 0);
       if (nonZero.length > 0) {
         const avg = nonZero.reduce((s,v)=>s+v,0) / nonZero.length;
         ds.push({
+          type: 'line',
           label: src + ' avg ($' + Math.round(avg).toLocaleString() + ')',
           data: data.map(() => avg),
           borderColor: color, borderDash: [6, 4], borderWidth: 1.5,
@@ -348,8 +349,8 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     });
     if (incTrendChart) incTrendChart.destroy();
     incTrendChart = new Chart(document.getElementById('incTrendChart'), {
-      type: 'line', data: { labels: months.map(m => monthShort[parseInt(m.split('-')[1])-1]), datasets: ds },
-      options: { responsive: true, plugins: { legend: { position: 'bottom' } }, scales: { y: { ticks: { callback: v=>'$'+v.toLocaleString() } } } }
+      type: 'bar', data: { labels: months.map(m => monthShort[parseInt(m.split('-')[1])-1]), datasets: ds },
+      options: { responsive: true, plugins: { legend: { position: 'bottom' } }, scales: { x: { stacked: false }, y: { stacked: false, ticks: { callback: v=>'$'+v.toLocaleString() } } } }
     });
   }
   renderIncTrend();
