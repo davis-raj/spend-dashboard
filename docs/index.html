@@ -128,14 +128,28 @@ fetch('data.json').then(r => r.json()).then(DATA => {
   <div class="stat-card"><div class="label">Avg Monthly Income</div><div class="value positive">$${avgInc.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">per month</div></div>
   <div class="stat-card"><div class="label">Avg Monthly Spend</div><div class="value" style="color:#e67e22">$${avgMonthly.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">per month</div></div>`;
 
-  const months = DATA.monthly.map(m => m.month);
+  // Year-over-year window for the trend charts: show only the trailing 13 months,
+  // inclusive — from the same month one year ago through the current month.
+  // e.g. if current month is 2026-10, the window is 2026-10 back to 2025-10.
+  const windowStart = `${now.getFullYear()-1}-${String(now.getMonth()+1).padStart(2,'0')}`;
+  const windowMonthly = DATA.monthly.filter(m => m.month >= windowStart && m.month <= currentMonth);
+  // Chart x-axis = windowed months. Use 'YY labels so Oct 2025 vs Oct 2026 are distinguishable.
+  const months = windowMonthly.map(m => m.month);
+  const yoyLabel = m => monthShort[parseInt(m.split('-')[1])-1] + " '" + m.split('-')[0].slice(2);
+  // Averages for the chart dashed lines, computed over the VISIBLE window
+  // (excluding the current incomplete month so it doesn't skew the average).
+  const winCompleted = windowMonthly.filter(m => m.month !== currentMonth);
+  const nWin = winCompleted.length || 1;
+  const winAvgInc = winCompleted.reduce((s,m)=>s+m.income,0) / nWin;
+  const winAvgExp = winCompleted.reduce((s,m)=>s+m.expenses,0) / nWin;
+
   new Chart(document.getElementById('monthlyChart'), {
-    type: 'bar', data: { labels: months.map(m => monthShort[parseInt(m.split('-')[1])-1]), datasets: [
-      { label: 'Income', data: DATA.monthly.map(m=>m.income), backgroundColor: '#27ae6088', borderColor: '#27ae60', borderWidth: 1 },
-      { label: 'Expenses', data: DATA.monthly.map(m=>m.expenses), backgroundColor: '#e74c3c88', borderColor: '#e74c3c', borderWidth: 1 },
-      { label: 'Net Cashflow', data: DATA.monthly.map(m=>m.income-m.expenses), type: 'line', borderColor: '#2c3e50', backgroundColor: '#2c3e5022', borderWidth: 2.5, pointRadius: 5, pointBackgroundColor: DATA.monthly.map(m => (m.income-m.expenses)>=0 ? '#27ae60' : '#e74c3c'), fill: true, tension: 0.3, datalabels: { display: true } },
-      { label: 'Avg Income', data: DATA.monthly.map(()=>avgInc), type: 'line', borderColor: '#27ae60', borderDash: [6,4], borderWidth: 2, pointRadius: 0, fill: false },
-      { label: 'Avg Expenses', data: DATA.monthly.map(()=>avgMonthly), type: 'line', borderColor: '#e74c3c', borderDash: [6,4], borderWidth: 2, pointRadius: 0, fill: false },
+    type: 'bar', data: { labels: months.map(yoyLabel), datasets: [
+      { label: 'Income', data: windowMonthly.map(m=>m.income), backgroundColor: '#27ae6088', borderColor: '#27ae60', borderWidth: 1 },
+      { label: 'Expenses', data: windowMonthly.map(m=>m.expenses), backgroundColor: '#e74c3c88', borderColor: '#e74c3c', borderWidth: 1 },
+      { label: 'Net Cashflow', data: windowMonthly.map(m=>m.income-m.expenses), type: 'line', borderColor: '#2c3e50', backgroundColor: '#2c3e5022', borderWidth: 2.5, pointRadius: 5, pointBackgroundColor: windowMonthly.map(m => (m.income-m.expenses)>=0 ? '#27ae60' : '#e74c3c'), fill: true, tension: 0.3, datalabels: { display: true } },
+      { label: 'Avg Income', data: windowMonthly.map(()=>winAvgInc), type: 'line', borderColor: '#27ae60', borderDash: [6,4], borderWidth: 2, pointRadius: 0, fill: false },
+      { label: 'Avg Expenses', data: windowMonthly.map(()=>winAvgExp), type: 'line', borderColor: '#e74c3c', borderDash: [6,4], borderWidth: 2, pointRadius: 0, fill: false },
     ]}, options: { responsive: true, plugins: { legend: { position: 'bottom' } },
       onHover: (e, els) => { e.native.target.style.cursor = els.length && els[0].datasetIndex < 2 ? 'pointer' : 'default'; },
       onClick: (e, els) => {
@@ -308,7 +322,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     }));
     if (trendChart) trendChart.destroy();
     trendChart = new Chart(document.getElementById('trendChart'), {
-      type: 'line', data: { labels: months.map(m => monthShort[parseInt(m.split('-')[1])-1]), datasets: ds },
+      type: 'line', data: { labels: DATA.monthly.map(m => yoyLabel(m.month)), datasets: ds },
       options: { responsive: true, plugins: { legend: { position: 'bottom' } }, scales: { y: { ticks: { callback: v=>'$'+v } } } }
     });
   }
@@ -351,7 +365,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     const sources = [...activeIncSources];
     const ds = [];
     sources.forEach((src, i) => {
-      const data = DATA.monthly.map(m => (incByMonth[src]||{})[m.month]||0);
+      const data = windowMonthly.map(m => (incByMonth[src]||{})[m.month]||0);
       const color = incColors[i % incColors.length];
       ds.push({
         type: 'bar', label: src, data,
@@ -372,7 +386,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     });
     if (incTrendChart) incTrendChart.destroy();
     incTrendChart = new Chart(document.getElementById('incTrendChart'), {
-      type: 'bar', data: { labels: months.map(m => monthShort[parseInt(m.split('-')[1])-1]), datasets: ds },
+      type: 'bar', data: { labels: months.map(yoyLabel), datasets: ds },
       options: { responsive: true, plugins: { legend: { position: 'bottom' } }, scales: { x: { stacked: false }, y: { stacked: false, ticks: { callback: v=>'$'+v.toLocaleString() } } } },
       // Draw the dollar amount on top of each bar, rotated vertical to reduce
       // horizontal crowding (bar datasets only; skip avg lines & zero/hidden values)
