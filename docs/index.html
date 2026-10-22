@@ -142,6 +142,8 @@ fetch('data.json').then(r => r.json()).then(DATA => {
   const nWin = winCompleted.length || 1;
   const winAvgInc = winCompleted.reduce((s,m)=>s+m.income,0) / nWin;
   const winAvgExp = winCompleted.reduce((s,m)=>s+m.expenses,0) / nWin;
+  // Headroom above the tallest bar so the (tall, vertical) dollar labels fit.
+  const monthlyYMax = Math.max(1, ...windowMonthly.map(m => Math.max(m.income, m.expenses))) * 1.28;
 
   new Chart(document.getElementById('monthlyChart'), {
     type: 'bar', data: { labels: months.map(yoyLabel), datasets: [
@@ -161,7 +163,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
         else { return; }                                            // ignore the avg lines
         document.getElementById('filterCat').scrollIntoView({ behavior: 'smooth', block: 'center' });
       },
-      scales: { y: { grace: '12%', ticks: { callback: v => '$'+(v/1000).toFixed(0)+'k' } } } },
+      scales: { y: { suggestedMax: monthlyYMax, ticks: { callback: v => '$'+(v/1000).toFixed(0)+'k' } } } },
     plugins: [{ afterDatasetsDraw(chart) {
       const ctx = chart.ctx;
       // Vertical dollar labels on top of the Income (0) & Expenses (1) bars,
@@ -170,12 +172,16 @@ fetch('data.json').then(r => r.json()).then(DATA => {
         const m = chart.getDatasetMeta(di);
         if (!m || m.hidden) return;
         ctx.save();
-        ctx.font = 'bold 10px -apple-system, sans-serif';
         ctx.fillStyle = chart.data.datasets[di].borderColor;
         m.data.forEach((bar, i) => {
           const val = chart.data.datasets[di].data[i];
           if (!val || val <= 0) return;
           const label = val >= 1000 ? '$' + (val/1000).toFixed(1) + 'k' : '$' + Math.round(val);
+          // Maximize readability: labels are rotated vertical, so make the text
+          // roughly as tall as the bar is wide (never below a readable floor).
+          const barW = bar.width || 20;
+          const size = Math.max(13, Math.min(barW * 0.85, 20));
+          ctx.font = 'bold ' + size.toFixed(1) + 'px -apple-system, sans-serif';
           ctx.save();
           ctx.translate(bar.x, bar.y - 4);   // just above the bar
           ctx.rotate(-Math.PI / 2);          // read bottom-to-top
@@ -364,8 +370,10 @@ fetch('data.json').then(r => r.json()).then(DATA => {
   function renderIncTrend() {
     const sources = [...activeIncSources];
     const ds = [];
+    let incMax = 0;
     sources.forEach((src, i) => {
       const data = windowMonthly.map(m => (incByMonth[src]||{})[m.month]||0);
+      incMax = Math.max(incMax, ...data);
       const color = incColors[i % incColors.length];
       ds.push({
         type: 'bar', label: src, data,
@@ -387,13 +395,13 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     if (incTrendChart) incTrendChart.destroy();
     incTrendChart = new Chart(document.getElementById('incTrendChart'), {
       type: 'bar', data: { labels: months.map(yoyLabel), datasets: ds },
-      options: { responsive: true, plugins: { legend: { position: 'bottom' } }, scales: { x: { stacked: false }, y: { stacked: false, ticks: { callback: v=>'$'+v.toLocaleString() } } } },
+      options: { responsive: true, plugins: { legend: { position: 'bottom' } }, scales: { x: { stacked: false }, y: { stacked: false, suggestedMax: incMax * 1.28, ticks: { callback: v=>'$'+v.toLocaleString() } } } },
       // Draw the dollar amount on top of each bar, rotated vertical to reduce
-      // horizontal crowding (bar datasets only; skip avg lines & zero/hidden values)
+      // horizontal crowding. Font is sized to fill the bar's width so labels are
+      // easy to read (bar datasets only; skip avg lines & zero/hidden values).
       plugins: [{ afterDatasetsDraw(chart) {
         const ctx = chart.ctx;
         ctx.save();
-        ctx.font = 'bold 10px -apple-system, sans-serif';
         chart.data.datasets.forEach((dataset, di) => {
           if (dataset.type !== 'bar') return;            // only label the bars
           const meta = chart.getDatasetMeta(di);
@@ -403,6 +411,12 @@ fetch('data.json').then(r => r.json()).then(DATA => {
             const val = dataset.data[i];
             if (!val || val <= 0) return;                // skip empty months
             const label = val >= 1000 ? '$' + (val/1000).toFixed(1) + 'k' : '$' + Math.round(val);
+            // Maximize readability: labels are rotated vertical, so make the text
+            // roughly as tall as the bar is wide (but never below a readable floor).
+            // Wider bars -> bigger text; clamped to a sensible range.
+            const barW = bar.width || 20;
+            const size = Math.max(13, Math.min(barW * 0.85, 20));
+            ctx.font = 'bold ' + size.toFixed(1) + 'px -apple-system, sans-serif';
             ctx.save();
             ctx.translate(bar.x, bar.y - 4);             // sit just above the bar
             ctx.rotate(-Math.PI / 2);                    // read bottom-to-top
