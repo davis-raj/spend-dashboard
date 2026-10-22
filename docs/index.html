@@ -147,11 +147,34 @@ fetch('data.json').then(r => r.json()).then(DATA => {
         else { return; }                                            // ignore the avg lines
         document.getElementById('filterCat').scrollIntoView({ behavior: 'smooth', block: 'center' });
       },
-      scales: { y: { ticks: { callback: v => '$'+(v/1000).toFixed(0)+'k' } } } },
+      scales: { y: { grace: '12%', ticks: { callback: v => '$'+(v/1000).toFixed(0)+'k' } } } },
     plugins: [{ afterDatasetsDraw(chart) {
+      const ctx = chart.ctx;
+      // Vertical dollar labels on top of the Income (0) & Expenses (1) bars,
+      // matching the Income Trends chart style.
+      [0, 1].forEach(di => {
+        const m = chart.getDatasetMeta(di);
+        if (!m || m.hidden) return;
+        ctx.save();
+        ctx.font = 'bold 10px -apple-system, sans-serif';
+        ctx.fillStyle = chart.data.datasets[di].borderColor;
+        m.data.forEach((bar, i) => {
+          const val = chart.data.datasets[di].data[i];
+          if (!val || val <= 0) return;
+          const label = val >= 1000 ? '$' + (val/1000).toFixed(1) + 'k' : '$' + Math.round(val);
+          ctx.save();
+          ctx.translate(bar.x, bar.y - 4);   // just above the bar
+          ctx.rotate(-Math.PI / 2);          // read bottom-to-top
+          ctx.textAlign = 'left';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(label, 0, 0);
+          ctx.restore();
+        });
+        ctx.restore();
+      });
+      // Net Cashflow point labels (unchanged).
       const meta = chart.getDatasetMeta(2); // Net Cashflow is dataset index 2
       if (!meta || meta.hidden) return;
-      const ctx = chart.ctx;
       ctx.save(); ctx.font = 'bold 11px -apple-system, sans-serif'; ctx.textAlign = 'center';
       meta.data.forEach((pt, i) => {
         const val = chart.data.datasets[2].data[i];
