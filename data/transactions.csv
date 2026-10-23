@@ -1,4 +1,8 @@
 Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Reviewed,Reviewed At,Reviewed By,Pending,Id
+2026-10-23,Walmart,Groceries,Apple Card,Walmart Supercenter,,-136.02,,Shared,,,,true,258402726097431486
+2026-10-23,Google,Internet & Cable,Apple Card,Google,,-10.00,,Shared,,,,true,258402726097431485
+2026-10-22,Desi Mandi,Restaurants & Bars,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1022 7606&@#DESI MANDI PARKER CO US,,-76.68,,Shared,,,,false,258409470691355264
+2026-10-22,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-29.90,,Shared,,,,true,258402726097431484
 2026-10-22,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.12,,Shared,,,,false,258373337550924607
 2026-10-22,Citi,Credit Card Payment,CASHBACK DEBIT (...3359),ACH WITHDRAWAL CITI CARD ONLINE PAYMENT,,-178.01,,Shared,,,,false,258363863427689314
 2026-10-22,Capital One,Other Income,CASHBACK DEBIT (...3359),ACH DEPOSIT FROM CAPITAL ONE NATIONAL ASSOCIATION,,34.04,,Shared,,,,false,258319498264160841
