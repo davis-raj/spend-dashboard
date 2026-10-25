@@ -1,10 +1,18 @@
 Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Reviewed,Reviewed At,Reviewed By,Pending,Id
+2026-10-24,Konark Grocers,Groceries,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1023 7606&@#KONARK GROCERS PARKER CO US,,-11.31,,Shared,,,,false,258590140425283799
+2026-10-24,Walmart,Shopping,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1024 7606&@#WALMART.COM BENTONVILLE AR US,,-11.97,,Shared,,,,false,258590140425283798
+2026-10-24,Underground,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1023 7606&@#UNDERGROUND SPR 3036996154 CO US,,-135.00,,Shared,,,,false,258590140425283797
+2026-10-24,Chaat & Curry Point,Restaurants & Bars,Apple Card,Chaat & Curry Point,,-28.93,,Shared,,,,true,258583854478502678
+2026-10-24,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-30.05,,Shared,,,,true,258583854478502677
+2026-10-24,The Bombay Junction,Restaurants & Bars,Apple Card,The Bombay Junction,,-14.04,,Shared,,,,true,258583854478502676
+2026-10-24,"Garnish Fusion Bakery, Bar & Grill",Restaurants & Bars,Apple Card,"Garnish Fusion Bakery, Bar & Grill",,-14.33,,Shared,,,,true,258583854478502675
+2026-10-24,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.45,,Shared,,,,false,258583853105916591
 2026-10-23,Apple Cash,Other Income,CASHBACK DEBIT (...3359),ACH DEPOSIT FROM APPLE CASH DAVIS SIMPSON,,26.87,,Shared,,,,false,258499946672008041
 2026-10-23,AMC Theatres,Entertainment & Recreation,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1021 7606&@#AMC 9640 ONLINE 888-440-4262 KS US,,-52.36,,Shared,,,,false,258454680741849316
 2026-10-23,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.30,,Shared,,,,false,258445610541623388
 2026-10-23,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.10,,Shared,,,,false,258445610541623387
 2026-10-23,"Apple Card, Cash, and Savings",Miscellaneous,Apple Cash,Withdrawal,,-26.87,,Shared,,,,false,258445610541623386
-2026-10-23,Costco,Shopping,Apple Card,Costco Wholesale,,-44.99,,Shared,,,,true,258445610486048853
+2026-10-23,Costco,Shopping,Apple Card,Costco Wholesale,,-44.99,,Shared,,,,false,258445610486048853
 2026-10-23,Walmart,Groceries,Apple Card,Walmart Supercenter,,-136.02,,Shared,,,,false,258402726097431486
 2026-10-23,Google,Internet & Cable,Apple Card,Google,,-10.00,,Shared,,,,false,258402726097431485
 2026-10-22,Desi Mandi,Restaurants & Bars,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1022 7606&@#DESI MANDI PARKER CO US,,-76.68,,Shared,,,,false,258409470691355264
