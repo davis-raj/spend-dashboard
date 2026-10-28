@@ -35,6 +35,22 @@ from pipeline.aggregations import (
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 OUT_FILE = os.path.join(BASE_DIR, "docs", "data.json")
+LAST_SYNC_FILE = os.path.join(DATA_DIR, "last_sync.txt")
+
+
+def read_last_sync():
+    """Read the persisted last-Monarch-sync timestamp (ISO-8601 UTC string).
+
+    This file is written by monarch_download.py at download time and committed,
+    so it reflects the TRUE last sync — not the CI build moment. We only READ it
+    here; never compute from datetime.now() or a file mtime. Returns the trimmed
+    ISO string, or None if the file is missing/empty/unreadable (never crashes)."""
+    try:
+        with open(LAST_SYNC_FILE) as f:
+            ts = f.read().strip()
+        return ts or None
+    except OSError:
+        return None
 
 
 def build() -> dict:
@@ -78,9 +94,15 @@ def build() -> dict:
     all_dates = [t['Date'] for t in transactions] + [t['Date'] for t in inc_transactions]
     latest_txn_date = max(all_dates) if all_dates else None
 
+    # Last successful Monarch sync time, persisted by monarch_download.py.
+    # Read-only here (null if the marker file is absent) so the CI rebuild does
+    # not overwrite it with the build moment.
+    last_synced_at = read_last_sync()
+
     # 6. Assemble output
     data = {
         'latestTransactionDate': latest_txn_date,
+        'lastSyncedAt': last_synced_at,
         'monthly': monthly,
         'categories': categories,
         'catByMonth': cat_by_month,

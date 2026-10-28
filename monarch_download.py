@@ -13,12 +13,26 @@ import os
 import sys
 import argparse
 import subprocess
+from datetime import datetime, timezone
 from playwright.sync_api import sync_playwright
 
 # Paths relative to this file so it works locally AND in CI checkout
 BASE = os.path.dirname(os.path.abspath(__file__))
 DOWNLOAD_DIR = os.path.join(BASE, "data")
+LAST_SYNC_FILE = os.path.join(DOWNLOAD_DIR, "last_sync.txt")
 AUTH_FILE = os.path.join(BASE, ".monarch-auth.json")
+
+
+def record_sync_time():
+    """Persist the current UTC time as a committed marker of the last successful
+    Monarch sync. build.py reads this (it must NOT compute the time itself, since
+    the CI build happens later than the download). Overwrites a single ISO line."""
+    ts = datetime.now(timezone.utc).isoformat()
+    os.makedirs(DOWNLOAD_DIR, exist_ok=True)
+    with open(LAST_SYNC_FILE, "w") as f:
+        f.write(ts + "\n")
+    print(f"✓ Recorded sync time {ts} -> {LAST_SYNC_FILE}")
+    return ts
 
 # Load .env (local runs). CI passes real env vars, which take precedence.
 _env_path = os.path.join(BASE, ".env")
@@ -163,6 +177,9 @@ def run(download_only=False, headful=False):
         try:
             login(page, interactive=headful)
             download_csv(page)
+            # Success path shared by BOTH local and --download-only (CI) modes:
+            # record when we actually pulled from Monarch, before any build/push.
+            record_sync_time()
             context.storage_state(path=AUTH_FILE)
         finally:
             browser.close()

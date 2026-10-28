@@ -74,31 +74,54 @@ fetch('data.json').then(r => r.json()).then(DATA => {
   document.getElementById('loading').style.display = 'none';
   document.getElementById('app').style.display = '';
 
-  // Data-freshness indicator — shows how recent the newest transaction is.
-  // DATA.latestTransactionDate is the max transaction date ('YYYY-MM-DD'),
-  // written by build.py. This is deterministic (not a file/build timestamp),
-  // so it reflects the actual data content regardless of where the build ran.
+  // Data-freshness indicator. Two distinct signals on one line:
+  //   PRIMARY  — DATA.lastSyncedAt: an ISO-8601 UTC datetime written by
+  //              monarch_download.py when the dashboard last successfully pulled
+  //              from Monarch. This is the real staleness signal and drives color.
+  //   SECONDARY— DATA.latestTransactionDate ('YYYY-MM-DD'): newest transaction in
+  //              the data. Shown muted so the user can tell "sync hasn't run" from
+  //              "Monarch just doesn't have the new transaction yet".
   (function showLatestTxn() {
     const el = document.getElementById('lastSynced');
     if (!el) return;
+
+    // --- Secondary: latest transaction date (parse as LOCAL to avoid UTC off-by-one) ---
+    let txnPart = '';
     const ds = DATA.latestTransactionDate;
-    if (!ds) { el.textContent = 'Latest transaction: unknown'; el.style.color = '#e67e22'; return; }
-    // Parse 'YYYY-MM-DD' as a local date (avoid UTC-midnight off-by-one).
-    const [y, mo, d] = ds.split('-').map(Number);
-    const latest = new Date(y, mo - 1, d);
-    if (isNaN(latest)) { el.textContent = 'Latest transaction: unknown'; el.style.color = '#e67e22'; return; }
-    // Whole-day difference from today (local midnight to local midnight).
-    const today = new Date();
-    const days = Math.round((new Date(today.getFullYear(), today.getMonth(), today.getDate()) - latest) / 86400000);
+    if (ds) {
+      const [y, mo, d] = String(ds).split('-').map(Number);
+      const latest = new Date(y, (mo || 1) - 1, d || 1);
+      if (!isNaN(latest)) {
+        const abs = latest.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        txnPart = ` <span style="color:#888">• latest transaction ${abs}</span>`;
+      }
+    }
+
+    // --- Primary: last Monarch sync time (ISO UTC datetime -> viewer local) ---
+    const sync = DATA.lastSyncedAt ? new Date(DATA.lastSyncedAt) : null;
+    if (!sync || isNaN(sync)) {
+      // Unknown sync time: treat as stale (red) and still show the txn date if any.
+      el.innerHTML = `🔄 Last synced: <strong>unknown</strong>${txnPart}`;
+      el.style.color = '#e74c3c';
+      return;
+    }
+
+    const hours = (Date.now() - sync.getTime()) / 3600000;
     let rel;
-    if (days <= 0)      rel = 'today';
-    else if (days === 1) rel = 'yesterday';
-    else                 rel = days + ' days ago';
-    // Absolute local date so the exact day is unambiguous.
-    const abs = latest.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
-    // Color cue: green ≤2 days, amber 3–5 days, red when clearly stale.
-    const color = days <= 2 ? '#27ae60' : days <= 5 ? '#e67e22' : '#e74c3c';
-    el.innerHTML = `🔄 Latest transaction: <strong>${rel}</strong> <span style="color:#888">(${abs})</span>`;
+    if (hours < 1)       rel = 'just now';
+    else if (hours < 24) rel = Math.round(hours) + 'h ago';
+    else if (hours < 48) rel = 'yesterday';
+    else                 rel = Math.round(hours / 24) + ' days ago';
+
+    // Absolute local date AND time so the exact sync moment is unambiguous.
+    const absSync = sync.toLocaleString(undefined, {
+      year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
+    });
+
+    // Color is driven by SYNC age: green <24h, amber 24–48h, red older.
+    const color = hours < 24 ? '#27ae60' : hours < 48 ? '#e67e22' : '#e74c3c';
+
+    el.innerHTML = `🔄 Last synced: <strong>${rel}</strong> <span style="color:#888">(${absSync})</span>${txnPart}`;
     el.style.color = color;
   })();
 
