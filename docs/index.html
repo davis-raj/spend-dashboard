@@ -74,29 +74,31 @@ fetch('data.json').then(r => r.json()).then(DATA => {
   document.getElementById('loading').style.display = 'none';
   document.getElementById('app').style.display = '';
 
-  // "Last synced" indicator — shows how fresh the Monarch data is.
-  // DATA.generatedAt is the source CSV's mod time (UTC ISO 8601), written by build.py.
-  (function showLastSynced() {
+  // Data-freshness indicator — shows how recent the newest transaction is.
+  // DATA.latestTransactionDate is the max transaction date ('YYYY-MM-DD'),
+  // written by build.py. This is deterministic (not a file/build timestamp),
+  // so it reflects the actual data content regardless of where the build ran.
+  (function showLatestTxn() {
     const el = document.getElementById('lastSynced');
     if (!el) return;
-    const iso = DATA.generatedAt;
-    if (!iso) { el.textContent = 'Last synced: unknown'; el.style.color = '#e67e22'; return; }
-    const synced = new Date(iso);
-    if (isNaN(synced)) { el.textContent = 'Last synced: unknown'; el.style.color = '#e67e22'; return; }
-    const days = (Date.now() - synced.getTime()) / 86400000;
-    // Relative age in plain language.
+    const ds = DATA.latestTransactionDate;
+    if (!ds) { el.textContent = 'Latest transaction: unknown'; el.style.color = '#e67e22'; return; }
+    // Parse 'YYYY-MM-DD' as a local date (avoid UTC-midnight off-by-one).
+    const [y, mo, d] = ds.split('-').map(Number);
+    const latest = new Date(y, mo - 1, d);
+    if (isNaN(latest)) { el.textContent = 'Latest transaction: unknown'; el.style.color = '#e67e22'; return; }
+    // Whole-day difference from today (local midnight to local midnight).
+    const today = new Date();
+    const days = Math.round((new Date(today.getFullYear(), today.getMonth(), today.getDate()) - latest) / 86400000);
     let rel;
-    if (days < 1/24)      rel = 'just now';
-    else if (days < 1)    rel = Math.round(days*24) + 'h ago';
-    else if (days < 1.5)  rel = 'yesterday';
-    else                  rel = Math.round(days) + ' days ago';
-    // Absolute local date/time so the exact moment is unambiguous.
-    const abs = synced.toLocaleString(undefined, {
-      year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
-    });
-    // Color cue: green <2 days, amber 2–4 days, red when clearly stale.
-    const color = days < 2 ? '#27ae60' : days < 4 ? '#e67e22' : '#e74c3c';
-    el.innerHTML = `🔄 Last synced from Monarch: <strong>${rel}</strong> <span style="color:#888">(${abs})</span>`;
+    if (days <= 0)      rel = 'today';
+    else if (days === 1) rel = 'yesterday';
+    else                 rel = days + ' days ago';
+    // Absolute local date so the exact day is unambiguous.
+    const abs = latest.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+    // Color cue: green ≤2 days, amber 3–5 days, red when clearly stale.
+    const color = days <= 2 ? '#27ae60' : days <= 5 ? '#e67e22' : '#e74c3c';
+    el.innerHTML = `🔄 Latest transaction: <strong>${rel}</strong> <span style="color:#888">(${abs})</span>`;
     el.style.color = color;
   })();
 
