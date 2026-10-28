@@ -1,17 +1,24 @@
 Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Reviewed,Reviewed At,Reviewed By,Pending,Id
+2026-10-27,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-26.90,,Shared,,,,true,258845996139129720
+2026-10-27,Google,Internet & Cable,Apple Card,Google,,-28.34,,Shared,,,,false,258845996139129719
+2026-10-27,"Apple Card, Cash, and Savings",Credit Card Payment,Apple Card,Bill Payment,,1665.81,,Shared,,,,false,258845996139129718
+2026-10-27,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.28,,Shared,,,,false,258845994334530136
+2026-10-27,Amazon,Shopping,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1025 7606&@#AMAZON MKTPL*9J AMZN.COM/BILL WA US,,-16.05,,Shared,,,,false,258816327413115819
+2026-10-27,Discover,Transfer,CASHBACK DEBIT (...3359),TRANSFER FROM CHECKING 2481,,4000.00,,Shared,,,,false,258816327413115818
 2026-10-26,Walmart,Groceries,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1026 7606&@#WAL-MART #2892 PARKER CO US,,-33.69,,Shared,,,,false,258771199582513727
 2026-10-26,Comcast,Internet & Cable,CASHBACK DEBIT (...3359),ACH WITHDRAWAL COMCAST-XFINITY CABLE SVCS,,-50.59,,Shared,,,,false,258725905163594708
 2026-10-26,Parker Parker & Co.,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1025 7606&@#TOWN OF PARKER PARKER CO US,,-78.24,,Shared,,,,false,258725905163594707
 2026-10-26,Circle K,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1026 7606&@#CIRCLEK #274115 HIGHLANDS RAN CO US,,-99.18,,Shared,,,,false,258725905163594706
+2026-10-25,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.30,,Shared,,,,false,258845994334530135
 2026-10-25,Walmart,Shopping,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1024 7606&@#WALMART.COM BENTONVILLE AR US,,-80.70,,Shared,,,,false,258680813128231328
 2026-10-25,Amazon,Shopping,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1023 7606&@#AMAZON MKTPL*C2 AMZN.COM/BILL WA US,,-16.05,,Shared,,,,false,258635798991579218
 2026-10-24,Konark Grocers,Groceries,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1023 7606&@#KONARK GROCERS PARKER CO US,,-11.31,,Shared,,,,false,258590140425283799
 2026-10-24,Walmart,Shopping,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1024 7606&@#WALMART.COM BENTONVILLE AR US,,-11.97,,Shared,,,,false,258590140425283798
 2026-10-24,Underground,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1023 7606&@#UNDERGROUND SPR 3036996154 CO US,,-135.00,,Shared,,,,false,258590140425283797
-2026-10-24,Chaat & Curry Point,Restaurants & Bars,Apple Card,Chaat & Curry Point,,-28.93,,Shared,,,,true,258583854478502678
-2026-10-24,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-30.05,,Shared,,,,true,258583854478502677
-2026-10-24,The Bombay Junction,Restaurants & Bars,Apple Card,The Bombay Junction,,-14.04,,Shared,,,,true,258583854478502676
-2026-10-24,"Garnish Fusion Bakery, Bar & Grill",Restaurants & Bars,Apple Card,"Garnish Fusion Bakery, Bar & Grill",,-14.33,,Shared,,,,true,258583854478502675
+2026-10-24,Chaat & Curry Point,Restaurants & Bars,Apple Card,Chaat & Curry Point,,-28.93,,Shared,,,,false,258583854478502678
+2026-10-24,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-30.05,,Shared,,,,false,258583854478502677
+2026-10-24,The Bombay Junction,Restaurants & Bars,Apple Card,The Bombay Junction,,-14.04,,Shared,,,,false,258583854478502676
+2026-10-24,"Garnish Fusion Bakery, Bar & Grill",Restaurants & Bars,Apple Card,"Garnish Fusion Bakery, Bar & Grill",,-14.33,,Shared,,,,false,258583854478502675
 2026-10-24,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.45,,Shared,,,,false,258583853105916591
 2026-10-23,Apple Cash,Other Income,CASHBACK DEBIT (...3359),ACH DEPOSIT FROM APPLE CASH DAVIS SIMPSON,,26.87,,Shared,,,,false,258499946672008041
 2026-10-23,AMC Theatres,Entertainment & Recreation,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1021 7606&@#AMC 9640 ONLINE 888-440-4262 KS US,,-52.36,,Shared,,,,false,258454680741849316
