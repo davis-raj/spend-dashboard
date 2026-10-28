@@ -12,6 +12,7 @@ Usage:
 import json
 import os
 import sys
+from datetime import datetime, timezone
 
 from pipeline.loader import find_latest_csv, load_transactions, deduplicate
 from pipeline.transforms import (
@@ -41,6 +42,14 @@ def build() -> dict:
     """Run the full pipeline and return the dashboard data dict."""
     # 1. Load
     csv_path = find_latest_csv(DATA_DIR)
+    # "Last synced" = when the source CSV was last downloaded from Monarch.
+    # Use the CSV's modification time (UTC ISO 8601); the dashboard renders it
+    # in the viewer's local timezone. Fall back to now() if the stat fails.
+    try:
+        synced_at = datetime.fromtimestamp(os.path.getmtime(csv_path), tz=timezone.utc)
+    except OSError:
+        synced_at = datetime.now(timezone.utc)
+    generated_at = synced_at.isoformat()
     print(f"Loading: {os.path.basename(csv_path)}")
     df = load_transactions(csv_path)
     df = deduplicate(df)
@@ -73,6 +82,7 @@ def build() -> dict:
 
     # 6. Assemble output
     data = {
+        'generatedAt': generated_at,
         'monthly': monthly,
         'categories': categories,
         'catByMonth': cat_by_month,
