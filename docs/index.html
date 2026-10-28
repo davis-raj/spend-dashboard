@@ -161,40 +161,43 @@ fetch('data.json').then(r => r.json()).then(DATA => {
   // The charts still show July; only the stat cards use completed months.
   const now = new Date();
   const currentMonth = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}`;
-  const completed = DATA.monthly.filter(m => m.month !== currentMonth);
-  const nCompleted = completed.length || 1;
 
-  const totalExp = completed.reduce((s,m) => s + m.expenses, 0);
-  const totalInc = completed.reduce((s,m) => s + m.income, 0);
-  const avgMonthly = totalExp / nCompleted;
-  const net = totalInc - totalExp;
-  const avgInc = totalInc / nCompleted;
-  const avgNet = avgInc - avgMonthly;
-  const savingsRate = totalInc > 0 ? (net / totalInc * 100) : 0;
-  document.getElementById('stats-row').innerHTML = `
-  <div class="stat-card"><div class="label">Total Income</div><div class="value positive">$${totalInc.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">${nCompleted} completed months</div></div>
-  <div class="stat-card"><div class="label">Total Spent</div><div class="value" style="color:#e67e22">$${totalExp.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">${nCompleted} completed months</div></div>
-  <div class="stat-card"><div class="label">Net Cashflow</div><div class="value ${net>=0?'positive':'negative'}">$${net.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">${net>=0?'surplus':'deficit'}</div></div>
-  <div class="stat-card"><div class="label">Savings Rate</div><div class="value ${savingsRate>=0?'positive':'negative'}">${savingsRate.toFixed(1)}%</div><div class="sub">${savingsRate>=0?'saving':'overspending'}</div></div>
-  <div class="stat-card"><div class="label">Avg Monthly Income</div><div class="value positive">$${avgInc.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">per month</div></div>
-  <div class="stat-card"><div class="label">Avg Monthly Spend</div><div class="value" style="color:#e67e22">$${avgMonthly.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">per month</div></div>`;
-
-  // Year-over-year window for the trend charts: show only the trailing 13 months,
-  // inclusive — from the same month one year ago through the current month.
+  // Year-over-year window: show only the trailing 13 months, inclusive —
+  // from the same month one year ago through the current month.
   // e.g. if current month is 2026-10, the window is 2026-10 back to 2025-10.
+  // This window drives the trend charts AND all default (no-month) aggregate
+  // views: the six stat cards, both donuts, and Top Merchants.
   const windowStart = `${now.getFullYear()-1}-${String(now.getMonth()+1).padStart(2,'0')}`;
   const windowMonthly = DATA.monthly.filter(m => m.month >= windowStart && m.month <= currentMonth);
+  // Single source of truth for window membership on a "YYYY-MM" month key.
+  const inWindow = (mo) => mo >= windowStart && mo <= currentMonth;
   // Chart x-axis = windowed months. Use 'YY labels so Oct 2025 vs Oct 2026 are distinguishable.
   const months = windowMonthly.map(m => m.month);
   const yoyLabel = m => monthShort[parseInt(m.split('-')[1])-1] + " '" + m.split('-')[0].slice(2);
-  // Averages for the chart dashed lines, computed over the VISIBLE window
-  // (excluding the current incomplete month so it doesn't skew the average).
+  // Completed months within the window (excluding the current incomplete month
+  // so it doesn't skew totals/averages). Used by the stat cards AND the chart
+  // dashed average lines — one definition keeps them in agreement.
   const winCompleted = windowMonthly.filter(m => m.month !== currentMonth);
   const nWin = winCompleted.length || 1;
   const winAvgInc = winCompleted.reduce((s,m)=>s+m.income,0) / nWin;
   const winAvgExp = winCompleted.reduce((s,m)=>s+m.expenses,0) / nWin;
   // Headroom above the tallest bar so the (tall, vertical) dollar labels fit.
   const monthlyYMax = Math.max(1, ...windowMonthly.map(m => Math.max(m.income, m.expenses))) * 1.28;
+
+  // Stat cards — scoped to the 13-month window's COMPLETED months.
+  const totalExp = winCompleted.reduce((s,m) => s + m.expenses, 0);
+  const totalInc = winCompleted.reduce((s,m) => s + m.income, 0);
+  const avgMonthly = totalExp / nWin;
+  const net = totalInc - totalExp;
+  const avgInc = totalInc / nWin;
+  const savingsRate = totalInc > 0 ? (net / totalInc * 100) : 0;
+  document.getElementById('stats-row').innerHTML = `
+  <div class="stat-card"><div class="label">Total Income</div><div class="value positive">$${totalInc.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">${nWin} completed months</div></div>
+  <div class="stat-card"><div class="label">Total Spent</div><div class="value" style="color:#e67e22">$${totalExp.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">${nWin} completed months</div></div>
+  <div class="stat-card"><div class="label">Net Cashflow</div><div class="value ${net>=0?'positive':'negative'}">$${net.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">${net>=0?'surplus':'deficit'}</div></div>
+  <div class="stat-card"><div class="label">Savings Rate</div><div class="value ${savingsRate>=0?'positive':'negative'}">${savingsRate.toFixed(1)}%</div><div class="sub">${savingsRate>=0?'saving':'overspending'}</div></div>
+  <div class="stat-card"><div class="label">Avg Monthly Income</div><div class="value positive">$${avgInc.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">per month</div></div>
+  <div class="stat-card"><div class="label">Avg Monthly Spend</div><div class="value" style="color:#e67e22">$${avgMonthly.toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="sub">per month</div></div>`;
 
   new Chart(document.getElementById('monthlyChart'), {
     type: 'bar', data: { labels: months.map(yoyLabel), datasets: [
@@ -279,7 +282,11 @@ fetch('data.json').then(r => r.json()).then(DATA => {
   let catChart = null;
   function renderCatDonut(selMonth) {
     let catData;
-    if (!selMonth) { catData = DATA.categories; }
+    if (!selMonth) {
+      const bycat = {};
+      DATA.transactions.filter(t => inWindow(t.Month)).forEach(t => { bycat[t.Category] = (bycat[t.Category]||0) + t.Spend; });
+      catData = Object.entries(bycat).sort((a,b)=>b[1]-a[1]).slice(0,15).map(([name,total])=>({name,total:Math.round(total)}));
+    }
     else {
       const bycat = {};
       DATA.transactions.filter(t => t.Month === selMonth).forEach(t => { bycat[t.Category] = (bycat[t.Category]||0) + t.Spend; });
@@ -310,7 +317,9 @@ fetch('data.json').then(r => r.json()).then(DATA => {
   function renderIncDonut(selMonth) {
     let incData;
     if (!selMonth) {
-      incData = DATA.incomeCategories;
+      const bySource = {};
+      (DATA.incomeTransactions||[]).filter(t => inWindow(t.Month)).forEach(t => { bySource[t.IncomeSource] = (bySource[t.IncomeSource]||0) + t.Amount; });
+      incData = Object.entries(bySource).sort((a,b)=>b[1]-a[1]).map(([name,total])=>({name,total:Math.round(total)}));
     } else {
       const bySource = {};
       (DATA.incomeTransactions||[]).filter(t => t.Month === selMonth).forEach(t => { bySource[t.IncomeSource] = (bySource[t.IncomeSource]||0) + t.Amount; });
@@ -327,7 +336,7 @@ fetch('data.json').then(r => r.json()).then(DATA => {
 
   // Top Merchants with month buttons
   function renderMerchants(selMonth) {
-    let txns = DATA.transactions;
+    let txns = DATA.transactions.filter(t => inWindow(t.Month));
     if (selMonth) txns = txns.filter(t => t.Month === selMonth);
     const byMerch = {};
     txns.forEach(t => { byMerch[t.Merchant] = (byMerch[t.Merchant]||0) + t.Spend; });
