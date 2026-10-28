@@ -6,7 +6,9 @@ set -uo pipefail
 
 cd "$HOME/spend-dashboard"
 
-PYTHON="/usr/bin/python3"
+# Resolve python3 from PATH so the same script works on macOS and Linux
+# (Lightsail/Ubuntu). Fall back to the common absolute path if PATH lookup fails.
+PYTHON="$(command -v python3 || echo /usr/bin/python3)"
 LOG="$HOME/spend-dashboard/refresh.log"
 
 # Private ntfy topic, read from the gitignored .env (never hardcoded here —
