@@ -1,4 +1,6 @@
 Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Reviewed,Reviewed At,Reviewed By,Pending,Id
+2026-10-28,Apple,Credit Card Payment,CASHBACK DEBIT (...3359),ACH WITHDRAWAL APPLECARD GSBANK PAYMENT,,-1665.81,,Shared,,,,false,258907420977768721
+2026-10-28,Circle K,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1026 7606&@#CIRCLEK#2709516 PARKER CO US,,-77.59,,Shared,,,,false,258907420977768720
 2026-10-28,"Apple Card, Cash, and Savings",Credit Card Payment,Apple Card,Bill Payment,,1.43,,Shared,,,,false,258856342976440653
 2026-10-28,"Apple Card, Cash, and Savings",Credit Card Payment,Apple Card,Bill Payment,,2081.48,,Shared,,,,false,258856342976440652
 2026-10-28,"Apple Card, Cash, and Savings",Restaurants & Bars,Apple Cash,Point Of Sale,,-1.43,,Shared,,,,false,258856342683887945
