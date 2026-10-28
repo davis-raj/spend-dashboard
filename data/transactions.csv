@@ -1,4 +1,9 @@
 Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Reviewed,Reviewed At,Reviewed By,Pending,Id
+2026-10-28,"Apple Card, Cash, and Savings",Credit Card Payment,Apple Card,Bill Payment,,1.43,,Shared,,,,false,258856342976440653
+2026-10-28,"Apple Card, Cash, and Savings",Credit Card Payment,Apple Card,Bill Payment,,2081.48,,Shared,,,,false,258856342976440652
+2026-10-28,"Apple Card, Cash, and Savings",Restaurants & Bars,Apple Cash,Point Of Sale,,-1.43,,Shared,,,,false,258856342683887945
+2026-10-27,Discover,Transfer,CASHBACK DEBIT (...3359),TRANSFER FROM ONLINE SAVINGS 1405,,1681.91,,Shared,,,,false,258861914694069184
+2026-10-27,Discover,Transfer,CASHBACK DEBIT (...3359),TRANSFER FROM CHECKING 6079,,401.00,,Shared,,,,false,258861914694069183
 2026-10-27,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-26.90,,Shared,,,,true,258845996139129720
 2026-10-27,Google,Internet & Cable,Apple Card,Google,,-28.34,,Shared,,,,false,258845996139129719
 2026-10-27,"Apple Card, Cash, and Savings",Credit Card Payment,Apple Card,Bill Payment,,1665.81,,Shared,,,,false,258845996139129718
