@@ -245,6 +245,13 @@ fetch('data.json').then(r => r.json()).then(DATA => {
   const cSel = document.getElementById('filterCat');
   let sortCol = 'Date', sortAsc = false;
   let txnMonth = '';
+  // Transactions-widget view mode so the txnMonthBtns month buttons re-apply the
+  // ACTIVE view instead of always rendering spending.
+  // 'spending'      -> DATA.transactions (default)
+  // 'incomeAll'     -> all income sources for the selected month
+  // 'incomeSource'  -> a single income source (txnIncSource), scoped to txnMonth
+  let txnMode = 'spending';
+  let txnIncSource = null;
   createMonthBtns('catBtns', (m) => { renderCatDonut(m); txnMonth = m; renderTxns(); });
 
   // Income by category donut with buttons
@@ -434,7 +441,14 @@ fetch('data.json').then(r => r.json()).then(DATA => {
 
   // Merchants with buttons
   // All Transactions with buttons
-  createMonthBtns('txnMonthBtns', m => { txnMonth = m; renderTxns(); });
+  createMonthBtns('txnMonthBtns', m => {
+    txnMonth = m;
+    // Re-apply whichever view the user is currently looking at so picking a month
+    // preserves an active income-source / income view instead of snapping to spending.
+    if (txnMode === 'incomeSource' && txnIncSource) filterByIncCat(txnIncSource);
+    else if (txnMode === 'incomeAll') renderIncTxns(m);
+    else renderTxns();
+  });
   const allCats = [...new Set(DATA.transactions.map(t=>t.Category))].sort();
   allCats.forEach(c => { const o = document.createElement('option'); o.value=c; o.textContent=c; cSel.appendChild(o); });
 
@@ -442,7 +456,12 @@ fetch('data.json').then(r => r.json()).then(DATA => {
     th.onclick = () => {
       const col = th.dataset.col;
       if (sortCol === col) sortAsc = !sortAsc; else { sortCol = col; sortAsc = col !== 'Date'; }
-      renderTxns();
+      // Re-render the active view so sorting doesn't drop an income view back to
+      // spending. (Income renderers sort by Date desc internally; this at least
+      // preserves the view and never regresses spending sort.)
+      if (txnMode === 'incomeSource' && txnIncSource) filterByIncCat(txnIncSource);
+      else if (txnMode === 'incomeAll') renderIncTxns(txnMonth);
+      else renderTxns();
     };
   });
 
@@ -461,18 +480,32 @@ fetch('data.json').then(r => r.json()).then(DATA => {
   }
 
   window.filterByIncCat = function(cat) {
+    txnMode = 'incomeSource';
+    txnIncSource = cat;
     cSel.value = '';
     document.getElementById('filterSearch').value = '';
     let filtered = (DATA.incomeTransactions||[]).filter(t => t.IncomeSource === cat);
+    // Keep the specific-month scoping the user asked for (skip when YTD / no month).
     if (txnMonth) filtered = filtered.filter(t => t.Month === txnMonth);
     filtered.sort((a,b) => b.Date.localeCompare(a.Date));
+    const total = filtered.reduce((s,t) => s + t.Amount, 0);
     const tbody = document.getElementById('txnBody');
-    tbody.innerHTML = filtered.map(t => `<tr><td>${t.Date}</td><td>${t.IncomeSource}</td><td>Income</td><td>—</td><td class="positive">+$${t.Amount.toLocaleString(undefined,{minimumFractionDigits:2})}</td></tr>`).join('');
-    document.getElementById('txnCount').textContent = `${filtered.length} income transactions`;
+    if (filtered.length === 0) {
+      // Explicit empty state so a source with no income in the chosen month never
+      // looks broken (e.g. Esther Paycheck in 2026-10).
+      const whenMsg = txnMonth ? ` in ${monthLabel(txnMonth)} ${txnMonth.split('-')[0]}` : '';
+      tbody.innerHTML = `<tr><td colspan="5" style="padding:16px;text-align:center;color:#888;">No ${cat} income${whenMsg}</td></tr>`;
+      document.getElementById('txnCount').textContent = `0 income transactions — no ${cat} income${whenMsg}`;
+    } else {
+      tbody.innerHTML = filtered.map(t => `<tr><td>${t.Date}</td><td>${t.IncomeSource}</td><td>Income</td><td>—</td><td class="positive">+$${t.Amount.toLocaleString(undefined,{minimumFractionDigits:2})}</td></tr>`).join('');
+      document.getElementById('txnCount').textContent = `${filtered.length} income transactions • $${total.toLocaleString(undefined,{maximumFractionDigits:0})} total`;
+    }
     document.getElementById('filterCat').scrollIntoView({behavior:'smooth'});
   }
 
   function renderIncTxns(month) {
+    txnMode = 'incomeAll';
+    txnIncSource = null;
     cSel.value = '';
     document.getElementById('filterSearch').value = '';
     let filtered = (DATA.incomeTransactions||[]);
@@ -485,6 +518,8 @@ fetch('data.json').then(r => r.json()).then(DATA => {
   }
 
   function renderTxns() {
+    txnMode = 'spending';
+    txnIncSource = null;
     const cat = cSel.value, search = document.getElementById('filterSearch').value.toLowerCase();
     let filtered = DATA.transactions;
     if (txnMonth) filtered = filtered.filter(t => t.Month === txnMonth);
