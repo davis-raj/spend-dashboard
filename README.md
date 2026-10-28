@@ -32,6 +32,25 @@ The GitHub Action auto-rebuilds `data.json` and redeploys the site.
 3. In repo Settings → Pages → Source: select "GitHub Actions"
 4. The first deploy runs automatically on push
 
+## Automated Sync (Monarch)
+
+The dashboard auto-updates by pulling transactions from Monarch Money, rebuilding
+`data.json`, and pushing to `main` (which triggers the Pages deploy). The pull runs
+via `monarch_download.py`, wrapped by `refresh.sh` (3 retries with backoff + ntfy
+failure alerts).
+
+**Current schedule (local, macOS launchd):** every 2 hours at **10:00, 12:00, 14:00,
+16:00 Mountain Time** (4 runs/day). If the Mac is asleep at a scheduled time, launchd
+runs the job once on next wake (missed slots are coalesced, not replayed individually).
+
+The launchd agent is tracked at [`deploy/com.user.spend-refresh.plist`](deploy/com.user.spend-refresh.plist).
+To install it on a new Mac, replace `__HOME__` with your home dir, copy to
+`~/Library/LaunchAgents/`, and `launchctl load` it (see the header comment in that file).
+Schedule times use the system's local timezone, so set the Mac to `America/Denver`.
+
+To run the pull in the cloud instead (reliable, laptop-independent, optionally more
+frequent), see [`DEPLOY-LIGHTSAIL.md`](DEPLOY-LIGHTSAIL.md).
+
 ## Local Preview
 
 ```bash

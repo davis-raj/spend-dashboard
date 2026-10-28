@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  launchd agent for the local (macOS) Monarch sync.
+
+  Install:
+    1. Replace every __HOME__ below with your home dir (e.g. /Users/you).
+    2. Copy to ~/Library/LaunchAgents/com.user.spend-refresh.plist
+    3. launchctl load ~/Library/LaunchAgents/com.user.spend-refresh.plist
+
+  Schedule: runs refresh.sh at 10:00, 12:00, 14:00, 16:00 LOCAL time
+  (every 2 hours, 10am-4pm). StartCalendarInterval uses the system's local
+  timezone, so set the Mac to America/Denver for Mountain Time. If the Mac is
+  asleep at a scheduled time, launchd runs the job once on next wake (missed
+  slots are coalesced into a single catch-up run, not one per missed slot).
+-->
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.user.spend-refresh</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/bin/bash</string>
+		<string>__HOME__/spend-dashboard/refresh.sh</string>
+	</array>
+	<key>StandardErrorPath</key>
+	<string>__HOME__/spend-dashboard/launchd.log</string>
+	<key>StandardOutPath</key>
+	<string>__HOME__/spend-dashboard/launchd.log</string>
+	<key>StartCalendarInterval</key>
+	<array>
+		<dict>
+			<key>Hour</key>
+			<integer>10</integer>
+			<key>Minute</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>Hour</key>
+			<integer>12</integer>
+			<key>Minute</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>Hour</key>
+			<integer>14</integer>
+			<key>Minute</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>Hour</key>
+			<integer>16</integer>
+			<key>Minute</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>WorkingDirectory</key>
+	<string>__HOME__/spend-dashboard</string>
+</dict>
+</plist>
