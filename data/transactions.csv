@@ -5,7 +5,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-10-30,Victoria's Secret,Clothing,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1030 7606&@#VICTORIA'S SECR LITTLETON CO US,,-100.08,,Shared,,,,false,259133542144388078
 2026-10-30,Discover,Transfer,CASHBACK DEBIT (...3359),TRANSFER FROM CHECKING 2481,,1000.00,,Shared,,,,false,259133542144388077
 2026-10-30,McDonald's,Restaurants & Bars,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1030 7606&@#MCDONALD'S F397 PARKER CO US,,-23.06,,Shared,,,,false,259133542144388076
-2026-10-30,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-39.30,,Shared,,,,true,259116210754923401
+2026-10-30,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-39.30,,Shared,,,,false,259116210754923401
 2026-10-30,Circle K,Gas,Apple Card,Circle K - Convenience Store,,-82.13,,Shared,,,,false,259030603483556675
 2026-10-29,Driver License Office,Financial & Legal Services,Apple Card,Centennial Driver License Office,,-38.60,,Shared,,,,false,259030603483556676
 2026-10-29,Apple,Credit Card Payment,CASHBACK DEBIT (...3359),ACH WITHDRAWAL APPLECARD GSBANK PAYMENT,,-2081.48,,Shared,,,,false,258998264557709835
