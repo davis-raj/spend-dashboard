@@ -5,8 +5,8 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-11-02,ServiceMac,Mortgage,CASHBACK DEBIT (...3359),ACH WITHDRAWAL SERVICEMAC LLC PAYMENT,,-4651.14,,Shared,,,,false,259360020714989670
 2026-11-02,Sport Clips,Personal,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1031 7606&@#SPORT CLIPS - C PARKER CO US,,-36.00,,Shared,,,,false,259360020714989669
 2026-11-01,King Soopers,Groceries,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1031 7606&@#KING SOOPERS #0 PARKER CO US,,-40.00,,Shared,,,,false,259314719632370390
-2026-11-01,Apple,Shopping,Apple Card,Apple,,-2.99,,Shared,,,,true,259310584699791945
-2026-11-01,Ekmiveda,Shopping,Apple Card,Ekmiveda,,-44.74,,Shared,,,,true,259310584699791944
+2026-11-01,Apple,Shopping,Apple Card,Apple,,-2.99,,Shared,,,,false,259310584699791945
+2026-11-01,Ekmiveda,Shopping,Apple Card,Ekmiveda,,-44.74,,Shared,,,,false,259310584699791944
 2026-11-01,Parker Parker & Co.,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1031 7606&@#TOWN OF PARKER PARKER CO US,,-68.46,,Shared,,,,false,259269269666638472
 2026-11-01,Desi Mandi,Restaurants & Bars,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1031 7606&@#DESI MANDI PARKER CO US,,-46.62,,Shared,,,,false,259269269666638471
 2026-10-31,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.39,,Shared,,,,false,259244497122601021
