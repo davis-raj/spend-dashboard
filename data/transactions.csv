@@ -1,4 +1,5 @@
 Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Reviewed,Reviewed At,Reviewed By,Pending,Id
+2026-11-03,Chase,Credit Card Payment,CASHBACK DEBIT (...3359),ACH WITHDRAWAL CHASE CREDIT CRD EPAY,,-280.78,,Shared,,,,false,259450516888070968
 2026-11-03,Uber,Taxi & Ride Shares,Apple Card,Uber   *one Membership,,-9.99,,Shared,,,,true,259408694903024364
 2026-11-03,Circle K,Gas,Apple Card,Circle K - Convenience Store,,-11.69,,Shared,,,,true,259408694903024363
 2026-11-02,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.09,,Shared,,,,false,259408694561188530
