@@ -1,4 +1,8 @@
 Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Reviewed,Reviewed At,Reviewed By,Pending,Id
+2026-11-03,Uber,Taxi & Ride Shares,Apple Card,Uber   *one Membership,,-9.99,,Shared,,,,true,259408694903024364
+2026-11-03,Circle K,Gas,Apple Card,Circle K - Convenience Store,,-11.69,,Shared,,,,true,259408694903024363
+2026-11-02,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.09,,Shared,,,,false,259408694561188530
+2026-11-02,S&s Fuels,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1030 7606&@#S&S FUELS #305 3032104945 CO US,,-68.37,,Shared,,,,false,259405474735565745
 2026-11-02,Sport Clips,Personal,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1031 7606&@#SPORT CLIPS - C PARKER CO US,,-42.00,,Shared,,,,false,259360020714989673
 2026-11-02,Rocket Mortgage,Mortgage,CASHBACK DEBIT (...3359),ACH WITHDRAWAL ROCKET MORTGAGE LOAN,,-4168.11,,Shared,,,,false,259360020714989672
 2026-11-02,Discover,Gas & Electric,CASHBACK DEBIT (...3359),ACH WITHDRAWAL PWSD UTILITY,,-133.34,,Shared,,,,false,259360020714989671
@@ -12,7 +16,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-10-31,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.39,,Shared,,,,false,259244497122601021
 2026-10-31,Panda Express,Restaurants & Bars,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1030 7606&@#PANDA EXPRESS # LITTLETON CO US,,-7.20,,Shared,,,,false,259178856993761397
 2026-10-30,Booksy,Personal,CREDIT CARD (...0216),BOOKSY,,-100.30,,Shared,,,,false,259158798732077751
-2026-10-30,Lei Massage,Personal,CREDIT CARD (...0216),LEI MASSAGE,,-138.00,,Shared,,,,true,259158798732077750
+2026-10-30,Lei Massage,Personal,CREDIT CARD (...0216),LEI MASSAGE,,-138.00,,Shared,,,,false,259158798732077750
 2026-10-30,Victoria's Secret,Clothing,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1030 7606&@#VICTORIA'S SECR LITTLETON CO US,,-100.08,,Shared,,,,false,259133542144388078
 2026-10-30,Discover,Transfer,CASHBACK DEBIT (...3359),TRANSFER FROM CHECKING 2481,,1000.00,,Shared,,,,false,259133542144388077
 2026-10-30,McDonald's,Restaurants & Bars,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1030 7606&@#MCDONALD'S F397 PARKER CO US,,-23.06,,Shared,,,,false,259133542144388076
