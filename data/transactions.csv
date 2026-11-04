@@ -1,6 +1,8 @@
 Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Reviewed,Reviewed At,Reviewed By,Pending,Id
+2026-11-04,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-28.70,,Shared,,,,true,259492603897555089
+2026-11-03,Discover,Transfer,CASHBACK DEBIT (...3359),TRANSFER FROM CHECKING 2481,,1000.00,,Shared,,,,false,259495777601563166
 2026-11-03,Chase,Credit Card Payment,CASHBACK DEBIT (...3359),ACH WITHDRAWAL CHASE CREDIT CRD EPAY,,-280.78,,Shared,,,,false,259450516888070968
-2026-11-03,Uber,Taxi & Ride Shares,Apple Card,Uber   *one Membership,,-9.99,,Shared,,,,true,259408694903024364
+2026-11-03,Uber,Taxi & Ride Shares,Apple Card,Uber   *one Membership,,-9.99,,Shared,,,,false,259408694903024364
 2026-11-03,Circle K,Gas,Apple Card,Circle K - Convenience Store,,-11.69,,Shared,,,,true,259408694903024363
 2026-11-02,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.09,,Shared,,,,false,259408694561188530
 2026-11-02,S&s Fuels,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1030 7606&@#S&S FUELS #305 3032104945 CO US,,-68.37,,Shared,,,,false,259405474735565745
