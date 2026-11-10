@@ -1,4 +1,23 @@
 Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Reviewed,Reviewed At,Reviewed By,Pending,Id
+2026-11-09,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-26.30,,Shared,,,,true,260002834204305702
+2026-11-09,Chick-fil-A,Restaurants & Bars,Apple Card,Chick-fil-A,,-17.74,,Shared,,,,true,260002834204305701
+2026-11-09,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.03,,Shared,,,,false,260002833579354346
+2026-11-09,Apple,Shopping,Apple Card,Apple,,-0.99,,Shared,,,,false,259968756753082816
+2026-11-08,McDonald's,Restaurants & Bars,Apple Card,McDonald's,,-21.44,,Shared,,,,false,259855944122869847
+2026-11-08,Denver Museum of Nature & Science,Entertainment & Recreation,Apple Card,Denver Museum of Nature & Science,,-81.50,,Shared,,,,false,259855944122869846
+2026-11-07,Uber Eats,Restaurants & Bars,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1106 8352&@#UBER *EATS 866-576-1039 CA US,,-4.00,,Shared,,,,false,259902725827308100
+2026-11-07,Uber Eats,Restaurants & Bars,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1106 8352&@#UBER *EATS 866-576-1039 CA US,,-23.10,,Shared,,,,false,259902725827308099
+2026-11-07,Walmart,Groceries,Apple Card,Walmart Supercenter,,-143.84,,Shared,,,,false,259833361151273612
+2026-11-07,Uber Eats,Restaurants & Bars,Apple Card,Uber Eats,,-29.92,,Shared,,,,false,259833361151273611
+2026-11-07,Subway,Restaurants & Bars,Apple Card,Subway,,-13.75,,Shared,,,,false,259833361151273610
+2026-11-07,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.26,,Shared,,,,false,259833360694094229
+2026-11-07,Apple,Shopping,Apple Card,Apple,,-56.35,,Shared,,,,false,259789099753778160
+2026-11-06,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-25.90,,Shared,,,,false,259747698024360090
+2026-11-06,Tanishq USA Jewelry,Shopping,CASHBACK DEBIT (...3359),ACH WITHDRAWAL TANISHQ USA JEWELRY,,-300.00,,Shared,,,,false,259721831215770234
+2026-11-06,CVS,Medical,Apple Card,CVS Pharmacy,,-25.87,,Shared,,,,false,259674999016106399
+2026-11-05,Meridian,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1105 8352&@#MERIDIAN 44 PARKER CO US,,-83.49,,Shared,,,,false,259676704564816684
+2026-11-05,Freddy's Frozen Custard,Restaurants & Bars,Apple Card,Freddy's Frozen Custard & Steakburgers,,-26.63,,Shared,,,,false,259674999016106400
+2026-11-05,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.29,,Shared,,,,false,259674998070290470
 2026-11-05,Target,Shopping,CASHBACK DEBIT (...3359),ACH WITHDRAWAL TARGET DEBIT CRD ACH TRAN 5S0102 TARGET 2716 HIGHLANDS RAN CO,,-80.76,,Shared,,,,false,259631469284534953
 2026-11-05,JP Morgan Chase,Cash & ATM,CASHBACK DEBIT (...3359),"ACH WITHDRAWAL JPMORGAN CHASE BANK, NA",,-1050.00,,Shared,,,,false,259631469284534952
 2026-11-04,Twin Star Energy,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1104 7606&@#TWIN STAR ENERG LONE TREE CO US,,-58.46,,Shared,,,,false,259586444226964466
