@@ -1,12 +1,14 @@
 Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Reviewed,Reviewed At,Reviewed By,Pending,Id
-2026-11-11,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-32.90,,Shared,,,,true,260108171389414239
+2026-11-11,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.35,,Shared,,,,false,260188761636711125
+2026-11-11,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.33,,Shared,,,,false,260188761636711124
+2026-11-11,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-32.90,,Shared,,,,false,260108171389414239
 2026-11-10,Rhino Market & Deli,Restaurants & Bars,Apple Card,Rhino Market & Deli,,-1.35,,Shared,,,,true,260108171389414238
 2026-11-10,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.26,,Shared,,,,false,260108170035702446
 2026-11-10,King Soopers,Groceries,Apple Card,King Soopers,,-65.56,,Shared,,,,false,260037184658582091
 2026-11-09,7-Eleven,Cash & ATM,CASHBACK DEBIT (...3359),ATM W/D 1109 164056 8352&@#7ELEVEN-FCTI PARKER CO US,,-200.00,,Shared,,,,false,260039226883025787
 2026-11-09,S&s Fuels,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1109 8352&@#S&S FUELS #305 PARKER CO US,,-78.93,,Shared,,,,false,260039226883025786
 2026-11-09,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-26.30,,Shared,,,,false,260002834204305702
-2026-11-09,Chick-fil-A,Restaurants & Bars,Apple Card,Chick-fil-A,,-17.74,,Shared,,,,true,260002834204305701
+2026-11-09,Chick-fil-A,Restaurants & Bars,Apple Card,Chick-fil-A,,-17.74,,Shared,,,,false,260002834204305701
 2026-11-09,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.03,,Shared,,,,false,260002833579354346
 2026-11-09,Apple,Shopping,Apple Card,Apple,,-0.99,,Shared,,,,false,259968756753082816
 2026-11-08,McDonald's,Restaurants & Bars,Apple Card,McDonald's,,-21.44,,Shared,,,,false,259855944122869847
