@@ -123,7 +123,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-10-22,Citi,Credit Card Payment,CASHBACK DEBIT (...3359),ACH WITHDRAWAL CITI CARD ONLINE PAYMENT,,-178.01,,Shared,,,,false,258363863427689314
 2026-10-22,Capital One,Other Income,CASHBACK DEBIT (...3359),ACH DEPOSIT FROM CAPITAL ONE NATIONAL ASSOCIATION,,34.04,,Shared,,,,false,258319498264160841
 2026-10-22,Apple,Shopping,Apple Card,Apple,,-3.98,,Shared,,,,false,258313183951300777
-2026-10-21,Costco Credit Card,Credit Card Payment,Costco Anywhere Visa® Card by Citi-2742 (...2742),Payment,,178.01,,Shared,,,,false,258316354563057815
+2026-10-21,Costco Credit Card,Credit Card Payment,Costco Anywhere Visa® Card by Citi (...2742),Payment,,178.01,,Shared,,,,false,258316354563057815
 2026-10-21,Walmart,Groceries,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1020 7606&@#WALMART20001558 8009666546 AR US,,-4.38,,Shared,,,,false,258268244019227264
 2026-10-21,Toyota,Auto Payment,CASHBACK DEBIT (...3359),ACH WITHDRAWAL TOYOTA ACH RTL WEB,,-1019.19,,Shared,,,,false,258268244019227263
 2026-10-21,Discover,Transfer,CASHBACK DEBIT (...3359),TRANSFER FROM ONLINE SAVINGS 4287,,3750.00,,Shared,,,,false,258268244019227262
@@ -208,7 +208,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-09-29,Chase,Other Income,CREDIT CARD (...6963),Payment Thank You-Mobile,,41.07,,Shared,,,,false,256383529533286884
 2026-09-29,JP Morgan Chase,Cash & ATM,CASHBACK DEBIT (...3359),"ACH WITHDRAWAL JPMORGAN CHASE BANK, NA",,-1050.00,,Shared,,,,false,256329684097673249
 2026-09-29,Transfer From Checking 6079,Transfer,CASHBACK DEBIT (...3359),TRANSFER FROM CHECKING 6079,,1004.95,,Shared,,,,false,256329684097673247
-2026-09-29,Costco Credit Card,Credit Card Payment,Costco Anywhere Visa® Card by Citi-2742 (...2742),Payment,,1004.95,,Shared,,,,false,256319977258723519
+2026-09-29,Costco Credit Card,Credit Card Payment,Costco Anywhere Visa® Card by Citi (...2742),Payment,,1004.95,,Shared,,,,false,256319977258723519
 2026-09-29,Chase,Transfer,CREDIT CARD (...0216),Payment Thank You-Mobile,,235.01,,Shared,,,,false,256291079101852236
 2026-09-29,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.36,,Shared,,,,false,256276314731292770
 2026-09-28,Apple,Shopping,Apple Card,Apple,,-11.97,,Shared,,,,false,256214386175617610
@@ -229,8 +229,8 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-09-26,Raising Cane's,Restaurants & Bars,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0924 7606&@#RAISING CANES 0 HIGHLANDS RAN CO US,,-18.78,,Shared,,,,false,256052375057836469
 2026-09-26,Lowe's,Home Improvement,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0925 7606&@#LOWE'S OF PARKE PARKER CO US,,-7.54,,Shared,,,,false,256052375057836468
 2026-09-25,Glosshouz,Shopping,Apple Card,Glosshouz,,-261.00,,Shared,,,,false,256214386175617598
-2026-09-25,Costco,Groceries,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-68.01,,Shared,,,,false,255984452222036949
-2026-09-25,Costco,Groceries,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-110.00,,Shared,,,,false,255984452222036948
+2026-09-25,Costco,Groceries,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-68.01,,Shared,,,,false,255984452222036949
+2026-09-25,Costco,Groceries,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-110.00,,Shared,,,,false,255984452222036948
 2026-09-25,S&s Fuels,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0925 7606&@#S&S FUELS #305 PARKER CO US,,-59.77,,Shared,,,,false,255961846194350241
 2026-09-25,Costco,Cash & ATM,CASHBACK DEBIT (...3359),ATM W/D 0925 191226 7606&@#COSTCO #1022-WD PARKER CO US,,-100.00,,Shared,,,,false,255961846194350240
 2026-09-25,S&s Fuels,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0925 7606&@#S&S FUELS #305 PARKER CO US,,-84.01,,Shared,,,,false,255916676625181264
@@ -411,7 +411,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-08-30,Sandeep,Transfer,CASHBACK DEBIT (...3359),ZELLE PAYMENT TO SANDEEP CBU1TVKRD,,-39.00,,Shared,,,,false,253598421085563375
 2026-08-30,Walmart,Shopping,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0830 8352&@#WM SUPERCENTER PARKER CO US,,-73.96,,Shared,,,,false,253598421085563374
 2026-08-30,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,18.62,,Shared,,,,false,253556174413605820
-2026-08-30,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-88.46,,Shared,,,,false,253532449864657447
+2026-08-30,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-88.46,,Shared,,,,false,253532449864657447
 2026-08-30,Dillard's,Shopping,Apple Card,Dillard's,,-112.11,,Shared,,,,false,253503236284590143
 2026-08-30,Dillard's,Shopping,Apple Card,Dillard's,,-147.26,,Shared,,,,false,253503236284590142
 2026-08-29,Meridian,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0829 7606&@#MERIDIAN 44 PARKER CO US,,-64.67,,Shared,,,,false,253547685536574103
@@ -430,11 +430,11 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-08-27,Google,Internet & Cable,Apple Card,Google,,-28.34,,Shared,,,,false,253238795610597803
 2026-08-26,Discover,Transfer,CASHBACK DEBIT (...3359),TRANSFER FROM CHECKING 6079,,952.09,,Shared,,,,false,253243218560788554
 2026-08-26,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-26.75,,Shared,,,,false,253208484339231355
-2026-08-25,Lexus of Greenwood,Credit Card Payment,Costco Anywhere Visa® Card by Citi-2742 (...2742),Lexus of Greenwood Austin,,-100.00,,Shared,,,,true,253150149473708797
+2026-08-25,Lexus of Greenwood,Credit Card Payment,Costco Anywhere Visa® Card by Citi (...2742),Lexus of Greenwood Austin,,-100.00,,Shared,,,,true,253150149473708797
 2026-08-25,S&s Fuels,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0825 8352&@#S&S FUELS #305 PARKER CO US,,-91.76,,Shared,,,,false,253141555446524627
 2026-08-25,"Apple Card, Cash, and Savings",Check Deposit,Apple Cash,Deposit,,0.26,,Shared,,,,false,253105960451025629
 2026-08-24,Circle K,Gas,CREDIT CARD (...0216),CIRCLEK #2744079,,-80.28,,Shared,,,,false,253076689492879953
-2026-08-24,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-44.99,,Shared,,,,false,253062132993075506
+2026-08-24,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-44.99,,Shared,,,,false,253062132993075506
 2026-08-24,State of South Carolina,Other Income,CASHBACK DEBIT (...3359),EARLY PAY TAX REFUND ACH FROM SC STATE TREASUR,,1861.04,,Shared,,,,false,253039821150727062
 2026-08-24,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-25.95,,Shared,,,,false,253014746738436982
 2026-08-24,Comcast,Internet & Cable,CASHBACK DEBIT (...3359),ACH WITHDRAWAL COMCAST-XFINITY CABLE SVCS,,-100.59,,Shared,,,,false,252989339258563393
@@ -448,7 +448,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-08-21,"Apple Card, Cash, and Savings",Credit Card Payment,Apple Card,Bill Payment,,198.45,,Shared,,,,false,252780725321312348
 2026-08-21,"Apple Card, Cash, and Savings",Credit Card Payment,Apple Card,Bill Payment,,3.08,,Shared,,,,false,252780725321312347
 2026-08-21,Toyota,Auto Payment,CASHBACK DEBIT (...3359),ACH WITHDRAWAL TOYOTA ACH RTL WEB,,-1019.19,,Shared,,,,false,252729051744545750
-2026-08-21,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-157.20,,Shared,,,,false,252705134109763830
+2026-08-21,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-157.20,,Shared,,,,false,252705134109763830
 2026-08-20,Walmart,Shopping,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0820 8352&@#WM SUPERCENTER PARKER CO US,,-24.50,,Shared,,,,false,252729051744545751
 2026-08-20,Walmart,Shopping,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0820 8352&@#WM SUPERCENTER PARKER CO US,,-111.06,,Shared,,,,false,252729051744545749
 2026-08-20,AMC Theatres,Entertainment & Recreation,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0818 7606&@#AMC 9640 ONLINE 888-440-4262 KS US,,-38.70,,Shared,,,,false,252675692019820575
@@ -459,7 +459,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-08-20,Chase,Credit Card Payment,CREDIT CARD (...6963),Payment Thank You-Mobile,,0.31,,Shared,,,,false,252622135695485564
 2026-08-19,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-25.90,,Shared,,,,false,252597537294756495
 2026-08-19,Circle K,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0819 8352&@#CIRCLEK #270647 DENVER CO US,,-96.41,,Shared,,,,false,252574026549406449
-2026-08-18,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-714.30,,Shared,,,,false,252514489203140877
+2026-08-18,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-714.30,,Shared,,,,false,252514489203140877
 2026-08-18,Apple,Shopping,Apple Card,Apple,,-2.04,,Shared,,,,false,252489070718462411
 2026-08-18,Sport Clips,Personal,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0816 7606&@#SPORT CLIPS - C PARKER CO US,,-39.00,,Shared,,,,false,252466000999983339
 2026-08-18,Goodmans Apparel,Shopping,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0817 7606&@#SQ *GOODMANS AP PARKER CO US,,-59.00,,Shared,,,,false,252466000999983338
@@ -519,7 +519,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-08-06,Citi,Credit Card Payment,CASHBACK DEBIT (...3359),ACH WITHDRAWAL CITI CARD ONLINE PAYMENT,,-44.99,,Shared,,,,false,251384996986071132
 2026-08-06,Parker Parker & Co.,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0804 7606&@#TOWN OF PARKER PARKER CO US,,-38.09,,Shared,,,,false,251384996986071131
 2026-08-06,"Apple Card, Cash, and Savings",Check Deposit,Apple Cash,Deposit,,0.53,,Shared,,,,false,251352075586742876
-2026-08-05,Costco Credit Card,Credit Card Payment,Costco Anywhere Visa® Card by Citi-2742 (...2742),Payment,,44.99,,Shared,,,,false,251349576873126376
+2026-08-05,Costco Credit Card,Credit Card Payment,Costco Anywhere Visa® Card by Citi (...2742),Payment,,44.99,,Shared,,,,false,251349576873126376
 2026-08-05,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-28.55,,Shared,,,,false,251329476174523338
 2026-08-05,Discover,Transfer,CASHBACK DEBIT (...3359),TRANSFER FROM ONLINE SAVINGS 1405,,1001.00,,Shared,,,,false,251289203241363822
 2026-08-05,JP Morgan Chase,Cash & ATM,CASHBACK DEBIT (...3359),"ACH WITHDRAWAL JPMORGAN CHASE BANK, NA",,-1050.00,,Shared,,,,false,251289203241363821
@@ -662,7 +662,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-07-15,Xcel Energy,Gas & Electric,CASHBACK DEBIT (...3359),ACH WITHDRAWAL XCEL ENERGY-PSCO XCELENERGY,,-154.07,,Shared,,,,false,249385400979138836
 2026-07-15,Chick-fil-A,Restaurants & Bars,Apple Card,Chick-fil-A,,-35.04,,Shared,,,,false,249336774554790322
 2026-07-14,PlayStation,Entertainment & Recreation,Unlimited Cash Rewards Visa Signature (...7473),PlayStation Network 800-3457669 CA,,-18.35,,Shared,,,,false,249508986572220782
-2026-07-14,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-44.99,,Shared,,,,false,249437704878008993
+2026-07-14,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-44.99,,Shared,,,,false,249437704878008993
 2026-07-14,Walmart,Shopping,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0712 7606&@#WALMART.COM BENTONVILLE AR US,,-49.03,,Shared,,,,false,249332119040927795
 2026-07-14,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-29.80,,Shared,,,,false,249316079184620253
 2026-07-14,State Farm,Insurance,Apple Card,State Farm Insurance,,-219.69,,Shared,,,,false,249268793078426466
@@ -684,7 +684,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-07-11,Bawarchi,Restaurants & Bars,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0709 7606&@#TST* BAWARCHI I ENGLEWOOD CO US,,-11.73,,Shared,,,,false,249105960923540222
 2026-07-11,PlayStation,Entertainment & Recreation,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0709 7606&@#PLAYSTATION SAN MATEO CA US,,-5.38,,Shared,,,,false,249105960923540221
 2026-07-10,Everyday,Shopping,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0710 8352&@#EVERYDAY 5729 CENTENNIAL CO US,,-25.17,,Shared,,,,false,248924620395621214
-2026-07-09,Costco Credit Card,Credit Card Payment,Costco Anywhere Visa® Card by Citi-2742 (...2742),Payment,,493.27,,Shared,,,,false,248890687214823833
+2026-07-09,Costco Credit Card,Credit Card Payment,Costco Anywhere Visa® Card by Citi (...2742),Payment,,493.27,,Shared,,,,false,248890687214823833
 2026-07-09,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.15,,Shared,,,,false,248886086787901517
 2026-07-09,Discover,Transfer,CASHBACK DEBIT (...3359),TRANSFER FROM ONLINE SAVINGS 1405,,304.00,,Shared,,,,false,248879537567803910
 2026-07-09,HCA,Medical,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0708 8352&@#HCAHO RM PED OR LONE TREE CO US,,-87.22,,Shared,,,,false,248834238822459907
@@ -734,7 +734,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-07-02,Ekmiveda,Shopping,Apple Card,Ekmiveda,,-44.74,,Shared,,,,false,248523548999003010
 2026-07-02,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-30.60,,Shared,,,,false,248523548999003009
 2026-07-02,Soundcore,Shopping,CREDIT CARD (...0216),SP SOUNDCORE US,,-178.77,,Shared,,,,false,248369230140385338
-2026-07-02,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,46.41,,Shared,,,,false,248256142400531231
+2026-07-02,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,46.41,,Shared,,,,false,248256142400531231
 2026-07-02,Paris Baguette,Restaurants & Bars,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0630 7606&@#TST* PARIS BAGU PARKER CO US,,-22.32,,Shared,,,,false,248246143399995987
 2026-07-02,Sport Clips,Personal,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0702 7606&@#SPORT CLIPS - C PARKER CO US,,-45.00,,Shared,,,,false,248246143399995986
 2026-07-02,Capital One,Transfer,CASHBACK DEBIT (...3359),ACH DEPOSIT FROM CAPITAL ONE NATIONAL ASSOCIATION,,560.87,,Shared,,,,false,248200871180478997
@@ -848,9 +848,9 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-06-13,Sport Clips,Personal,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0611 7606&@#SPORT CLIPS - C PARKER CO US,,-39.00,,Shared,,,,false,246534147310856695
 2026-06-13,Spice Exchange,Groceries,Apple Card,Shop Spice Exchang,,-20.00,,Shared,,,,false,246533075955591786
 2026-06-13,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-27.20,,Shared,,,,false,246506136841726497
-2026-06-12,Hobby Lobby,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Hobby Lobby,,52.81,,Shared,,,,false,246719429067910023
-2026-06-12,Walmart,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Walmart,,1.08,,Shared,,,,false,246719429067910022
-2026-06-12,Walmart,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Walmart,,9.87,,Shared,,,,false,246719429067910021
+2026-06-12,Hobby Lobby,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Hobby Lobby,,52.81,,Shared,,,,false,246719429067910023
+2026-06-12,Walmart,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Walmart,,1.08,,Shared,,,,false,246719429067910022
+2026-06-12,Walmart,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Walmart,,9.87,,Shared,,,,false,246719429067910021
 2026-06-12,Wells Fargo,Credit Card Payment,WELLS FARGO CASH WISE VISA SIGNATURE CARD (...5802),AUTOMATIC PAYMENT - THANK YOU,,77.65,,Shared,,,,false,246466970186656126
 2026-06-12,Walmart,Shopping,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0612 7606&@#WAL-MART #2892 PARKER CO US,,-104.91,,Shared,,,,false,246443621920254130
 2026-06-12,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.27,,Shared,,,,false,246415521252617060
@@ -863,32 +863,32 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-06-10,Modernmusic,Entertainment & Recreation,CREDIT CARD (...0216),MODERNMUSIC,,-350.00,,Shared,,,,false,246633545464260732
 2026-06-10,Konark Grocers,Groceries,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0609 7606&@#KONARK GROCERS HIGHLANDS RAN CO US,,-12.97,,Shared,,,,false,246217338824141579
 2026-06-10,Walmart,Shopping,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0609 7606&@#WAL-MART #2892 PARKER CO US,,-122.46,,Shared,,,,false,246172372139747601
-2026-06-09,Walmart,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Walmart,,12.61,,Shared,,,,false,246447727049156662
-2026-06-08,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-73.98,,Shared,,,,false,246163823732960171
+2026-06-09,Walmart,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Walmart,,12.61,,Shared,,,,false,246447727049156662
+2026-06-08,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-73.98,,Shared,,,,false,246163823732960171
 2026-06-08,Formula,Shopping,Apple Card,Formula,,-62.99,,Shared,,,,false,246075823416126084
 2026-06-08,Circle K,Cash & ATM,CASHBACK DEBIT (...3359),ATM W/D 0608 140831 7606&@#CIRCLE K #27-K0 CENTENNIAL CO US,,-200.00,,Shared,,,,false,246059254740920803
 2026-06-08,Circle K,Cash & ATM,CASHBACK DEBIT (...3359),ATM W/D 0608 140937 7606&@#CIRCLE K #27-K0 CENTENNIAL CO US,,-200.00,,Shared,,,,false,246059254740920802
 2026-06-08,Circle K,Cash & ATM,CASHBACK DEBIT (...3359),ATM W/D 0608 141030 7606&@#CIRCLE K #27-K0 CENTENNIAL CO US,,-100.00,,Shared,,,,false,246059254740920801
-2026-06-06,Costco,Gas,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco Gas,,-57.36,,Shared,,,,false,246163823732960173
-2026-06-06,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-104.23,,Shared,,,,false,246163823732960172
+2026-06-06,Costco,Gas,Costco Anywhere Visa® Card by Citi (...2742),Costco Gas,,-57.36,,Shared,,,,false,246163823732960173
+2026-06-06,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-104.23,,Shared,,,,false,246163823732960172
 2026-06-06,Bawarchi,Restaurants & Bars,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0605 7606&@#SQ *BAWARCHI BI CENTENNIAL CO US,,-64.01,,Shared,,,,false,245900711498852381
 2026-06-06,Chipotle,Restaurants & Bars,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0605 7606&@#CHIPOTLE 0059 PARKER CO US,,-42.61,,Shared,,,,false,245900711498852380
 2026-06-06,Party America,Shopping,Apple Card,Party America,,-96.43,,Shared,,,,false,245872100349814801
 2026-06-06,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.35,,Shared,,,,false,245872099258248060
-2026-06-06,Hobby Lobby,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Hobby Lobby,,-52.81,,Shared,,,,false,245826934382504863
+2026-06-06,Hobby Lobby,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Hobby Lobby,,-52.81,,Shared,,,,false,245826934382504863
 2026-06-06,Ross,Shopping,Apple Card,Ross Dress for Less,,-65.83,,Shared,,,,false,245809682052524326
 2026-06-06,Five Below,Shopping,Apple Card,Five Below,,-34.94,,Shared,,,,false,245809682052524325
-2026-06-05,Walmart,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Walmart,,-59.09,,Shared,,,,false,245826934382504866
-2026-06-05,Walmart,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Walmart,,-16.18,,Shared,,,,false,245826934382504865
-2026-06-05,Konark Grocers,Groceries,Costco Anywhere Visa® Card by Citi-2742 (...2742),Konark Grocers,,-20.39,,Shared,,,,false,245826934382504864
+2026-06-05,Walmart,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Walmart,,-59.09,,Shared,,,,false,245826934382504866
+2026-06-05,Walmart,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Walmart,,-16.18,,Shared,,,,false,245826934382504865
+2026-06-05,Konark Grocers,Groceries,Costco Anywhere Visa® Card by Citi (...2742),Konark Grocers,,-20.39,,Shared,,,,false,245826934382504864
 2026-06-05,Hobby Lobby,Shopping,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0605 8352&@#HOBBYLOBBY PARKER CO US,,-7.54,,Shared,,,,false,245787907375737272
 2026-06-05,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-35.35,,Shared,,,,false,245718085992425939
-2026-06-04,Walmart,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Walmart,,44.87,,Shared,,,,false,246163823732960174
-2026-06-04,Walmart,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Walmart,,-43.20,,Shared,,,,false,245826934382504871
-2026-06-04,Walmart,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Walmart,,-32.53,,Shared,,,,false,245826934382504870
-2026-06-04,Walmart,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Walmart,,-100.41,,Shared,,,,false,245826934382504869
-2026-06-04,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-21.59,,Shared,,,,false,245826934382504868
-2026-06-04,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-79.15,,Shared,,,,false,245826934382504867
+2026-06-04,Walmart,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Walmart,,44.87,,Shared,,,,false,246163823732960174
+2026-06-04,Walmart,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Walmart,,-43.20,,Shared,,,,false,245826934382504871
+2026-06-04,Walmart,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Walmart,,-32.53,,Shared,,,,false,245826934382504870
+2026-06-04,Walmart,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Walmart,,-100.41,,Shared,,,,false,245826934382504869
+2026-06-04,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-21.59,,Shared,,,,false,245826934382504868
+2026-06-04,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-79.15,,Shared,,,,false,245826934382504867
 2026-06-04,UGK Construction,Home Improvement,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0603 7606&@#UGK CONSTRUCTIO 7208191234 CO US,,-560.87,,Shared,,,,false,245698183497754924
 2026-06-04,Costco,Cash & ATM,CASHBACK DEBIT (...3359),ATM W/D 0604 173905 7606&@#COSTCO #1022-WD PARKER CO US,,-200.00,,Shared,,,,false,245698183497754923
 2026-06-04,Costco,Cash & ATM,CASHBACK DEBIT (...3359),ATM W/D 0604 174004 7606&@#COSTCO #1022-WD PARKER CO US,,-200.00,,Shared,,,,false,245698183497754922
@@ -964,7 +964,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-05-17,Booking.com,Travel & Vacation,CREDIT CARD (...0216),Hotel at Booking.com,,-74.12,,Shared,,,,false,244179509453498652
 2026-05-17,Apple,Shopping,Apple Card,Apple,,-9.99,,Shared,,,,false,244030238451280364
 2026-05-16,Nintendo,Entertainment & Recreation,WELLS FARGO CASH WISE VISA SIGNATURE CARD (...5802),Nintendo CB1630653025 800-2553700 WA,,-14.99,,Shared,,,,false,244136342447434013
-2026-05-16,Costco Credit Card,Credit Card Payment,Costco Anywhere Visa® Card by Citi-2742 (...2742),Payment,,115.12,,Shared,,,,false,244101631730756351
+2026-05-16,Costco Credit Card,Credit Card Payment,Costco Anywhere Visa® Card by Citi (...2742),Payment,,115.12,,Shared,,,,false,244101631730756351
 2026-05-16,Chase,Credit Card Payment,CREDIT CARD (...0216),Payment Thank You-Mobile,,280.00,,Shared,,,,false,244087554643044821
 2026-05-15,CVS,Medical,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0515 8352&@#CVS/PHARMACY #1 PARKER CO US,,-48.23,,Shared,,,,false,244112425213208874
 2026-05-15,King Soopers,Groceries,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0514 7606&@#KING SOOPERS #0 PARKER CO US,,-70.28,,Shared,,,,false,243982992495061627
@@ -1000,7 +1000,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-05-10,King Soopers,Groceries,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0510 7606&@#KING SOOPERS #0 PARKER CO US,,-88.12,,Shared,,,,false,243564423700523958
 2026-05-10,Apna Bazar,Groceries,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0509 7606&@#APNA BAZAR WESTMINSTER CO US,,-36.34,,Shared,,,,false,243528462127048891
 2026-05-10,Zelle,Transfer,CASHBACK DEBIT (...3359),ZELLE PAYMENT TO HEMAN VORA 4BQ1MX6ND,,-100.00,,Shared,,,,false,243528462127048890
-2026-05-10,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-44.99,,Shared,,,,false,243398606095624438
+2026-05-10,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-44.99,,Shared,,,,false,243398606095624438
 2026-05-10,K-Stop Gas & Grocery,Groceries,Apple Card,K-Stop Gas & Grocery,,-27.85,,Shared,,,,false,243361145059519406
 2026-05-09,Sport Clips,Personal,CASHBACK DEBIT (...3359),DEBIT PURCHASE 0509 7606&@#SPORT CLIPS - C PARKER CO US,,-42.00,,Shared,,,,false,243564423700523962
 2026-05-09,Mobile,Credit Card Payment,CREDIT CARD (...0216),Payment Thank You-Mobile,,3285.77,,Shared,,,,false,243504947970681199
@@ -1018,8 +1018,8 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-05-05,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.35,,Shared,,,,false,243094086138440062
 2026-05-05,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,1.43,,Shared,,,,false,243094086138440061
 2026-05-05,Discover,Cash & ATM,CASHBACK DEBIT (...3359),ATM Withdrawal,,-160.00,,Shared,,,,false,243013883723754106
-2026-05-05,Costco Credit Card,Interest,Costco Anywhere Visa® Card by Citi-2742 (...2742),Promotional APR Ended,,70.13,,Shared,,,,false,243007457452337281
-2026-05-05,Costco Credit Card,Transfer,Costco Anywhere Visa® Card by Citi-2742 (...2742),Offer Moved to Standard,,-70.13,,Shared,,,,false,243007457452337280
+2026-05-05,Costco Credit Card,Interest,Costco Anywhere Visa® Card by Citi (...2742),Promotional APR Ended,,70.13,,Shared,,,,false,243007457452337281
+2026-05-05,Costco Credit Card,Transfer,Costco Anywhere Visa® Card by Citi (...2742),Offer Moved to Standard,,-70.13,,Shared,,,,false,243007457452337280
 2026-05-04,Phillips 66,Gas,Apple Card,Phillips 66,,-71.73,,Shared,,,,false,243094086412118433
 2026-05-04,City Market & Deli,Restaurants & Bars,Apple Card,City Market Deli,,-2.15,,Shared,,,,false,243094086412118432
 2026-05-04,Apple,Shopping,Apple Card,Apple,,-11.54,,Shared,,,,false,243094086412118431
@@ -1118,7 +1118,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-04-20,Apple,Credit Card Payment,CASHBACK DEBIT (...3359),ACH Withdrawal APPLECARD GSBANK PAYMENT,,-975.49,,Shared,,,,false,241563950767385449
 2026-04-20,Target,Shopping,CASHBACK DEBIT (...3359),ACH Withdrawal TARGET DEBIT CRD PURCHASE,,-1.03,,Shared,,,,false,241563950767385448
 2026-04-19,Wells Fargo,Credit Card Payment,WELLS FARGO CASH WISE VISA SIGNATURE CARD (...5802),ONLINE ACH PAYMENT THANK YOU,,1105.36,,Shared,,,,false,241602344805443850
-2026-04-19,Costco Credit Card by Citi,Credit Card Payment,Costco Anywhere Visa® Card by Citi-2742 (...2742),Payment,,3174.10,,Shared,,,,false,241554648000342892
+2026-04-19,Costco Credit Card by Citi,Credit Card Payment,Costco Anywhere Visa® Card by Citi (...2742),Payment,,3174.10,,Shared,,,,false,241554648000342892
 2026-04-19,Circle K,Gas,Apple Card,Circle K - Convenience Store,,-47.96,,Shared,,,,false,241539156204300764
 2026-04-19,Walmart,Shopping,CASHBACK DEBIT (...3359),WM SUPERCENTER,,-86.75,,Shared,,,,false,241480399567956013
 2026-04-18,Ekmiveda,Shopping,Apple Card,Ekmiveda,,-81.01,,Shared,,,,false,241434147516033291
@@ -1145,8 +1145,8 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-04-16,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-27.65,,Shared,,,,false,241259869500844658
 2026-04-16,Taco Bell,Restaurants & Bars,Apple Card,Taco Bell,,-11.18,,Shared,,,,false,241239872494872994
 2026-04-16,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.47,,Shared,,,,false,241188406393547616
-2026-04-15,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-0.25,,Shared,,,,false,241282185888770687
-2026-04-15,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-69.88,,Shared,,,,false,241282185888770686
+2026-04-15,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-0.25,,Shared,,,,false,241282185888770687
+2026-04-15,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-69.88,,Shared,,,,false,241282185888770686
 2026-04-15,Chase,Financial Fees,CREDIT CARD (...0216),PURCHASE INTEREST CHARGE,,-5.02,,Shared,,,,false,241226061024045779
 2026-04-15,Discover,Cash & ATM,CASHBACK DEBIT (...3359),ATM Withdrawal,,-200.00,,Shared,,,,false,241192547499092580
 2026-04-15,Discover,Cash & ATM,CASHBACK DEBIT (...3359),ATM Withdrawal,,-200.00,,Shared,,,,false,241192547499092579
@@ -1189,7 +1189,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-04-10,Discover,Transfer,CASHBACK DEBIT (...3359),Transfer From CHECKING 6079,,3500.00,,Shared,,,,false,240651259613784094
 2026-04-10,Desi Mandi,Restaurants & Bars,Apple Card,Desi Mandi,,-72.22,,Shared,,,,false,240637193826577084
 2026-04-09,Chase,Other Income,CREDIT CARD (...0216),Payment Thank You-Mobile,,1000.00,,Shared,,,,false,240769611759856501
-2026-04-09,Costco Credit Card by Citi,Credit Card Payment,Costco Anywhere Visa® Card by Citi-2742 (...2742),Payment,,2000.00,,Shared,,,,false,240652232839113670
+2026-04-09,Costco Credit Card by Citi,Credit Card Payment,Costco Anywhere Visa® Card by Citi (...2742),Payment,,2000.00,,Shared,,,,false,240652232839113670
 2026-04-09,Uber Eats,Restaurants & Bars,Apple Card,Uber Eats,,-35.18,,Shared,,,,false,240637193826577083
 2026-04-09,Uber Eats,Restaurants & Bars,Apple Card,Uber Eats,,-29.74,,Shared,,,,false,240637193826577082
 2026-04-09,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.26,,Shared,,,,false,240609492211313005
@@ -1221,7 +1221,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-04-04,Apple,Shopping,Apple Card,Apple Services,,-4.19,,Shared,,,,false,240161691670128796
 2026-04-04,Walmart,Groceries,Apple Card,Wm Supercenter #2892,,-151.33,,Shared,,,,false,240161691670128795
 2026-04-03,Nintendo,Entertainment & Recreation,WELLS FARGO CASH WISE VISA SIGNATURE CARD (...5802),Nintendo CB1600410660 800-2553700 WA,,-2.42,,Shared,,,,false,240164716503607618
-2026-04-03,Costco Credit Card by Citi,Credit Card Payment,Costco Anywhere Visa® Card by Citi-2742 (...2742),Payment,,425.22,,Shared,,,,false,240134036365224380
+2026-04-03,Costco Credit Card by Citi,Credit Card Payment,Costco Anywhere Visa® Card by Citi (...2742),Payment,,425.22,,Shared,,,,false,240134036365224380
 2026-04-03,ExxonMobil,Gas,Apple Card,Exxon Highlands Ranch,,-90.04,,Shared,,,,false,240061596481071235
 2026-04-03,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,1.36,,Shared,,,,false,240061594349316977
 2026-04-03,Uber,Taxi & Ride Shares,Apple Card,Uber *one Membership,,-9.99,,Shared,,,,false,240007507553528582
@@ -1233,8 +1233,8 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-04-02,Rocket Mortgage,Mortgage,CASHBACK DEBIT (...3359),ACH Withdrawal ROCKET MORTGAGE LOAN,,-3735.85,,Shared,,,,false,239945335989316421
 2026-04-02,Chase,Credit Card Payment,CASHBACK DEBIT (...3359),ACH Withdrawal CHASE CREDIT CRD EPAY,,-150.37,,Shared,,,,false,239945335989316420
 2026-04-02,Sierra Ridge Met,Rent,CASHBACK DEBIT (...3359),ACH Withdrawal SIERRA RIDGE MET PAYMENT,,-188.50,,Shared,,,,false,239945335989316419
-2026-04-01,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-32.94,,Shared,,,,false,240039967011089043
-2026-04-01,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-267.18,,Shared,,,,false,240039967011089042
+2026-04-01,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-32.94,,Shared,,,,false,240039967011089043
+2026-04-01,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-267.18,,Shared,,,,false,240039967011089042
 2026-04-01,Bank of America,Loan Repayment,CASHBACK DEBIT (...3359),"ACH Withdrawal Bank of America, NA",,-400.00,,Shared,,,,false,239906705505757377
 2026-04-01,ServiceMac,Mortgage,CASHBACK DEBIT (...3359),ACH Withdrawal SERVICEMAC PMT MTGE PAYMT,,-4813.80,,Shared,,,,false,239906705505757376
 2026-04-01,Housecall Pro,Home Improvement,Apple Card,Housecall Pro,,-228.00,,Shared,,,,false,239896560353650731
@@ -1244,7 +1244,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-03-30,Sunbit,Loan Repayment,CASHBACK DEBIT (...3359),SUNBIT,,-793.05,,Shared,,,,false,239815200168454473
 2026-03-30,Target,Shopping,CASHBACK DEBIT (...3359),ACH Withdrawal TARGET DEBIT CRD ACH TRAN,,-49.00,,Shared,,,,false,239730337083009159
 2026-03-30,Transfer From Checking,Transfer,CASHBACK DEBIT (...3359),Transfer From CHECKING 6079,,3500.00,,Shared,,,,false,239646841642658297
-2026-03-29,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-73.98,,Shared,,,,false,240039967011089044
+2026-03-29,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-73.98,,Shared,,,,false,240039967011089044
 2026-03-29,Snooze Lone Tree,Restaurants & Bars,Apple Card,Snooze Lone Tree,,-56.32,,Shared,,,,false,239655301032683830
 2026-03-28,Deposit,Other Income,Apple Cash,Deposit,,0.68,,Shared,,,,false,239532292661816303
 2026-03-28,Deposit,Other Income,Apple Cash,Deposit,,0.03,,Shared,,,,false,239532292661816302
@@ -1286,7 +1286,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-03-21,Love's Travel Stops,Gas,Apple Card,Love's Travel Stop,,-48.60,,Shared,,,,false,238860028571265320
 2026-03-21,Hareli Fresh Market,Groceries,Apple Card,Hareli Fresh Market,,-155.80,,Shared,,,,false,238860028571265319
 2026-03-21,Payrix,Groceries,Apple Card,PY * hareli Fresh Marke,,-165.45,,Shared,,,,false,238860028571265318
-2026-03-20,Vummidi Bangaru,Business Income,Costco Anywhere Visa® Card by Citi-2742 (...2742),Vummidi Bangaru,,-800.00,,Shared,,,,false,240039967011089045
+2026-03-20,Vummidi Bangaru,Business Income,Costco Anywhere Visa® Card by Citi (...2742),Vummidi Bangaru,,-800.00,,Shared,,,,false,240039967011089045
 2026-03-20,Snow Lotus,Restaurants & Bars,CREDIT CARD (...0216),SQ *SNOW LOTUS,,-1831.54,,Shared,,,,false,239100153102314391
 2026-03-20,Payment From Checking: 3074 Conf#8whd2r4fr,Credit Card Payment,Unlimited Cash Rewards Visa Signature (...7473),PAYMENT FROM CHK 3074 CONF#8whd2r4fr,,35.22,,Shared,,,,false,238925417864997839
 2026-03-20,Saravana Bhavan,Restaurants & Bars,Apple Card,Saravana Bhavan,,-49.95,,Shared,,,,false,238860028571265317
@@ -1301,8 +1301,8 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-03-20,Circle K,Gas,Apple Card,Circle K # 42802,,-73.32,,Shared,,,,false,238792554790234892
 2026-03-20,Deposit,Other Income,Apple Cash,Deposit,,0.17,,Shared,,,,false,238744152728644373
 2026-03-20,Madurai Thattu Kadai,Restaurants & Bars,Apple Card,Madurai Thattu Kadai,,-98.26,,Shared,,,,false,238744152564017927
-2026-03-19,Malabar Gold & Diamond,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Malabar Gold & Diamond,,-500.00,,Shared,,,,false,240039967011089047
-2026-03-19,Malabar Gold & Diamond,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Malabar Gold & Diamond,,-3500.00,,Shared,,,,false,240039967011089046
+2026-03-19,Malabar Gold & Diamond,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Malabar Gold & Diamond,,-500.00,,Shared,,,,false,240039967011089047
+2026-03-19,Malabar Gold & Diamond,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Malabar Gold & Diamond,,-3500.00,,Shared,,,,false,240039967011089046
 2026-03-19,Joyalukkas Jewelry Dallas,Shopping,CREDIT CARD (...0216),JOYALUKKAS JEWELRY DALLAS,,-3083.00,,Shared,,,,false,238918705101646021
 2026-03-19,Payment,Other Income,CREDIT CARD (...6963),Payment Thank You-Mobile,,0.28,,Shared,,,,false,238736525265185494
 2026-03-19,Nalli Silks,Clothing,Apple Card,Nalli Silks,,-399.71,,Shared,,,,false,238720538695412069
@@ -1330,7 +1330,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-03-16,Xcel Energy,Gas & Electric,CASHBACK DEBIT (...3359),ACH Withdrawal XCEL ENERGY-PSCO XCELENERGY,,-252.06,,Shared,,,,false,238453960052550506
 2026-03-16,Citi,Credit Card Payment,CASHBACK DEBIT (...3359),ACH Withdrawal CITI CARD ONLINE PAYMENT,,-425.23,,Shared,,,,false,238453960052550505
 2026-03-16,Apple,Credit Card Payment,CASHBACK DEBIT (...3359),ACH Withdrawal APPLECARD GSBANK PAYMENT,,-494.31,,Shared,,,,false,238453960052550504
-2026-03-15,Costco Credit Card by Citi,Credit Card Payment,Costco Anywhere Visa® Card by Citi-2742 (...2742),Payment,,425.23,,Shared,,,,false,240039967011089048
+2026-03-15,Costco Credit Card by Citi,Credit Card Payment,Costco Anywhere Visa® Card by Citi (...2742),Payment,,425.23,,Shared,,,,false,240039967011089048
 2026-03-15,Interest Charge,Financial Fees,CREDIT CARD (...0216),PURCHASE INTEREST CHARGE,,-2.87,,Shared,,,,false,238458201978677754
 2026-03-15,Walmart,Shopping,CASHBACK DEBIT (...3359),WM SUPERCENTER,,-24.84,,Shared,,,,false,238370296476183326
 2026-03-15,Deposit,Other Income,Apple Cash,Deposit,,0.57,,Shared,,,,false,238331919893768917
@@ -1344,7 +1344,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-03-14,Bill Payment,Transfer,Apple Card,Bill Payment,,5.69,,Shared,,,,false,238264041153735352
 2026-03-14,Deposit,Other Income,Apple Cash,Deposit,,1.34,,Shared,,,,false,238241362486995826
 2026-03-14,State Farm,Insurance,Apple Card,State Farm,,-262.80,,Shared,,,,false,238218625323346882
-2026-03-13,Citi Flex,Financial Fees,Costco Anywhere Visa® Card by Citi-2742 (...2742),Plan Fee Citi Flex,,0.00,,Shared,,,,false,240039967011089049
+2026-03-13,Citi Flex,Financial Fees,Costco Anywhere Visa® Card by Citi (...2742),Plan Fee Citi Flex,,0.00,,Shared,,,,false,240039967011089049
 2026-03-13,Real Property Management,Business Income,CASHBACK DEBIT (...3359),ACH Deposit SIGONFILE From Real Property Ma,,2695.50,,Shared,,,,false,238202386175732712
 2026-03-13,Transfer From Checking,Transfer,CASHBACK DEBIT (...3359),Transfer From CHECKING 6079,,3500.00,,Shared,,,,false,238202386175732711
 2026-03-13,S&s Fuels,Gas,CASHBACK DEBIT (...3359),S&S FUELS #305,,-83.68,,Shared,,,,false,238202386175732710
@@ -1388,7 +1388,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-03-05,Deposit,Other Income,Apple Cash,Deposit,,0.13,,Shared,,,,false,237452759561382836
 2026-03-05,Raising Cane's,Restaurants & Bars,Apple Card,Raising Cane's Chicken Fingers,,-20.87,,Shared,,,,false,237452759510002599
 2026-03-05,Ledo Thai,Restaurants & Bars,Apple Card,Ledo Thai,,-36.76,,Shared,,,,false,237389260543993865
-2026-03-04,Costco Credit Card by Citi,Credit Card Payment,Costco Anywhere Visa® Card by Citi-2742 (...2742),Payment,,755.10,,Shared,,,,false,240039967011089050
+2026-03-04,Costco Credit Card by Citi,Credit Card Payment,Costco Anywhere Visa® Card by Citi (...2742),Payment,,755.10,,Shared,,,,false,240039967011089050
 2026-03-04,Kaliteas.com,Shopping,CREDIT CARD (...0216),SP KALITEAS.COM,,-34.00,,Shared,,,,false,237537655599376859
 2026-03-04,Chase,Credit Card Payment,CASHBACK DEBIT (...3359),ACH Withdrawal CHASE CREDIT CRD EPAY,,-1586.16,,Shared,,,,false,237386878627064251
 2026-03-04,Deposit,Other Income,Apple Cash,Deposit,,0.66,,Shared,,,,false,237364025317894881
@@ -1498,7 +1498,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-02-14,Walmart,Groceries,Apple Card,Wm Supercenter #2892,,-51.73,,Shared,,,,false,235663799172442911
 2026-02-14,Taaza Mart Denver,Groceries,Apple Card,Taaza Mart Denver,,-70.03,,Shared,,,,false,235663799172442910
 2026-02-14,Taaza Mart Holding,Groceries,Apple Card,Taaza Mart Holding,,-52.83,,Shared,,,,false,235663799172442909
-2026-02-13,Citi Flex,Financial Fees,Costco Anywhere Visa® Card by Citi-2742 (...2742),Plan Fee Citi Flex,,0.00,,Shared,,,,false,240039967011089051
+2026-02-13,Citi Flex,Financial Fees,Costco Anywhere Visa® Card by Citi (...2742),Plan Fee Citi Flex,,0.00,,Shared,,,,false,240039967011089051
 2026-02-13,Payment,Transfer,CREDIT CARD (...0216),Payment Thank You-Mobile,,296.79,,Shared,,,,false,235699754614893333
 2026-02-13,Transfer From Checking,Transfer,CASHBACK DEBIT (...3359),Transfer From CHECKING 6079,,3500.00,,Shared,,,,false,235678039862127110
 2026-02-13,Costco,Shopping,CASHBACK DEBIT (...3359),COSTCO WHSE #10,,-156.50,,Shared,,,,false,235678039862127109
@@ -1516,9 +1516,9 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-02-11,Einthusan,Transfer,CREDIT CARD (...0216),EINTHUSAN,,-30.00,,Shared,,,,false,235608625982712580
 2026-02-11,Citi,Credit Card Payment,CASHBACK DEBIT (...3359),ACH Withdrawal CITI CARD ONLINE PAYMENT,,-138.97,,Shared,,,,false,235471609228929796
 2026-02-11,Natural Grocers,Groceries,Apple Card,Natural Grocers,,-70.62,,Shared,,,,false,235437431953271043
-2026-02-10,Costco Credit Card by Citi,Credit Card Payment,Costco Anywhere Visa® Card by Citi-2742 (...2742),Payment,,138.97,,Shared,,,,false,240039967011089052
+2026-02-10,Costco Credit Card by Citi,Credit Card Payment,Costco Anywhere Visa® Card by Citi (...2742),Payment,,138.97,,Shared,,,,false,240039967011089052
 2026-02-10,Cashback,Other Income,CASHBACK DEBIT (...3359),Debit Card Cashback Bonus One-Time Redemption,,5.18,,Shared,,,,false,235387676486248654
-2026-02-09,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-28.62,,Shared,,,,false,240039967011089053
+2026-02-09,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-28.62,,Shared,,,,false,240039967011089053
 2026-02-09,Phillips 66,Gas,Apple Card,Phillips 66 - Meridi,,-66.96,,Shared,,,,false,235280140609235863
 2026-02-09,365 Retail Markets,Restaurants & Bars,Apple Card,365 Retail Markets Vending,,-1.25,,Shared,,,,false,235280140609235862
 2026-02-09,Deposit,Other Income,Apple Cash,Deposit,,2.63,,Shared,,,,false,235280140402666381
@@ -1634,7 +1634,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-01-21,Toyota,Auto Payment,CASHBACK DEBIT (...3359),ACH Withdrawal TOYOTA ACH RTL 01192026,,-1019.19,,Shared,,,,false,233584005495630395
 2026-01-21,Deposit,Other Income,Apple Cash,Deposit,,0.63,,Shared,,,,false,233501159083976822
 2026-01-21,Conoco,Gas,Apple Card,Conoco,,-48.34,,Shared,,,,false,233484920341113466
-2026-01-20,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-231.27,,Shared,,,,false,240039967011089054
+2026-01-20,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-231.27,,Shared,,,,false,240039967011089054
 2026-01-20,Payment,Transfer,CREDIT CARD (...0216),Payment Thank You-Mobile,,211.83,,Shared,,,,false,233576279064422580
 2026-01-20,Check #165,Check,CASHBACK DEBIT (...3359),Check              165,,-390.00,,Shared,,,,false,233499455716305718
 2026-01-20,Freddy's Frozen Custard,Restaurants & Bars,Apple Card,Freddy's Frozen Custard & Steakburgers,,-16.03,,Shared,,,,false,233484920341113465
@@ -1655,16 +1655,16 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-01-15,Raising Cane's,Restaurants & Bars,Apple Card,Raising Cane's Chicken Fingers,,-18.15,,Shared,,,,false,233016407041223314
 2026-01-15,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E 470 Express Tolls,,-25.50,,Shared,,,,false,232993789433064100
 2026-01-15,Deposit,Other Income,Apple Cash,Deposit,,2.63,,Shared,,,,false,232993789220203142
-2026-01-14,Citi,Credit Card Payment,Costco Anywhere Visa® Card by Citi-2742 (...2742),Citi Flex Pay,,-1275.68,,Shared,,,,false,240039967011089057
-2026-01-14,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-69.98,,Shared,,,,false,240039967011089056
-2026-01-14,Costco,Groceries,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,1275.68,,Shared,,,,false,240039967011089055
+2026-01-14,Citi,Credit Card Payment,Costco Anywhere Visa® Card by Citi (...2742),Citi Flex Pay,,-1275.68,,Shared,,,,false,240039967011089057
+2026-01-14,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-69.98,,Shared,,,,false,240039967011089056
+2026-01-14,Costco,Groceries,Costco Anywhere Visa® Card by Citi (...2742),Costco,,1275.68,,Shared,,,,false,240039967011089055
 2026-01-14,Cava Highlands,Restaurants & Bars,Apple Card,10110 Cava Highlands,,-14.91,,Shared,,,,false,232902489590442630
 2026-01-14,Deposit,Other Income,Apple Cash,Deposit,,0.47,,Shared,,,,false,232902486456248619
 2026-01-14,State Farm,Insurance,Apple Card,State Farm,,-262.80,,Shared,,,,false,232883290487892362
 2026-01-14,Xcel Energy,Gas & Electric,CASHBACK DEBIT (...3359),ACH Withdrawal XCEL ENERGY-PSCO XCELENERGY,,-254.67,,Shared,,,,false,232871837500418085
 2026-01-14,Walmart,Shopping,Apple Card,Walmart,,-45.36,,Shared,,,,false,232856410617522382
 2026-01-14,Deposit,Other Income,Apple Cash,Deposit,,0.42,,Shared,,,,false,232856410324969644
-2026-01-13,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-138.97,,Shared,,,,false,240039967011089058
+2026-01-13,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-138.97,,Shared,,,,false,240039967011089058
 2026-01-13,Lexus Greenwood Villg Vilco,Auto Payment,Discover it Card (...3259),LEXUS GREENWOOD VILLG SV GREENWOOD VILCO,,-348.26,,Shared,,,,false,232955944001579082
 2026-01-13,Paddlers Cove,Loan Repayment,CASHBACK DEBIT (...3359),ACH Withdrawal Paddlers Cove Pr L6543713,,-250.00,,Shared,,,,false,232835950741792899
 2026-01-13,Real Property Management,Other Income,CASHBACK DEBIT (...3359),ACH Deposit SIGONFILE From Real Property Ma,,2695.50,,Shared,,,,false,232835950741792898
@@ -1680,7 +1680,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-01-11,Circle K,Gas,Apple Card,Circle K,,-51.33,,Shared,,,,false,232669245715491368
 2026-01-11,Deposit,Other Income,Apple Cash,Deposit,,0.29,,Shared,,,,false,232630064326879970
 2026-01-11,Deposit,Other Income,Apple Cash,Deposit,,0.53,,Shared,,,,false,232630064326879969
-2026-01-10,Costco,Groceries,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-1275.68,,Shared,,,,false,240039967011089059
+2026-01-10,Costco,Groceries,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-1275.68,,Shared,,,,false,240039967011089059
 2026-01-10,McDonald's,Restaurants & Bars,Apple Card,McDonald's,,-14.45,,Shared,,,,false,232563437146188135
 2026-01-10,Deposit,Other Income,Apple Cash,Deposit,,0.03,,Shared,,,,false,232563436743535440
 2026-01-09,Konark Grocers,Groceries,Apple Card,Konark Grocers,,-52.75,,Shared,,,,false,232494183736650690
@@ -1696,7 +1696,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-01-06,Bill Payment,Transfer,Apple Card,Bill Payment,,841.19,,Shared,,,,false,232201723942775184
 2026-01-06,Phillips 66,Gas,Apple Card,Phillips 66 - S&s Fu,,-33.77,,Shared,,,,false,232177278723271657
 2026-01-06,Deposit,Other Income,Apple Cash,Deposit,,0.72,,Shared,,,,false,232177267711125875
-2026-01-05,Costco Credit Card by Citi,Credit Card Payment,Costco Anywhere Visa® Card by Citi-2742 (...2742),Payment,,155.67,,Shared,,,,false,240039967011089060
+2026-01-05,Costco Credit Card by Citi,Credit Card Payment,Costco Anywhere Visa® Card by Citi (...2742),Payment,,155.67,,Shared,,,,false,240039967011089060
 2026-01-05,Cashback,Other Income,CASHBACK DEBIT (...3359),Debit Card Cashback Bonus One-Time Redemption,,4.62,,Shared,,,,false,232129002706807554
 2026-01-05,Cashback,Other Income,CASHBACK DEBIT (...3359),Debit Card Cashback Bonus One-Time Redemption,,16.25,,Shared,,,,false,232129002706807553
 2026-01-05,ATM Withdrawal,Cash & ATM,CASHBACK DEBIT (...3359),ATM Withdrawal,,-200.00,,Shared,,,,false,232129002706807552
@@ -1707,7 +1707,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-01-04,Transfer From Checking,Transfer,CASHBACK DEBIT (...3359),Transfer From CHECKING 6079,,2000.00,,Shared,,,,false,231961183185775459
 2026-01-04,ATM Withdrawal,Cash & ATM,CASHBACK DEBIT (...3359),ATM Withdrawal,,-200.00,,Shared,,,,false,231961183185775458
 2026-01-04,ATM Withdrawal,Cash & ATM,CASHBACK DEBIT (...3359),ATM Withdrawal,,-200.00,,Shared,,,,false,231961183185775457
-2026-01-03,Costco Credit Card by Citi,Credit Card Payment,Costco Anywhere Visa® Card by Citi-2742 (...2742),Payment,,730.53,,Shared,,,,false,240039967011089061
+2026-01-03,Costco Credit Card by Citi,Credit Card Payment,Costco Anywhere Visa® Card by Citi (...2742),Payment,,730.53,,Shared,,,,false,240039967011089061
 2026-01-03,Cashback,Other Income,WELLS FARGO CASH WISE VISA SIGNATURE CARD (...5802),CASH BACK REDEMPTION REF  190229294,,3.86,,Shared,,,,false,232291119295605365
 2026-01-03,Payment,Transfer,WELLS FARGO CASH WISE VISA SIGNATURE CARD (...5802),ONLINE ACH PAYMENT       THANK YOU,,236.95,,Shared,,,,false,232291119295605364
 2026-01-03,Best Buy,Electronics,My Best Buy® Visa® Card (...2860),"BESTBUY.COM, 888-BESTBUY",,-119.97,,Shared,,,,false,232082092871625210
@@ -1748,7 +1748,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2025-12-29,Dillard's,Shopping,Apple Card,Dillard's,,-181.06,,Shared,,,,false,231475994292627456
 2025-12-29,Park Meadows,Shopping,Apple Card,Park Meadows,,-10.92,,Shared,,,,false,231475994291579903
 2025-12-29,Deposit,Other Income,Apple Cash,Deposit,,0.77,,Shared,,,,false,231453507441895463
-2025-12-28,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-155.67,,Shared,,,,false,240039967011089062
+2025-12-28,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-155.67,,Shared,,,,false,240039967011089062
 2025-12-28,Circle K,Gas,Apple Card,Circle K,,-38.25,,Shared,,,,false,231453507437701158
 2025-12-28,Freddy's Frozen Custard,Restaurants & Bars,Apple Card,Freddy's Frozen Custard & Steakburgers,,-4.31,,Shared,,,,false,231399455988361892
 2025-12-28,Sport Clips,Personal,Apple Card,Sport Clips,,-39.00,,Shared,,,,false,231399455988361891
@@ -1887,7 +1887,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2025-12-03,Deposit,Other Income,Apple Cash,Deposit,,0.43,,Shared,,,,false,229101861980318505
 2025-12-03,Deposit,Other Income,Apple Cash,Deposit,,0.28,,Shared,,,,false,229101861980318504
 2025-12-03,Uber,Taxi & Ride Shares,Apple Card,Uber *one Membership,,-9.99,,Shared,,,,false,229053524353722661
-2025-12-02,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-357.26,,Shared,,,,false,240039967011089063
+2025-12-02,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-357.26,,Shared,,,,false,240039967011089063
 2025-12-02,Deposit,Other Income,Apple Cash,Deposit,,0.33,,Shared,,,,false,229101861980318503
 2025-12-02,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E 470 Express Tolls,,-28.20,,Shared,,,,false,229008291844828095
 2025-12-02,Phillips 66,Gas,Apple Card,Phillips 66,,-43.43,,Shared,,,,false,229008291844828094
@@ -1910,7 +1910,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2025-11-30,Under Armour,Clothing,Apple Card,Under Armour Castle Ro,,-45.93,,Shared,,,,false,228768544314599526
 2025-11-30,Carter's,Clothing,Apple Card,Carter's #650,,-184.85,,Shared,,,,false,228768544314599525
 2025-11-30,Le Creuset Us,Furniture & Housewares,Apple Card,Le Creuset - Us104,,-250.14,,Shared,,,,false,228768544314599524
-2025-11-29,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-44.99,,Shared,,,,false,240039967011089064
+2025-11-29,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-44.99,,Shared,,,,false,240039967011089064
 2025-11-29,Amazon,Shopping,CREDIT CARD (...6963),AMAZON MKTPL*BB3OO7MT2,,-21.27,,Shared,,,,false,228933719810353227
 2025-11-29,Deposit,Other Income,Apple Cash,Deposit,,1.59,,Shared,,,,false,228768544377514095
 2025-11-29,Deposit,Other Income,Apple Cash,Deposit,,6.66,,Shared,,,,false,228768544377514094
@@ -1942,14 +1942,14 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2025-11-27,Walmart,Groceries,Apple Card,Walmart,,-21.17,,Shared,,,,false,228532918751308606
 2025-11-27,Konark Grocers,Groceries,Apple Card,Konark Grocers,,-28.93,,Shared,,,,false,228532918751308605
 2025-11-27,Walmart,Shopping,Apple Card,Walmart+,,-51.45,,Shared,,,,false,228532918751308604
-2025-11-26,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-284.81,,Shared,,,,false,240039967011089065
+2025-11-26,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-284.81,,Shared,,,,false,240039967011089065
 2025-11-26,Walmart,Shopping,CASHBACK DEBIT (...3359),WALMART WMTPAY,,-100.59,,Shared,,,,false,228609714323696069
 2025-11-26,Interest Charge,Financial Fees,My Best Buy® Visa® Card (...2860),INTEREST CHARGE ON PURCHASES,,0.00,,Shared,,,,false,228549514325633616
 2025-11-26,Interest Charge,Financial Fees,My Best Buy® Visa® Card (...2860),INTEREST CHARGE ON CASH ADVANCES,,0.00,,Shared,,,,false,228549514325633615
 2025-11-26,Check #160,Check,CASHBACK DEBIT (...3359),Check              160,,-370.00,,Shared,,,,false,228489627742743228
 2025-11-26,AMC Theatres,Entertainment & Recreation,Apple Card,AMC Theatres,,-97.57,,Shared,,,,false,228465049758836773
-2025-11-25,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-137.40,,Shared,,,,false,240039967011089067
-2025-11-25,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,93.93,,Shared,,,,false,240039967011089066
+2025-11-25,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-137.40,,Shared,,,,false,240039967011089067
+2025-11-25,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,93.93,,Shared,,,,false,240039967011089066
 2025-11-25,Comcast,Internet & Cable,CASHBACK DEBIT (...3359),ACH Withdrawal COMCAST-XFINITY CABLE SVCS,,-50.59,,Shared,,,,false,228405583035213867
 2025-11-24,LabCorp,Medical,Apple Card,Labcorp,,-10.98,,Shared,,,,false,228306502526937293
 2025-11-24,Deposit,Other Income,Apple Cash,Deposit,,0.47,,Shared,,,,false,228238516323592524
@@ -1998,7 +1998,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2025-11-17,Apple,Shopping,Apple Card,Apple,,-9.99,,Shared,,,,false,227619361906993715
 2025-11-17,Bawarchi Biryanis,Restaurants & Bars,Apple Card,Bawarchi Biryanis,,-86.99,,Shared,,,,false,227619361906993714
 2025-11-17,Citi,Credit Card Payment,CASHBACK DEBIT (...3359),ACH Withdrawal CITI CARD ONLINE PAYMENT,,-441.22,,Shared,,,,false,227615756057553538
-2025-11-16,Costco Credit Card by Citi,Credit Card Payment,Costco Anywhere Visa® Card by Citi-2742 (...2742),Payment,,441.22,,Shared,,,,false,240039967011089068
+2025-11-16,Costco Credit Card by Citi,Credit Card Payment,Costco Anywhere Visa® Card by Citi (...2742),Payment,,441.22,,Shared,,,,false,240039967011089068
 2025-11-16,Walmart,Shopping,CASHBACK DEBIT (...3359),WALMART.COM 800,,-39.51,,Shared,,,,false,227950382448879815
 2025-11-16,Walmart,Shopping,CASHBACK DEBIT (...3359),WALMART.COM 800,,-9.71,,Shared,,,,false,227866828341750105
 2025-11-16,Walmart,Shopping,CASHBACK DEBIT (...3359),WALMART WMTPAY,,-24.53,,Shared,,,,false,227783120863603233
@@ -2061,10 +2061,10 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2025-11-05,Konark Grocers,Groceries,Apple Card,Konark Grocers,,-77.79,,Shared,,,,false,226541279408269414
 2025-11-05,Betterme Inc Mobapps,Advertising & Promotion,Apple Card,Betterme Inc - Mobapps,,-94.85,,Shared,,,,false,226541279408269413
 2025-11-05,Deposit,Other Income,Apple Cash,Deposit,,4.30,,Shared,,,,false,226541274353085043
-2025-11-04,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-271.68,,Shared,,,,false,240039967011089070
-2025-11-04,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,11.88,,Shared,,,,false,240039967011089069
+2025-11-04,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-271.68,,Shared,,,,false,240039967011089070
+2025-11-04,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,11.88,,Shared,,,,false,240039967011089069
 2025-11-04,Underground Sprinkler Corps,Home Improvement,Apple Card,Underground Sprinkler Corps,,-215.00,,Shared,,,,false,226541279408269412
-2025-11-03,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-181.42,,Shared,,,,false,240039967011089071
+2025-11-03,Costco,Shopping,Costco Anywhere Visa® Card by Citi (...2742),Costco,,-181.42,,Shared,,,,false,240039967011089071
 2025-11-03,Affirm,Shopping,Discover it Card (...3259),SP^AFF* ANKER US 8554233729 CA,,-42.33,,Shared,,,,false,226617141032888894
 2025-11-03,Livfresh Store,Groceries,Discover it Card (...3259),SP LIVFRESH STORE 4088841522 CA,,-34.91,,Shared,,,,false,226617141032888893
 2025-11-03,Deposit,Other Income,Apple Cash,Deposit,,0.27,,Shared,,,,false,226427488767027432
