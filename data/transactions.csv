@@ -1,8 +1,17 @@
 Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Reviewed,Reviewed At,Reviewed By,Pending,Id
+2026-11-17,Shein,Clothing,Apple Card,SHEIN,,-330.81,,Shared,,,,true,260715965549357912
+2026-11-17,Apple,Shopping,Apple Card,Apple,,-9.99,,Shared,,,,true,260715965549357911
+2026-11-16,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-26.55,,Shared,,,,true,260715965549357913
 2026-11-16,Costco,Groceries,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1116 7606&@#COSTCO WHSE #10 PARKER CO US,,-98.79,,Shared,,,,false,260673055872232277
 2026-11-16,Phillips 66,Gas,CASHBACK DEBIT (...3359),ACH WITHDRAWAL PHILLIPS 66 COMP PREAUTHPMT 35383 14490 E 6TH AVE AURORA CO,,-57.74,,Shared,,,,false,260627989305731199
 2026-11-16,Target,Shopping,CASHBACK DEBIT (...3359),ACH WITHDRAWAL TARGET DEBIT CRD ACH TRAN 5S0102 TARGET 0147 ENGLEWOOD CO,,-30.57,,Shared,,,,false,260627989305731198
+2026-11-15,Bawarchi Biryanis,Restaurants & Bars,Apple Card,Bawarchi Biryanis,,-105.50,,Shared,,,,false,260715965549357916
+2026-11-15,Circle K,Gas,Apple Card,Circle K - Convenience Store,,-20.29,,Shared,,,,false,260715965549357914
+2026-11-15,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,1.80,,Shared,,,,false,260715964023679712
+2026-11-14,State Farm,Insurance,Apple Card,State Farm Insurance,,-179.54,,Shared,,,,false,260715965549357917
+2026-11-14,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,2.81,,Shared,,,,false,260715964023679711
 2026-11-14,Colorado Tamil Association,Transfer,CASHBACK DEBIT (...3359),ZELLE PAYMENT TO COLORADO TAMIL ASS FB41EURLD,,-130.00,,Shared,,,,false,260492399799150738
+2026-11-13,Yard House,Restaurants & Bars,Apple Card,Yard House,,-140.70,,Shared,,,,false,260715965549357915
 2026-11-13,Real Property Management,Business Income,CASHBACK DEBIT (...3359),ACH DEPOSIT SIGONFILE FROM REAL PROPERTY MA,,2695.50,,Shared,,,,false,260356613530430200
 2026-11-12,Home Depot Credit Card - Personal Credit Card,Credit Card Payment,The Home Depot® Consumer Credit Card-4131 (...4131),Payment,,8.08,,Shared,,,,false,260403715137580002
 2026-11-12,Discover,Check,CASHBACK DEBIT (...3359),CHECK 169,,-155.00,,Shared,,,,false,260311194334112174
