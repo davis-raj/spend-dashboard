@@ -1,6 +1,10 @@
 Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Reviewed,Reviewed At,Reviewed By,Pending,Id
+2026-11-18,Compark Conveni,Shopping,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1118 7606&@#COMPARK CONVENI PARKER CO US,,-65.05,,Shared,,,,false,260854441050614621
+2026-11-18,Apple,Shopping,Apple Card,Apple,,-2.04,,Shared,,,,true,260829816064289638
+2026-11-18,Apple,Shopping,Apple Card,Apple,,-12.89,,Shared,,,,false,260829816064289637
+2026-11-17,Wells Fargo,Balance Adjustments,WELLS FARGO CASH WISE VISA SIGNATURE CARD (...5802),ACCOUNT ADJUSTMENT,,1.00,,Shared,,,,false,260813454857185914
 2026-11-17,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.27,,Shared,,,,false,260735245363947536
-2026-11-17,365 Retail Markets,Restaurants & Bars,Apple Card,365 Market L 888 432-3,,-9.44,,Shared,,,,true,260735244968635317
+2026-11-17,365 Retail Markets,Restaurants & Bars,Apple Card,365 Retail Markets,,-9.44,,Shared,,,,false,260735244968635317
 2026-11-17,Shein,Clothing,Apple Card,SHEIN,,-330.81,,Shared,,,,true,260715965549357912
 2026-11-17,Apple,Shopping,Apple Card,Apple,,-9.99,,Shared,,,,false,260715965549357911
 2026-11-16,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,32.39,,Shared,,,,false,260775198117571231
@@ -8,6 +12,8 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-11-16,Costco,Groceries,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1116 7606&@#COSTCO WHSE #10 PARKER CO US,,-98.79,,Shared,,,,false,260673055872232277
 2026-11-16,Phillips 66,Gas,CASHBACK DEBIT (...3359),ACH WITHDRAWAL PHILLIPS 66 COMP PREAUTHPMT 35383 14490 E 6TH AVE AURORA CO,,-57.74,,Shared,,,,false,260627989305731199
 2026-11-16,Target,Shopping,CASHBACK DEBIT (...3359),ACH WITHDRAWAL TARGET DEBIT CRD ACH TRAN 5S0102 TARGET 0147 ENGLEWOOD CO,,-30.57,,Shared,,,,false,260627989305731198
+2026-11-15,Home Depot Credit Card - Personal Credit Card,Financial Fees,The Home Depot® Consumer Credit Card-4131 (...4131),Interest Charge,,0.00,,Shared,,,,false,260839262509312578
+2026-11-15,Home Depot Credit Card - Personal Credit Card,Financial Fees,The Home Depot® Consumer Credit Card-4131 (...4131),Interest Charge,,0.00,,Shared,,,,false,260839262509312577
 2026-11-15,Bawarchi Biryanis,Restaurants & Bars,Apple Card,Bawarchi Biryanis,,-105.50,,Shared,,,,false,260715965549357916
 2026-11-15,Circle K,Gas,Apple Card,Circle K - Convenience Store,,-20.29,,Shared,,,,false,260715965549357914
 2026-11-15,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,1.80,,Shared,,,,false,260715964023679712
