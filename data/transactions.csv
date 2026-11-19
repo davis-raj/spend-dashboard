@@ -1,4 +1,6 @@
 Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Reviewed,Reviewed At,Reviewed By,Pending,Id
+2026-11-19,Maverik,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1119 8352&@#MAVERIK #5413 PARKER CO US,,-65.44,,Shared,,,,false,260899507892890229
+2026-11-19,Target,Shopping,CASHBACK DEBIT (...3359),ACH WITHDRAWAL TARGET DEBIT CRD PURCHASE,,-79.78,,Shared,,,,false,260899507892890228
 2026-11-18,Compark Conveni,Shopping,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1118 7606&@#COMPARK CONVENI PARKER CO US,,-65.05,,Shared,,,,false,260854441050614621
 2026-11-18,Apple,Shopping,Apple Card,Apple,,-2.04,,Shared,,,,true,260829816064289638
 2026-11-18,Apple,Shopping,Apple Card,Apple,,-12.89,,Shared,,,,false,260829816064289637
