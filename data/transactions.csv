@@ -2,12 +2,12 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-11-19,Maverik,Gas,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1119 8352&@#MAVERIK #5413 PARKER CO US,,-65.44,,Shared,,,,false,260899507892890229
 2026-11-19,Target,Shopping,CASHBACK DEBIT (...3359),ACH WITHDRAWAL TARGET DEBIT CRD PURCHASE,,-79.78,,Shared,,,,false,260899507892890228
 2026-11-18,Compark Conveni,Shopping,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1118 7606&@#COMPARK CONVENI PARKER CO US,,-65.05,,Shared,,,,false,260854441050614621
-2026-11-18,Apple,Shopping,Apple Card,Apple,,-2.04,,Shared,,,,true,260829816064289638
+2026-11-18,Apple,Shopping,Apple Card,Apple,,-2.04,,Shared,,,,false,260829816064289638
 2026-11-18,Apple,Shopping,Apple Card,Apple,,-12.89,,Shared,,,,false,260829816064289637
 2026-11-17,Wells Fargo,Balance Adjustments,WELLS FARGO CASH WISE VISA SIGNATURE CARD (...5802),ACCOUNT ADJUSTMENT,,1.00,,Shared,,,,false,260813454857185914
 2026-11-17,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.27,,Shared,,,,false,260735245363947536
 2026-11-17,365 Retail Markets,Restaurants & Bars,Apple Card,365 Retail Markets,,-9.44,,Shared,,,,false,260735244968635317
-2026-11-17,Shein,Clothing,Apple Card,SHEIN,,-330.81,,Shared,,,,true,260715965549357912
+2026-11-17,Shein,Clothing,Apple Card,SHEIN,,-330.81,,Shared,,,,false,260715965549357912
 2026-11-17,Apple,Shopping,Apple Card,Apple,,-9.99,,Shared,,,,false,260715965549357911
 2026-11-16,Costco,Shopping,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,32.39,,Shared,,,,false,260775198117571231
 2026-11-16,E-470 Public Highway Authority,Parking & Tolls,Apple Card,E-470 Public Highway Authority,,-26.55,,Shared,,,,false,260715965549357913
