@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "monarch": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://api.monarch.com/mcp"]
+    }
+  }
+}
