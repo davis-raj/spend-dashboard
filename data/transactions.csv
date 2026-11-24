@@ -1,10 +1,20 @@
 Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Reviewed,Reviewed At,Reviewed By,Pending,Id
+2026-11-24,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.93,,Shared,,,,false,261328158926023097
+2026-11-24,Zao Asian Cafe,Restaurants & Bars,Apple Card,Zao Asian Cafe,,-18.29,,Shared,,,,true,261305432810170957
+2026-11-24,Paris Baguette,Restaurants & Bars,Apple Card,Paris Baguette,,-58.54,,Shared,,,,true,261305432810170956
+2026-11-23,Costco,Groceries,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-38.23,,Shared,,,,true,261318729752095235
+2026-11-23,King Soopers,Groceries,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1122 7606&@#KING SOOPERS #0 GREENWOOD VLG CO US,,-46.42,,Shared,,,,false,261307097601780318
+2026-11-23,Apple Cash,Other Income,CASHBACK DEBIT (...3359),ACH DEPOSIT FROM APPLE CASH DAVIS SIMPSON,,7.44,,Shared,,,,false,261307097601780317
+2026-11-23,Costco,Groceries,Apple Card,Costco Wholesale,,-44.99,,Shared,,,,true,261279046803368442
+2026-11-23,Formula App,Shopping,Apple Card,formula-app.com,,-62.99,,Shared,,,,true,261279046803368441
+2026-11-23,"Apple Card, Cash, and Savings",Cash & ATM,Apple Cash,Withdrawal,,-7.44,,Shared,,,,false,261279046024276397
+2026-11-23,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.10,,Shared,,,,false,261279046024276396
 2026-11-23,Apple,Credit Card Payment,CASHBACK DEBIT (...3359),ACH WITHDRAWAL APPLECARD GSBANK PAYMENT,,-3240.15,,Shared,,,,false,261261596220172628
 2026-11-23,Target,Shopping,CASHBACK DEBIT (...3359),ACH WITHDRAWAL TARGET DEBIT CRD ACH TRAN 5S0102 TARGET 2219 PARKER CO,,-91.78,,Shared,,,,false,261261596220172627
 2026-11-23,Toyota,Auto Payment,CASHBACK DEBIT (...3359),ACH WITHDRAWAL TOYOTA ACH RTL WEB,,-1019.19,,Shared,,,,false,261261596220172626
 2026-11-23,Google,Internet & Cable,Apple Card,Google Store,,-10.00,,Shared,,,,false,261214936163133660
-2026-11-22,Chase,Credit Card Payment,CREDIT CARD (...0216),PAYMENT-THANK YOU,,336.27,,Shared,,,,true,261190062999840946
-2026-11-22,Maverik,Gas,Apple Card,Maverik,,-46.25,,Shared,,,,true,261182549212507093
+2026-11-22,Chase,Credit Card Payment,CREDIT CARD (...0216),Payment Thank You-Mobile,,336.27,,Shared,,,,false,261190062999840946
+2026-11-22,Maverik,Gas,Apple Card,Maverik,,-46.25,,Shared,,,,false,261182549212507093
 2026-11-22,Discover,Transfer,CASHBACK DEBIT (...3359),TRANSFER FROM CHECKING 6079,,3850.00,,Shared,,,,false,261171278815669084
 2026-11-21,McDonald's,Restaurants & Bars,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1121 7606&@#MCDONALD'S F213 PARKER CO US,,-19.41,,Shared,,,,false,261126060829550737
 2026-11-21,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.29,,Shared,,,,false,261119299900909810
