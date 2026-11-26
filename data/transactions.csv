@@ -1,6 +1,6 @@
 Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Reviewed,Reviewed At,Reviewed By,Pending,Id
-2026-11-26,Konark Grocers,Groceries,Apple Card,Konark Grocers,,-40.66,,Shared,,,,true,261487937321413514
-2026-11-26,Walmart,Groceries,Apple Card,Walmart Supercenter,,-40.22,,Shared,,,,true,261487937321413513
+2026-11-26,Konark Grocers,Groceries,Apple Card,Konark Grocers,,-40.66,,Shared,,,,false,261487937321413514
+2026-11-26,Walmart,Groceries,Apple Card,Walmart Supercenter,,-40.22,,Shared,,,,false,261487937321413513
 2026-11-25,Costco,Groceries,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-184.39,,Shared,,,,true,261498988908751267
 2026-11-25,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.45,,Shared,,,,false,261464088035961276
 2026-11-25,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.45,,Shared,,,,false,261464088035961275
