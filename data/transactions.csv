@@ -1,6 +1,11 @@
 Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Reviewed,Reviewed At,Reviewed By,Pending,Id
-2026-11-24,Desi Mandi,Restaurants & Bars,Apple Card,Desi Mandi,,-44.84,,Shared,,,,true,261406909212896058
-2026-11-24,Rhino Market & Deli,Restaurants & Bars,Apple Card,Rhino Market & Deli,,-4.15,,Shared,,,,true,261364494364027180
+2026-11-26,Konark Grocers,Groceries,Apple Card,Konark Grocers,,-40.66,,Shared,,,,true,261487937321413514
+2026-11-26,Walmart,Groceries,Apple Card,Walmart Supercenter,,-40.22,,Shared,,,,true,261487937321413513
+2026-11-25,Costco,Groceries,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-184.39,,Shared,,,,true,261498988908751267
+2026-11-25,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.45,,Shared,,,,false,261464088035961276
+2026-11-25,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.45,,Shared,,,,false,261464088035961275
+2026-11-24,Desi Mandi,Restaurants & Bars,Apple Card,Desi Mandi,,-44.84,,Shared,,,,false,261406909212896058
+2026-11-24,Rhino Market & Deli,Restaurants & Bars,Apple Card,Rhino Market & Deli,,-4.15,,Shared,,,,false,261364494364027180
 2026-11-24,Comcast,Internet & Cable,CASHBACK DEBIT (...3359),ACH WITHDRAWAL COMCAST-XFINITY CABLE SVCS,,-50.59,,Shared,,,,false,261352569642134024
 2026-11-24,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.93,,Shared,,,,false,261328158926023097
 2026-11-24,Zao Asian Cafe,Restaurants & Bars,Apple Card,Zao Asian Cafe,,-18.29,,Shared,,,,false,261305432810170957
@@ -8,7 +13,7 @@ Date,Merchant,Category,Account,Original Statement,Notes,Amount,Tags,Owner,Review
 2026-11-23,Costco,Groceries,Costco Anywhere Visa® Card by Citi-2742 (...2742),Costco,,-38.23,,Shared,,,,false,261318729752095235
 2026-11-23,King Soopers,Groceries,CASHBACK DEBIT (...3359),DEBIT PURCHASE 1122 7606&@#KING SOOPERS #0 GREENWOOD VLG CO US,,-46.42,,Shared,,,,false,261307097601780318
 2026-11-23,Apple Cash,Other Income,CASHBACK DEBIT (...3359),ACH DEPOSIT FROM APPLE CASH DAVIS SIMPSON,,7.44,,Shared,,,,false,261307097601780317
-2026-11-23,Costco,Groceries,Apple Card,Costco Wholesale,,-44.99,,Shared,,,,true,261279046803368442
+2026-11-23,Costco,Groceries,Apple Card,Costco Wholesale,,-44.99,,Shared,,,,false,261279046803368442
 2026-11-23,Formula App,Shopping,Apple Card,Formula,,-62.99,,Shared,,,,false,261279046803368441
 2026-11-23,"Apple Card, Cash, and Savings",Cash & ATM,Apple Cash,Withdrawal,,-7.44,,Shared,,,,false,261279046024276397
 2026-11-23,"Apple Card, Cash, and Savings",Other Income,Apple Cash,Deposit,,0.10,,Shared,,,,false,261279046024276396
